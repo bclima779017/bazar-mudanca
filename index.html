@@ -1,0 +1,732 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+<title>Bazar de mudança — Unicco → Grand Mond</title>
+<meta name="description" content="Móveis e eletrodomésticos em ótimo estado, à venda por motivo de mudança. Sofá retrátil, mesa de jantar, geladeira Electrolux e mais." />
+<meta name="theme-color" content="#5C6E4D" />
+
+<!-- Open Graph -->
+<meta property="og:type" content="website" />
+<meta property="og:title" content="Bazar de mudança — Unicco → Grand Mond" />
+<meta property="og:description" content="Móveis e eletrodomésticos em ótimo estado por motivo de mudança." />
+<meta property="og:image" content="img/sofa-retratil/sofa-retratil-01.jpg" />
+
+<!-- Fonts -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+
+<style>
+:root{
+  --bg:#F8F4ED;
+  --surface:#FFFFFF;
+  --surface-2:#F1EADC;
+  --primary:#5C6E4D;
+  --primary-dk:#46553A;
+  --accent:#C97B5A;
+  --text:#2B2B2B;
+  --muted:#6B6155;
+  --border:#E5DCC9;
+  --shadow: 0 8px 28px rgba(60,50,30,.10);
+  --radius: 14px;
+  --radius-sm: 10px;
+  --whatsapp:#25D366;
+  --serif:"Fraunces", "Cormorant Garamond", Georgia, serif;
+  --sans:"Inter", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+}
+*{box-sizing:border-box}
+html,body{margin:0;padding:0}
+body{
+  font-family:var(--sans);
+  background:var(--bg);
+  color:var(--text);
+  line-height:1.55;
+  -webkit-font-smoothing:antialiased;
+  text-rendering:optimizeLegibility;
+}
+img{max-width:100%;display:block}
+a{color:var(--primary-dk);text-decoration:none}
+a:hover{text-decoration:underline}
+button{font-family:inherit;cursor:pointer;border:0;background:none}
+
+/* ---------- Layout ---------- */
+.container{max-width:1180px;margin:0 auto;padding:0 20px}
+
+/* ---------- Header ---------- */
+header.site{
+  position:sticky;top:0;z-index:50;
+  background:rgba(248,244,237,.92);
+  backdrop-filter:blur(8px);
+  border-bottom:1px solid var(--border);
+}
+.nav{display:flex;align-items:center;justify-content:space-between;padding:14px 0;gap:16px}
+.brand{font-family:var(--serif);font-weight:600;font-size:22px;color:var(--primary-dk);letter-spacing:.2px}
+.brand small{display:block;font-family:var(--sans);font-weight:500;font-size:11px;color:var(--muted);letter-spacing:1px;text-transform:uppercase}
+.nav-links{display:none;gap:22px;align-items:center}
+.nav-links a{color:var(--text);font-size:14px;font-weight:500}
+.nav-links a:hover{color:var(--primary-dk);text-decoration:none}
+.nav-cta{
+  background:var(--whatsapp);color:#fff;padding:8px 14px;border-radius:999px;
+  font-size:13px;font-weight:600;display:inline-flex;align-items:center;gap:6px
+}
+.nav-cta:hover{background:#1ebe5a;text-decoration:none;color:#fff}
+@media(min-width:780px){.nav-links{display:flex}}
+
+/* ---------- Hero ---------- */
+.hero{padding:48px 0 24px}
+.hero-grid{display:grid;gap:28px;grid-template-columns:1fr}
+@media(min-width:880px){.hero-grid{grid-template-columns:1.05fr .95fr;align-items:center;gap:48px}}
+.hero h1{
+  font-family:var(--serif);font-weight:600;font-size:clamp(34px,5vw,52px);
+  line-height:1.05;margin:0 0 14px;color:var(--primary-dk);letter-spacing:-.5px
+}
+.hero h1 em{font-style:italic;color:var(--accent)}
+.hero p.lead{font-size:17px;color:var(--muted);margin:0 0 22px;max-width:520px}
+.hero-badge{
+  display:inline-block;background:var(--surface-2);color:var(--primary-dk);
+  padding:6px 12px;border-radius:999px;font-size:12px;font-weight:600;
+  letter-spacing:.5px;text-transform:uppercase;margin-bottom:18px
+}
+.hero-buttons{display:flex;gap:12px;flex-wrap:wrap}
+.btn{
+  display:inline-flex;align-items:center;gap:8px;
+  padding:13px 22px;border-radius:999px;font-weight:600;font-size:14px;
+  transition:transform .15s ease, box-shadow .15s ease
+}
+.btn:hover{transform:translateY(-1px);text-decoration:none}
+.btn-primary{background:var(--primary);color:#fff}
+.btn-primary:hover{background:var(--primary-dk);color:#fff;box-shadow:var(--shadow)}
+.btn-ghost{background:transparent;color:var(--primary-dk);border:1.5px solid var(--primary)}
+.btn-ghost:hover{background:var(--surface-2)}
+.btn-whats{background:var(--whatsapp);color:#fff}
+.btn-whats:hover{background:#1ebe5a;color:#fff;box-shadow:var(--shadow)}
+.hero-image{
+  border-radius:var(--radius);overflow:hidden;
+  box-shadow:var(--shadow);aspect-ratio:4/3;background:var(--surface-2)
+}
+.hero-image img{width:100%;height:100%;object-fit:cover}
+
+/* ---------- Featured ---------- */
+section.featured{padding:32px 0}
+.featured-card{
+  background:var(--surface);border:1px solid var(--border);
+  border-radius:var(--radius);overflow:hidden;box-shadow:var(--shadow);
+  display:grid;grid-template-columns:1fr;gap:0
+}
+@media(min-width:780px){.featured-card{grid-template-columns:1.2fr 1fr}}
+.featured-card .img{aspect-ratio:4/3;background:var(--surface-2)}
+.featured-card .img img{width:100%;height:100%;object-fit:cover}
+.featured-card .body{padding:28px 28px 32px;display:flex;flex-direction:column;justify-content:center}
+.featured-card .tag{
+  display:inline-block;background:var(--accent);color:#fff;padding:5px 11px;
+  border-radius:999px;font-size:11px;font-weight:700;letter-spacing:.8px;
+  text-transform:uppercase;margin-bottom:14px;align-self:flex-start
+}
+.featured-card h2{font-family:var(--serif);font-weight:600;font-size:32px;margin:0 0 10px;line-height:1.1;color:var(--primary-dk)}
+.featured-card p{color:var(--muted);margin:0 0 18px;font-size:15px}
+.featured-card .meta{display:flex;flex-wrap:wrap;gap:14px;font-size:13px;color:var(--muted);margin-bottom:18px}
+.featured-card .meta span{display:inline-flex;align-items:center;gap:5px}
+.featured-card .price{font-family:var(--serif);font-size:32px;font-weight:600;color:var(--primary-dk);margin-bottom:18px}
+
+/* ---------- Filters ---------- */
+section.catalog{padding:48px 0 80px}
+.section-title{font-family:var(--serif);font-weight:600;font-size:32px;color:var(--primary-dk);margin:0 0 6px}
+.section-sub{color:var(--muted);margin:0 0 28px;font-size:15px}
+.filters{
+  display:flex;flex-wrap:wrap;gap:8px;margin-bottom:18px;
+  padding-bottom:16px;border-bottom:1px solid var(--border)
+}
+.filter-group{display:flex;align-items:center;gap:6px;flex-wrap:wrap}
+.filter-label{font-size:12px;text-transform:uppercase;letter-spacing:.5px;color:var(--muted);font-weight:600;margin-right:4px}
+.chip{
+  padding:7px 14px;border-radius:999px;border:1.5px solid var(--border);
+  background:var(--surface);font-size:13px;font-weight:500;color:var(--text);
+  transition:all .15s ease
+}
+.chip:hover{border-color:var(--primary)}
+.chip.active{background:var(--primary);color:#fff;border-color:var(--primary)}
+.search{
+  flex:1;min-width:220px;display:flex;align-items:center;gap:8px;
+  background:var(--surface);border:1.5px solid var(--border);border-radius:999px;padding:8px 16px
+}
+.search input{flex:1;border:0;outline:0;font-family:inherit;font-size:14px;background:transparent;color:var(--text)}
+.search svg{flex-shrink:0;opacity:.5}
+
+/* ---------- Grid ---------- */
+.grid{
+  display:grid;gap:22px;
+  grid-template-columns:repeat(auto-fill,minmax(260px,1fr))
+}
+.card{
+  background:var(--surface);border:1px solid var(--border);
+  border-radius:var(--radius);overflow:hidden;cursor:pointer;
+  transition:transform .2s ease, box-shadow .2s ease;
+  display:flex;flex-direction:column
+}
+.card:hover{transform:translateY(-3px);box-shadow:var(--shadow)}
+.card .img{aspect-ratio:4/3;background:var(--surface-2);overflow:hidden;position:relative}
+.card .img img{width:100%;height:100%;object-fit:cover;transition:transform .4s ease}
+.card:hover .img img{transform:scale(1.04)}
+.card .placeholder{
+  width:100%;height:100%;display:flex;align-items:center;justify-content:center;
+  color:var(--muted);font-size:13px;text-align:center;padding:16px
+}
+.card .badge{
+  position:absolute;top:12px;left:12px;padding:5px 10px;border-radius:999px;
+  font-size:11px;font-weight:700;letter-spacing:.5px;text-transform:uppercase;
+  background:rgba(255,255,255,.95);color:var(--primary-dk);box-shadow:var(--shadow)
+}
+.card .badge.warn{background:var(--accent);color:#fff}
+.card .body{padding:16px 18px 18px;display:flex;flex-direction:column;flex:1}
+.card .cat{font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:.6px;font-weight:600;margin-bottom:4px}
+.card h3{font-family:var(--serif);font-size:18px;font-weight:600;margin:0 0 6px;line-height:1.2;color:var(--primary-dk)}
+.card .dims{font-size:12px;color:var(--muted);margin-bottom:10px}
+.card .price{font-family:var(--serif);font-size:22px;font-weight:600;color:var(--primary-dk);margin-top:auto}
+.empty{padding:60px 20px;text-align:center;color:var(--muted);font-style:italic;grid-column:1/-1}
+
+/* ---------- Modal ---------- */
+.modal{
+  position:fixed;inset:0;background:rgba(20,18,12,.6);z-index:100;
+  display:none;align-items:flex-start;justify-content:center;
+  overflow-y:auto;padding:20px;backdrop-filter:blur(4px)
+}
+.modal.open{display:flex}
+.modal-card{
+  background:var(--surface);border-radius:var(--radius);max-width:920px;width:100%;
+  margin:20px auto;overflow:hidden;box-shadow:0 20px 60px rgba(0,0,0,.3);
+  animation:slideUp .25s ease
+}
+@keyframes slideUp{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:none}}
+.modal-grid{display:grid;grid-template-columns:1fr;gap:0}
+@media(min-width:780px){.modal-grid{grid-template-columns:1.1fr 1fr}}
+.gallery{background:var(--surface-2);position:relative}
+.gallery-main{aspect-ratio:4/3;overflow:hidden}
+.gallery-main img{width:100%;height:100%;object-fit:cover}
+.gallery-thumbs{display:flex;gap:6px;padding:8px;overflow-x:auto;background:var(--surface-2)}
+.gallery-thumbs img{
+  width:64px;height:64px;object-fit:cover;border-radius:6px;cursor:pointer;
+  opacity:.6;transition:opacity .15s ease;flex-shrink:0;border:2px solid transparent
+}
+.gallery-thumbs img.active{opacity:1;border-color:var(--primary)}
+.gallery-nav{
+  position:absolute;top:50%;transform:translateY(-50%);
+  background:rgba(255,255,255,.9);border-radius:50%;width:38px;height:38px;
+  display:flex;align-items:center;justify-content:center;cursor:pointer;
+  font-size:20px;color:var(--primary-dk);box-shadow:var(--shadow)
+}
+.gallery-nav.prev{left:12px}
+.gallery-nav.next{right:12px}
+.modal-body{padding:28px 28px 32px;overflow-y:auto;max-height:calc(100vh - 80px)}
+.modal-close{
+  position:absolute;top:14px;right:14px;background:rgba(255,255,255,.95);
+  width:38px;height:38px;border-radius:50%;display:flex;align-items:center;
+  justify-content:center;font-size:20px;color:var(--text);box-shadow:var(--shadow);z-index:2
+}
+.modal-body .cat{font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:.6px;font-weight:600;margin-bottom:6px}
+.modal-body h2{font-family:var(--serif);font-size:28px;font-weight:600;margin:0 0 8px;line-height:1.15;color:var(--primary-dk)}
+.modal-body .price{font-family:var(--serif);font-size:30px;font-weight:600;color:var(--primary-dk);margin:14px 0 6px}
+.modal-body .desc{color:var(--text);margin:14px 0 18px;font-size:15px;line-height:1.6}
+.specs{display:grid;grid-template-columns:1fr 1fr;gap:10px 18px;margin:18px 0;padding:16px;background:var(--surface-2);border-radius:var(--radius-sm);font-size:13px}
+.spec{display:flex;flex-direction:column}
+.spec dt{color:var(--muted);font-size:11px;text-transform:uppercase;letter-spacing:.5px;font-weight:600;margin:0 0 2px}
+.spec dd{margin:0;color:var(--text);font-weight:500}
+.modal-cta{display:flex;gap:10px;flex-wrap:wrap;margin-top:20px}
+.modal-disclaimer{font-size:12px;color:var(--muted);font-style:italic;margin-top:14px}
+
+/* ---------- About / How ---------- */
+section.about{background:var(--surface-2);padding:60px 0;margin-top:40px}
+.about-grid{display:grid;gap:32px;grid-template-columns:1fr}
+@media(min-width:780px){.about-grid{grid-template-columns:repeat(3,1fr)}}
+.about-card h3{font-family:var(--serif);font-size:20px;color:var(--primary-dk);margin:0 0 8px}
+.about-card p{color:var(--muted);font-size:14px;margin:0}
+.about-card .icon{
+  width:42px;height:42px;border-radius:50%;background:var(--surface);
+  display:flex;align-items:center;justify-content:center;margin-bottom:12px;
+  color:var(--primary);box-shadow:var(--shadow)
+}
+
+/* ---------- Footer ---------- */
+footer.site{padding:32px 0;border-top:1px solid var(--border);text-align:center;color:var(--muted);font-size:13px}
+
+/* ---------- Floating WhatsApp ---------- */
+.fab{
+  position:fixed;bottom:20px;right:20px;z-index:60;
+  background:var(--whatsapp);color:#fff;width:56px;height:56px;border-radius:50%;
+  display:flex;align-items:center;justify-content:center;
+  box-shadow:0 8px 22px rgba(37,211,102,.45);
+  transition:transform .2s ease
+}
+.fab:hover{transform:scale(1.06);color:#fff;text-decoration:none}
+.fab svg{width:28px;height:28px}
+@media(max-width:600px){.fab{bottom:14px;right:14px;width:52px;height:52px}}
+</style>
+</head>
+<body>
+
+<!-- ============== HEADER ============== -->
+<header class="site">
+  <div class="container nav">
+    <a href="#" class="brand">
+      Bazar de mudança
+      <small>Unicco → Grand Mond · Junho/2026</small>
+    </a>
+    <nav class="nav-links">
+      <a href="#destaque">Destaque</a>
+      <a href="#catalogo">Catálogo</a>
+      <a href="#como-funciona">Como funciona</a>
+    </nav>
+    <a class="nav-cta" href="#" id="navWhats">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M17.5 14.4c-.3-.1-1.6-.8-1.9-.9-.3-.1-.4-.1-.6.1-.2.3-.7.9-.8 1-.2.2-.3.2-.6.1-.3-.1-1.2-.4-2.3-1.4-.9-.8-1.4-1.7-1.6-2-.2-.3 0-.5.1-.6.1-.1.3-.3.4-.5.1-.2.2-.3.3-.5.1-.2 0-.4 0-.5 0-.1-.6-1.4-.8-1.9-.2-.5-.4-.4-.6-.4h-.5c-.2 0-.5.1-.7.3-.2.3-.9.9-.9 2.1s1 2.5 1.1 2.6c.1.2 1.9 2.9 4.6 4.1 1.6.7 2.3.8 3.1.7.5-.1 1.6-.7 1.8-1.3.2-.7.2-1.2.2-1.3-.1-.2-.3-.3-.6-.4M12 2C6.5 2 2 6.5 2 12c0 1.7.4 3.4 1.3 4.9L2 22l5.3-1.4c1.4.8 3 1.2 4.7 1.2 5.5 0 10-4.5 10-10S17.5 2 12 2z"/></svg>
+      WhatsApp
+    </a>
+  </div>
+</header>
+
+<!-- ============== HERO ============== -->
+<section class="hero container">
+  <div class="hero-grid">
+    <div>
+      <span class="hero-badge">Mudança · Junho de 2026</span>
+      <h1>Os móveis da casa procurando <em>um novo lar</em>.</h1>
+      <p class="lead">Estamos saindo do Unicco para o Grand Mond e precisamos passar adiante os móveis e eletrodomésticos que não vão com a gente. Itens em ótimo estado, 2 anos de uso. Retirada e entrega são negociáveis.</p>
+      <div class="hero-buttons">
+        <a href="#destaque" class="btn btn-primary">Ver o destaque</a>
+        <a href="#catalogo" class="btn btn-ghost">Catálogo completo</a>
+      </div>
+    </div>
+    <div class="hero-image">
+      <img src="img/sofa-retratil/sofa-retratil-01.jpg" alt="Sofá retrátil de 3 módulos em destaque" loading="eager" />
+    </div>
+  </div>
+</section>
+
+<!-- ============== FEATURED ============== -->
+<section id="destaque" class="container featured">
+  <div class="featured-card" id="featuredCard"></div>
+</section>
+
+<!-- ============== CATALOG ============== -->
+<section id="catalogo" class="container catalog">
+  <h2 class="section-title">Catálogo</h2>
+  <p class="section-sub">Filtre por categoria ou cômodo de origem. Toque em um item para ver detalhes e fotos.</p>
+
+  <div class="filters">
+    <div class="filter-group" id="catFilters"><span class="filter-label">Categoria</span></div>
+  </div>
+  <div class="filters">
+    <div class="filter-group" id="roomFilters"><span class="filter-label">Cômodo</span></div>
+    <div class="search">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+      <input type="search" placeholder="Buscar..." id="searchInput" aria-label="Buscar produtos" />
+    </div>
+  </div>
+
+  <div class="grid" id="productGrid"></div>
+</section>
+
+<!-- ============== ABOUT / HOW ============== -->
+<section id="como-funciona" class="about">
+  <div class="container">
+    <h2 class="section-title">Como funciona</h2>
+    <p class="section-sub">Sem cadastro, sem checkout. Toda a conversa acontece no WhatsApp.</p>
+    <div class="about-grid">
+      <div class="about-card">
+        <div class="icon">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+        </div>
+        <h3>1. Escolha</h3>
+        <p>Navegue pelo catálogo. Cada item tem fotos, dimensões e preço. Os filtros ajudam a achar pelo cômodo de origem ou pela categoria.</p>
+      </div>
+      <div class="about-card">
+        <div class="icon">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg>
+        </div>
+        <h3>2. Mande mensagem</h3>
+        <p>Clique em "Saber mais" no card do produto — abre uma conversa no WhatsApp já com o nome do item preenchido.</p>
+      </div>
+      <div class="about-card">
+        <div class="icon">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="8.5" cy="7" r="4"/><line x1="20" y1="8" x2="20" y2="14"/><line x1="23" y1="11" x2="17" y2="11"/></svg>
+        </div>
+        <h3>3. Combinamos</h3>
+        <p>Acertamos preço, forma de pagamento (Pix/transferência/dinheiro) e logística. Retirada e entrega são negociáveis.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============== FOOTER ============== -->
+<footer class="site">
+  <div class="container">
+    Bazar de mudança · Unicco → Grand Mond · Junho/2026 · feito com cuidado para um bom destino
+  </div>
+</footer>
+
+<!-- ============== Floating WhatsApp ============== -->
+<a href="#" class="fab" id="fabWhats" aria-label="Falar no WhatsApp">
+  <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.5 14.4c-.3-.1-1.6-.8-1.9-.9-.3-.1-.4-.1-.6.1-.2.3-.7.9-.8 1-.2.2-.3.2-.6.1-.3-.1-1.2-.4-2.3-1.4-.9-.8-1.4-1.7-1.6-2-.2-.3 0-.5.1-.6.1-.1.3-.3.4-.5.1-.2.2-.3.3-.5.1-.2 0-.4 0-.5 0-.1-.6-1.4-.8-1.9-.2-.5-.4-.4-.6-.4h-.5c-.2 0-.5.1-.7.3-.2.3-.9.9-.9 2.1s1 2.5 1.1 2.6c.1.2 1.9 2.9 4.6 4.1 1.6.7 2.3.8 3.1.7.5-.1 1.6-.7 1.8-1.3.2-.7.2-1.2.2-1.3-.1-.2-.3-.3-.6-.4M12 2C6.5 2 2 6.5 2 12c0 1.7.4 3.4 1.3 4.9L2 22l5.3-1.4c1.4.8 3 1.2 4.7 1.2 5.5 0 10-4.5 10-10S17.5 2 12 2z"/></svg>
+</a>
+
+<!-- ============== Modal ============== -->
+<div class="modal" id="modal" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+  <div class="modal-card" role="document">
+    <button class="modal-close" aria-label="Fechar" id="modalClose">×</button>
+    <div class="modal-grid">
+      <div class="gallery" id="gallery"></div>
+      <div class="modal-body" id="modalBody"></div>
+    </div>
+  </div>
+</div>
+
+<!-- ============== DATA + LOGIC ============== -->
+<script>
+/* ============================================================
+ * CONFIGURAÇÃO — Bruno, ajuste estes campos:
+ * ============================================================ */
+const CONFIG = {
+  whatsapp: "5511999999999",            // <-- TROCAR: número com DDI+DDD, só dígitos. Ex: 5511987654321
+  bairro:   "(seu bairro/cidade)",      // <-- TROCAR: ex.: "Pinheiros — São Paulo/SP"
+};
+
+/* ============================================================
+ * PRODUTOS — edição direta aqui (futuramente: importar da planilha)
+ * ============================================================ */
+const PRODUCTS = [
+  {
+    id: "SOF-001", featured: true,
+    title: "Sofá retrátil 3 módulos — 2,95 m",
+    category: "Sofá", room: "Sala de estar",
+    price: 2800, status: "Disponível",
+    images: [
+      "img/sofa-retratil/sofa-retratil-01.jpg","img/sofa-retratil/sofa-retratil-02.jpg",
+      "img/sofa-retratil/sofa-retratil-03.jpg","img/sofa-retratil/sofa-retratil-04.jpg",
+      "img/sofa-retratil/sofa-retratil-05.jpg","img/sofa-retratil/sofa-retratil-06.jpg",
+      "img/sofa-retratil/sofa-retratil-07.jpg","img/sofa-retratil/sofa-retratil-08.jpg",
+      "img/sofa-retratil/sofa-retratil-09.jpg","img/sofa-retratil/sofa-retratil-10.jpg",
+      "img/sofa-retratil/sofa-retratil-11.jpg","img/sofa-retratil/sofa-retratil-12.jpg",
+      "img/sofa-retratil/sofa-retratil-13.jpg","img/sofa-retratil/sofa-retratil-14.jpg",
+      "img/sofa-retratil/sofa-retratil-15.jpg","img/sofa-retratil/sofa-retratil-16.jpg"
+    ],
+    description: "A estrela do bazar. Sofá retrátil de 3 módulos com 295 cm de frente — acomoda a família inteira e ainda sobra espaço. Profundidade variável até 155 cm com módulos abertos. Estrutura sólida, em ótimo estado.",
+    specs: { "Dimensões": "295 × 155 × 95 cm", "Estado": "Ótimo · 2 anos de uso", "Material": "Tecido (a confirmar)", "Cômodo": "Sala de estar" }
+  },
+  {
+    id: "POL-001",
+    title: "Par de poltronas",
+    category: "Poltrona", room: "Sala de estar",
+    price: 1200, status: "Disponível", priceNote: "par",
+    images: ["img/poltronas/poltronas-01.jpg","img/poltronas/poltronas-02.jpg","img/poltronas/poltronas-03.jpg"],
+    description: "Conjunto com duas poltronas idênticas, base baixa e estofamento estruturado. Combinam com o sofá retrátil ou formam um canto de leitura próprio. Vendidas como par.",
+    specs: { "Dimensões (cada)": "82 × 82 × 65 cm", "Estado": "Ótimo · 2 anos de uso", "Quantidade": "2 unidades (par)", "Cômodo": "Sala de estar" }
+  },
+  {
+    id: "MCE-001",
+    title: "Mesas de centro — tampo orgânico e bases esfera",
+    category: "Mesa de centro", room: "Sala de estar",
+    price: 900, status: "Disponível",
+    images: ["img/mesas-centro/mesas-centro-01.jpg","img/mesas-centro/mesas-centro-02.jpg","img/mesas-centro/mesas-centro-03.jpg","img/mesas-centro/mesas-centro-04.jpg","img/mesas-centro/mesas-centro-05.jpg","img/mesas-centro/mesas-centro-06.jpg","img/mesas-centro/mesas-centro-07.jpg","img/mesas-centro/mesas-centro-08.jpg"],
+    description: "Design escultural: tampo em formato orgânico em madeira maciça e bases esfera. Peça com presença, traz personalidade ao living.",
+    specs: { "Dimensões": "Medir no local", "Estado": "Ótimo · 2 anos de uso", "Material": "Madeira maciça", "Cômodo": "Sala de estar" },
+    disclaimer: "Dimensões e conjunto exato a confirmar no contato."
+  },
+  {
+    id: "TV-001",
+    title: "Smart TV — tela grande",
+    category: "Eletrônico", room: "Sala de estar",
+    price: 1800, status: "Disponível",
+    images: ["img/televisao/televisao-01.jpg"],
+    description: "Televisão de tela ampla, em ótimo estado. Marca e polegadas exatas a confirmar na conversa.",
+    specs: { "Estado": "Ótimo · 2 anos de uso", "Cômodo": "Sala de estar", "Tipo": "Smart TV (instalada em painel)" },
+    disclaimer: "Marca e polegadas serão confirmadas no momento do contato."
+  },
+  {
+    id: "MJA-001",
+    title: "Mesa de jantar 2,20 m · 8 lugares",
+    category: "Mesa", room: "Sala de jantar",
+    price: 2200, status: "Disponível",
+    images: ["img/mesa-jantar/mesa-jantar-01.jpg","img/mesa-jantar/mesa-jantar-02.jpg","img/mesa-jantar/mesa-jantar-03.jpg","img/mesa-jantar/mesa-jantar-04.jpg","img/mesa-jantar/mesa-jantar-05.jpg","img/mesa-jantar/mesa-jantar-06.jpg","img/mesa-jantar/mesa-jantar-07.jpg","img/mesa-jantar/mesa-jantar-08.jpg","img/mesa-jantar/mesa-jantar-09.jpg"],
+    description: "Mesa de jantar ampla, 220 × 110 cm, ideal para 8 pessoas. Centro do ambiente social, pronta para receber. Tampo e estrutura em ótimo estado.",
+    specs: { "Dimensões": "220 × 110 × 77 cm", "Lugares": "8", "Estado": "Ótimo · 2 anos de uso", "Cômodo": "Sala de jantar" }
+  },
+  {
+    id: "CAD-001",
+    title: "Cadeira com encosto em palhinha",
+    category: "Cadeira", room: "Sala de jantar",
+    price: 280, status: "Disponível", priceNote: "cada",
+    images: ["img/cadeira-palhinha/cadeira-palhinha-01.jpg"],
+    description: "Clássico atemporal. Estrutura em madeira e encosto em palhinha natural — combina com qualquer mesa de jantar.",
+    specs: { "Dimensões": "46 × 52 × 81 cm", "Estado": "Ótimo · 2 anos de uso", "Material": "Madeira + palhinha", "Cômodo": "Sala de jantar" },
+    disclaimer: "Quantidade total a confirmar."
+  },
+  {
+    id: "CAD-002",
+    title: "Cadeira de couro",
+    category: "Cadeira", room: "Sala de jantar",
+    price: 420, status: "Aguardando fotos", priceNote: "cada",
+    images: [],
+    description: "Cadeira em couro autêntico, conforto e elegância. Fotos serão acrescentadas em breve.",
+    specs: { "Dimensões": "46 × 49 × 85 cm", "Estado": "Ótimo · 2 anos de uso", "Material": "Couro", "Cômodo": "Sala de jantar" }
+  },
+  {
+    id: "BAN-001",
+    title: "Banquetas altas de madeira — par",
+    category: "Banqueta", room: "Cozinha",
+    price: 450, status: "Disponível", priceNote: "par",
+    images: ["img/banquetas/banquetas-01.jpg","img/banquetas/banquetas-02.jpg"],
+    description: "Par de banquetas em madeira maciça com encosto. Altura de assento adequada para bancadas/ilhas de 90 cm.",
+    specs: { "Dimensões (cada)": "43 × 42 × 103 cm", "Estado": "Ótimo · 2 anos de uso", "Material": "Madeira maciça", "Cômodo": "Cozinha / bancada" }
+  },
+  {
+    id: "GEL-001",
+    title: "Geladeira Electrolux Inverter 431 L · Platinum",
+    category: "Eletrodoméstico", room: "Cozinha",
+    price: 2100, status: "Disponível",
+    images: ["img/geladeira/geladeira-01.jpg","img/geladeira/geladeira-02.jpg","img/geladeira/geladeira-03.jpg"],
+    description: "Geladeira Electrolux Inverter, 431 L, acabamento platinum. Frost-free, prateleiras retráteis, Ice Max e painel digital. Economia de até 45% no consumo. Modelo de referência: IF55S.",
+    specs: { "Dimensões": "70 × 76 × 176 cm (referência)", "Capacidade": "431 L", "Estado": "Ótimo · 2 anos de uso", "Modelo": "Electrolux IF55S (referência)", "Cômodo": "Cozinha" },
+    disclaimer: "Voltagem a confirmar no contato."
+  },
+  {
+    id: "FRE-001",
+    title: "Freezer horizontal Electrolux 305 L · dupla ação",
+    category: "Eletrodoméstico", room: "Cozinha / área de serviço",
+    price: 1100, status: "Disponível",
+    images: ["img/freezer/freezer-01.jpg","img/freezer/freezer-02.jpg","img/freezer/freezer-03.jpg","img/freezer/freezer-04.jpg","img/freezer/freezer-05.jpg","img/freezer/freezer-06.jpg","img/freezer/freezer-07.jpg"],
+    description: "Freezer horizontal Electrolux, branco, 305 L. Função dupla ação: pode operar como freezer ou refrigerador. Etiqueta A de eficiência. Modelo de referência: H300.",
+    specs: { "Dimensões": "105 × 76 × 92 cm (referência)", "Capacidade": "305 L", "Estado": "Ótimo · 2 anos de uso", "Modelo": "Electrolux H300 (referência)", "Cômodo": "Cozinha / área de serviço" },
+    disclaimer: "Voltagem a confirmar no contato."
+  },
+  {
+    id: "MIC-001",
+    title: "Micro-ondas Electrolux 31 L · espelhado",
+    category: "Eletrodoméstico", room: "Cozinha",
+    price: 420, status: "Disponível",
+    images: ["img/microondas/microondas-01.jpg"],
+    description: "Micro-ondas Electrolux 31 L com acabamento espelhado e painel digital. Função tira-odor e capacidade familiar. Modelo de referência: MI41S.",
+    specs: { "Dimensões": "52 × 43 × 33 cm (referência)", "Capacidade": "31 L", "Estado": "Ótimo · 2 anos de uso", "Modelo": "Electrolux MI41S (referência)", "Cômodo": "Cozinha" },
+    disclaimer: "Voltagem a confirmar no contato."
+  }
+];
+
+/* ============================================================
+ * HELPERS
+ * ============================================================ */
+const fmt = n => n == null ? "" : "R$ " + n.toLocaleString("pt-BR");
+
+function waLink(text){
+  const t = encodeURIComponent(text || "Olá! Quero saber mais sobre o catálogo da mudança.");
+  return `https://wa.me/${CONFIG.whatsapp}?text=${t}`;
+}
+function waProductMsg(p){
+  return `Olá! Quero saber mais sobre o "${p.title}" do catálogo da mudança.`;
+}
+
+/* ============================================================
+ * RENDER: featured card
+ * ============================================================ */
+function renderFeatured(){
+  const p = PRODUCTS.find(x => x.featured);
+  if(!p) return;
+  document.getElementById("featuredCard").innerHTML = `
+    <div class="img"><img src="${p.images[0]}" alt="${p.title}" loading="eager"></div>
+    <div class="body">
+      <span class="tag">★ Destaque</span>
+      <h2>${p.title}</h2>
+      <p>${p.description}</p>
+      <div class="meta">
+        ${Object.entries(p.specs).slice(0,3).map(([k,v]) => `<span>· ${k}: <strong>${v}</strong></span>`).join("")}
+      </div>
+      <div class="price">${fmt(p.price)}</div>
+      <div style="display:flex;gap:10px;flex-wrap:wrap">
+        <a class="btn btn-whats" href="${waLink(waProductMsg(p))}" target="_blank" rel="noopener">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M17.5 14.4c-.3-.1-1.6-.8-1.9-.9-.3-.1-.4-.1-.6.1-.2.3-.7.9-.8 1-.2.2-.3.2-.6.1-.3-.1-1.2-.4-2.3-1.4-.9-.8-1.4-1.7-1.6-2-.2-.3 0-.5.1-.6.1-.1.3-.3.4-.5.1-.2.2-.3.3-.5.1-.2 0-.4 0-.5 0-.1-.6-1.4-.8-1.9-.2-.5-.4-.4-.6-.4h-.5c-.2 0-.5.1-.7.3-.2.3-.9.9-.9 2.1s1 2.5 1.1 2.6c.1.2 1.9 2.9 4.6 4.1 1.6.7 2.3.8 3.1.7.5-.1 1.6-.7 1.8-1.3.2-.7.2-1.2.2-1.3-.1-.2-.3-.3-.6-.4M12 2C6.5 2 2 6.5 2 12c0 1.7.4 3.4 1.3 4.9L2 22l5.3-1.4c1.4.8 3 1.2 4.7 1.2 5.5 0 10-4.5 10-10S17.5 2 12 2z"/></svg>
+          Saber mais
+        </a>
+        <button class="btn btn-ghost" onclick="openModal('${p.id}')">Ver fotos</button>
+      </div>
+    </div>`;
+}
+
+/* ============================================================
+ * FILTERS
+ * ============================================================ */
+const state = { category: "Todos", room: "Todos", q: "" };
+
+function buildFilters(){
+  const cats = ["Todos", ...new Set(PRODUCTS.map(p => p.category))];
+  const rooms = ["Todos", ...new Set(PRODUCTS.map(p => p.room))];
+  const renderChips = (id, items, key) => {
+    const c = document.getElementById(id);
+    items.forEach(v => {
+      const chip = document.createElement("button");
+      chip.className = "chip" + (state[key] === v ? " active" : "");
+      chip.textContent = v;
+      chip.onclick = () => { state[key] = v; renderGrid(); refreshChips(); };
+      c.appendChild(chip);
+    });
+  };
+  renderChips("catFilters", cats, "category");
+  renderChips("roomFilters", rooms, "room");
+}
+function refreshChips(){
+  document.querySelectorAll("#catFilters .chip").forEach(b => {
+    b.classList.toggle("active", b.textContent === state.category);
+  });
+  document.querySelectorAll("#roomFilters .chip").forEach(b => {
+    b.classList.toggle("active", b.textContent === state.room);
+  });
+}
+
+/* ============================================================
+ * RENDER: grid
+ * ============================================================ */
+function filtered(){
+  const q = state.q.toLowerCase().trim();
+  return PRODUCTS.filter(p => {
+    if(state.category !== "Todos" && p.category !== state.category) return false;
+    if(state.room !== "Todos" && p.room !== state.room) return false;
+    if(q && !(p.title.toLowerCase().includes(q) || p.description.toLowerCase().includes(q))) return false;
+    return true;
+  });
+}
+
+function renderGrid(){
+  const grid = document.getElementById("productGrid");
+  const list = filtered();
+  if(list.length === 0){
+    grid.innerHTML = `<div class="empty">Nenhum produto com esses filtros.</div>`;
+    return;
+  }
+  grid.innerHTML = list.map(p => {
+    const dims = p.specs["Dimensões"] || p.specs["Dimensões (cada)"] || "";
+    const badge = p.status === "Disponível"
+      ? ""
+      : `<span class="badge ${p.status === "Aguardando fotos" ? "warn" : ""}">${p.status}</span>`;
+    const imgBlock = p.images.length
+      ? `<img src="${p.images[0]}" alt="${p.title}" loading="lazy">`
+      : `<div class="placeholder">📷 Fotos em breve</div>`;
+    return `
+      <article class="card" onclick="openModal('${p.id}')" tabindex="0" role="button" aria-label="Ver detalhes de ${p.title}">
+        <div class="img">${imgBlock}${badge}</div>
+        <div class="body">
+          <div class="cat">${p.category} · ${p.room}</div>
+          <h3>${p.title}</h3>
+          ${dims ? `<div class="dims">${dims}</div>` : ""}
+          <div class="price">${fmt(p.price)}${p.priceNote ? ` <span style="font-size:13px;color:var(--muted);font-family:var(--sans);font-weight:400">/ ${p.priceNote}</span>` : ""}</div>
+        </div>
+      </article>`;
+  }).join("");
+}
+
+/* ============================================================
+ * MODAL
+ * ============================================================ */
+let modalState = { product: null, idx: 0 };
+function openModal(id){
+  const p = PRODUCTS.find(x => x.id === id);
+  if(!p) return;
+  modalState = { product: p, idx: 0 };
+  renderModal();
+  const m = document.getElementById("modal");
+  m.classList.add("open");
+  document.body.style.overflow = "hidden";
+}
+function closeModal(){
+  document.getElementById("modal").classList.remove("open");
+  document.body.style.overflow = "";
+}
+function renderModal(){
+  const p = modalState.product;
+  const gallery = document.getElementById("gallery");
+  if(p.images.length){
+    gallery.innerHTML = `
+      <div class="gallery-main"><img id="galleryMain" src="${p.images[modalState.idx]}" alt="${p.title}"></div>
+      ${p.images.length > 1 ? `
+        <button class="gallery-nav prev" onclick="galNav(-1)" aria-label="Anterior">‹</button>
+        <button class="gallery-nav next" onclick="galNav(1)" aria-label="Próxima">›</button>
+        <div class="gallery-thumbs">
+          ${p.images.map((src,i) => `<img src="${src}" onclick="galGo(${i})" class="${i===modalState.idx?'active':''}" alt="Foto ${i+1}">`).join("")}
+        </div>` : ""}
+    `;
+  } else {
+    gallery.innerHTML = `<div class="gallery-main"><div class="placeholder" style="height:100%;display:flex;align-items:center;justify-content:center;background:var(--surface-2);color:var(--muted)">📷 Fotos em breve</div></div>`;
+  }
+  const body = document.getElementById("modalBody");
+  body.innerHTML = `
+    <div class="cat">${p.category} · ${p.room}</div>
+    <h2 id="modalTitle">${p.title}</h2>
+    <div class="price">${fmt(p.price)}${p.priceNote ? ` <span style="font-size:14px;color:var(--muted);font-family:var(--sans);font-weight:400">/ ${p.priceNote}</span>` : ""}</div>
+    <p class="desc">${p.description}</p>
+    <dl class="specs">
+      ${Object.entries(p.specs).map(([k,v]) => `<div class="spec"><dt>${k}</dt><dd>${v}</dd></div>`).join("")}
+    </dl>
+    ${p.disclaimer ? `<p class="modal-disclaimer">⚠ ${p.disclaimer}</p>` : ""}
+    <div class="modal-cta">
+      <a class="btn btn-whats" href="${waLink(waProductMsg(p))}" target="_blank" rel="noopener">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M17.5 14.4c-.3-.1-1.6-.8-1.9-.9-.3-.1-.4-.1-.6.1-.2.3-.7.9-.8 1-.2.2-.3.2-.6.1-.3-.1-1.2-.4-2.3-1.4-.9-.8-1.4-1.7-1.6-2-.2-.3 0-.5.1-.6.1-.1.3-.3.4-.5.1-.2.2-.3.3-.5.1-.2 0-.4 0-.5 0-.1-.6-1.4-.8-1.9-.2-.5-.4-.4-.6-.4h-.5c-.2 0-.5.1-.7.3-.2.3-.9.9-.9 2.1s1 2.5 1.1 2.6c.1.2 1.9 2.9 4.6 4.1 1.6.7 2.3.8 3.1.7.5-.1 1.6-.7 1.8-1.3.2-.7.2-1.2.2-1.3-.1-.2-.3-.3-.6-.4M12 2C6.5 2 2 6.5 2 12c0 1.7.4 3.4 1.3 4.9L2 22l5.3-1.4c1.4.8 3 1.2 4.7 1.2 5.5 0 10-4.5 10-10S17.5 2 12 2z"/></svg>
+        Saber mais no WhatsApp
+      </a>
+    </div>`;
+}
+function galNav(d){
+  const p = modalState.product;
+  modalState.idx = (modalState.idx + d + p.images.length) % p.images.length;
+  document.getElementById("galleryMain").src = p.images[modalState.idx];
+  document.querySelectorAll(".gallery-thumbs img").forEach((img,i) => img.classList.toggle("active", i === modalState.idx));
+}
+function galGo(i){
+  modalState.idx = i;
+  galNav(0);
+}
+
+/* ============================================================
+ * BOOT
+ * ============================================================ */
+document.addEventListener("DOMContentLoaded", () => {
+  renderFeatured();
+  buildFilters();
+  renderGrid();
+
+  document.getElementById("searchInput").addEventListener("input", e => {
+    state.q = e.target.value;
+    renderGrid();
+  });
+  document.getElementById("modalClose").addEventListener("click", closeModal);
+  document.getElementById("modal").addEventListener("click", e => {
+    if(e.target.id === "modal") closeModal();
+  });
+  document.addEventListener("keydown", e => {
+    if(e.key === "Escape") closeModal();
+    if(document.getElementById("modal").classList.contains("open")){
+      if(e.key === "ArrowLeft") galNav(-1);
+      if(e.key === "ArrowRight") galNav(1);
+    }
+  });
+
+  // Atualiza links de WhatsApp do header/fab
+  const generalMsg = "Olá! Acabei de ver o catálogo da mudança e quero saber mais.";
+  document.getElementById("navWhats").href = waLink(generalMsg);
+  document.getElementById("fabWhats").href = waLink(generalMsg);
+});
+</script>
+
+<!-- schema.org Products (SEO) -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "ItemList",
+  "name": "Bazar de mudança Unicco → Grand Mond",
+  "itemListElement": [
+    {"@type":"Product","name":"Sofá retrátil 3 módulos","offers":{"@type":"Offer","price":"2800","priceCurrency":"BRL"}},
+    {"@type":"Product","name":"Par de poltronas","offers":{"@type":"Offer","price":"1200","priceCurrency":"BRL"}},
+    {"@type":"Product","name":"Mesa de jantar 2,20m","offers":{"@type":"Offer","price":"2200","priceCurrency":"BRL"}},
+    {"@type":"Product","name":"Geladeira Electrolux Inverter 431L","offers":{"@type":"Offer","price":"2100","priceCurrency":"BRL"}},
+    {"@type":"Product","name":"Freezer horizontal Electrolux 305L","offers":{"@type":"Offer","price":"1100","priceCurrency":"BRL"}}
+  ]
+}
+</script>
+
+</body>
+</html>
