@@ -159,6 +159,8 @@ section.catalog{padding:48px 0 80px}
 /* Preço à vista no Pix */
 .pix-tag{display:inline-flex;align-items:center;gap:6px;background:rgba(37,211,102,.12);color:#1a7a43;font-weight:600;font-size:14px;padding:8px 12px;border-radius:var(--radius-sm);margin:0 0 4px}
 .pix-card{font-size:12px;color:#1a7a43;font-weight:600;margin-top:6px}
+/* Quantidade disponível */
+.qty-pill{display:inline-block;background:rgba(92,110,77,.12);color:var(--primary-dk);font-size:12px;font-weight:600;padding:3px 10px;border-radius:999px;margin:0 0 8px}
 .filters{
   display:flex;flex-wrap:wrap;gap:8px;margin-bottom:18px;
   padding-bottom:16px;border-bottom:1px solid var(--border)
@@ -737,6 +739,7 @@ function renderGrid(){
           <div class="cat">${p.category} · ${p.room}</div>
           <h3>${p.title}</h3>
           ${dims ? `<div class="dims">${dims}</div>` : ""}
+          ${(!isSold(p) && p.qty) ? `<div class="qty-pill">✔ ${p.qty} ${p.qty > 1 ? "disponíveis" : "disponível"}</div>` : ""}
           <div class="price">${fmt(p.price)}${p.priceNote ? ` <span style="font-size:13px;color:var(--muted);font-family:var(--sans);font-weight:400">/ ${p.priceNote}</span>` : ""}</div>
           ${p.pixPrice ? `<div class="pix-card">Pix à vista: ${fmt(p.pixPrice)}</div>` : ""}
           <button class="btn-card" onclick="event.stopPropagation();openModal('${p.id}')">${cta}</button>
@@ -789,6 +792,7 @@ function renderModal(){
   body.innerHTML = `
     <div class="cat">${p.category} · ${p.room}</div>
     <h2 id="modalTitle">${p.title}</h2>
+    ${(!isSold(p) && p.qty) ? `<div class="qty-pill">✔ ${p.qty} ${p.qty > 1 ? "unidades disponíveis" : "unidade disponível"}</div>` : ""}
     <div class="price">${fmt(p.price)}${p.priceNote ? ` <span style="font-size:14px;color:var(--muted);font-family:var(--sans);font-weight:400">/ ${p.priceNote}</span>` : ""}</div>
     ${p.pixPrice ? `<div class="pix-tag">💸 À vista no Pix: <strong>&nbsp;${fmt(p.pixPrice)}</strong></div>` : ""}
     <p class="desc">${p.description}</p>
