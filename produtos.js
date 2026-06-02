@@ -74,7 +74,7 @@ window.CATALOGO = {
     id: "CAD-001",
     title: "Cadeira com encosto em palhinha",
     category: "Cadeira", room: "Sala de jantar",
-    price: 350, status: "Disponível", priceNote: "cada", qty: 2,
+    price: 500, status: "Disponível", priceNote: "cada", qty: 2,
     images: ["img/cadeira-palhinha/cadeira-palhinha-01.jpg","img/cadeira-palhinha/cadeira-palhinha-02.jpg","img/cadeira-palhinha/cadeira-palhinha-03.jpg"],
     description: "Clássico atemporal de volta à moda: encosto em palhinha natural e estrutura de madeira, com leveza visual e charme imediato. 2 unidades em ótimo estado.",
     specs: { "Dimensões": "46 × 52 × 81 cm", "Estado": "Ótimo · 2 anos de uso", "Material": "Madeira + palhinha", "Cômodo": "Sala de jantar" }
@@ -83,7 +83,7 @@ window.CATALOGO = {
     id: "CAD-002",
     title: "Cadeira de couro",
     category: "Cadeira", room: "Sala de jantar",
-    price: 500, status: "Disponível", priceNote: "cada", qty: 6,
+    price: 600, status: "Disponível", priceNote: "cada", qty: 6,
     images: ["img/cadeira-couro/cadeira-couro-01.jpg","img/cadeira-couro/cadeira-couro-02.jpg","img/cadeira-couro/cadeira-couro-03.jpg","img/cadeira-couro/cadeira-couro-04.jpg","img/cadeira-couro/cadeira-couro-05.jpg"],
     description: "Cadeiras em couro autêntico e madeira — sofisticação que dura e fica ainda mais bonita com o tempo. Conjunto de 6, raro de achar combinando, em ótimo estado.",
     specs: { "Dimensões": "46 × 49 × 85 cm", "Estado": "Ótimo · 2 anos de uso", "Material": "Couro", "Cômodo": "Sala de jantar" }
