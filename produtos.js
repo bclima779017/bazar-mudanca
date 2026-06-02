@@ -110,7 +110,7 @@ window.CATALOGO = {
     id: "FRE-001",
     title: "Freezer horizontal Electrolux 143 L · dupla função",
     category: "Eletrodoméstico", room: "Cozinha / área de serviço",
-    price: 750, status: "Disponível",
+    price: 1200, status: "Disponível",
     images: ["img/freezer/freezer-01.jpg","img/freezer/freezer-02.jpg","img/freezer/freezer-03.jpg","img/freezer/freezer-04.jpg","img/freezer/freezer-05.jpg","img/freezer/freezer-06.jpg","img/freezer/freezer-07.jpg"],
     description: "Freezer horizontal Electrolux de 143 litros com Dual Function: use como freezer ou como conservador/geladeira, conforme a necessidade. Tem Turbo Freezer para congelar mais rápido, iluminação LED interna, fechadura de segurança e dreno de degelo. Compacto e econômico (classe A) — em ótimo estado.",
     specs: { "Modelo": "Electrolux HE150", "Capacidade": "143 L", "Dimensões": "85 × 63 × 60 cm", "Eficiência": "Classe A", "Degelo": "Cycle Defrost (manual)", "Voltagem": "127V", "Estado": "Ótimo · 2 anos de uso", "Cômodo": "Cozinha / área de serviço" }
