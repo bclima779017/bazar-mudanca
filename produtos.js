@@ -124,6 +124,52 @@ window.CATALOGO = {
     description: "Micro-ondas Electrolux 31 L espelhado, com painel integrado que se esconde quando a porta fecha — visual clean. Função tira-odor, manter aquecido e receitas guiadas por QR Code. Em ótimo estado.",
     specs: { "Dimensões": "52 × 43 × 33 cm (referência)", "Capacidade": "31 L", "Estado": "Ótimo · 2 anos de uso", "Modelo": "Electrolux MI41S (referência)", "Cômodo": "Cozinha" },
     disclaimer: "Voltagem a confirmar no contato."
+  },
+  {
+    id: "SOF-002", featured: true,
+    title: "Sofá Fernando Jaeger — 2 módulos · 2,20 m",
+    category: "Sofá", room: "Sala de estar",
+    price: 5500, status: "Disponível",
+    images: ["img/sofa-2modulos/sofa-2modulos-01.jpg","img/sofa-2modulos/sofa-2modulos-02.jpg","img/sofa-2modulos/sofa-2modulos-03.jpg"],
+    description: "Sofá da Fernando Jaeger, uma das grifes mais desejadas do mobiliário autoral brasileiro. Dois módulos em tecido cru (off-white), 2,20 m de frente, com estrutura em madeira maciça de reflorestamento, assento em molas e percintas e pés palito — conforto e acabamento de showroom. Valor original muito acima do preço de bazar.",
+    specs: { "Marca": "Fernando Jaeger", "Dimensões": "220 × 90 × 90 cm", "Módulos": "2", "Cor": "Cru (off-white)", "Estado": "Ótimo estado", "Cômodo": "Sala de estar" }
+  },
+  {
+    id: "TAM-001",
+    title: "Tampo de madeira maciça — 2,40 m",
+    category: "Mesa", room: "Sala de jantar",
+    price: 4000, status: "Disponível",
+    images: ["img/tampo-madeira/tampo-madeira-01.jpg","img/tampo-madeira/tampo-madeira-02.jpg","img/tampo-madeira/tampo-madeira-03.jpg"],
+    description: "Tampo de madeira maciça com 2,40 m de comprimento e formato oval orgânico — peça de presença e veios únicos, pronta para virar mesa de jantar sobre a base de sua preferência. Acabamento natural que valoriza qualquer ambiente.",
+    specs: { "Dimensões": "240 cm de comprimento", "Material": "Madeira maciça", "Formato": "Oval orgânico", "Estado": "Ótimo estado", "Cômodo": "Sala de jantar" },
+    disclaimer: "À venda apenas o tampo — a base/pedestal que aparece nas fotos NÃO acompanha."
+  },
+  {
+    id: "COL-001",
+    title: "Colchão Ortobom Bellona Queen — molas ensacadas + pillow top",
+    category: "Colchão", room: "Quarto",
+    price: 2200, status: "Disponível",
+    images: ["img/colchao-queen/colchao-queen-01.jpg","img/colchao-queen/colchao-queen-02.jpg"],
+    description: "Colchão Ortobom Bellona Queen (158 × 198 cm, 31 cm de altura): molas ensacadas Superpocket que isolam o movimento — você não sente o outro lado mexer — e pillow top em espuma viscoelástica que molda ao corpo. Firmeza equilibrada, em ótimo estado.",
+    specs: { "Marca": "Ortobom", "Modelo": "Bellona", "Tamanho": "Queen (158 × 198 cm)", "Altura": "31 cm", "Molas": "Ensacadas (Superpocket)", "Conforto": "Pillow top viscoelástico", "Estado": "Ótimo estado", "Cômodo": "Quarto" }
+  },
+  {
+    id: "CER-001",
+    title: "Cervejeira Electrolux 96 L — Multi Drinks, painel digital",
+    category: "Eletrodoméstico", room: "Cozinha / área gourmet",
+    price: 1200, status: "Disponível",
+    images: ["img/cervejeira/cervejeira-01.jpg","img/cervejeira/cervejeira-02.jpg","img/cervejeira/cervejeira-03.jpg"],
+    description: "Cervejeira Electrolux Multi Drinks de 96 litros (modelo BCG96): porta de vidro, painel digital e luz LED interna, com temperatura regulável de –5 °C a 18 °C — gela a cerveja no ponto e ainda serve vinhos e refrigerantes. Cabem até 58 long necks (≈105 latas). Em ótimo estado.",
+    specs: { "Marca": "Electrolux", "Modelo": "BCG96", "Capacidade": "96 L (≈58 long necks)", "Dimensões": "84 × 49 × 48 cm", "Voltagem": "127V", "Estado": "Ótimo estado", "Cômodo": "Cozinha / área gourmet" }
+  },
+  {
+    id: "COL-002",
+    title: "Colchão Emma Original Queen — viscoelástico, tecnologia alemã",
+    category: "Colchão", room: "Quarto",
+    price: 1400, status: "Disponível",
+    images: ["img/colchao-emma/colchao-emma-01.jpg"],
+    description: "Colchão Emma Original Queen (158 × 198 cm, 25 cm): tecnologia alemã com 3 camadas de espuma — Airgocell respirável, viscoelástica (memória) e base de suporte — que alinham a coluna em 7 zonas e bloqueiam o movimento. Eleito \"Melhor do Teste\" pela Proteste. Em ótimo estado.",
+    specs: { "Marca": "Emma", "Modelo": "Original", "Tamanho": "Queen (158 × 198 cm)", "Altura": "25 cm", "Tecnologia": "3 camadas (Airgocell + viscoelástica + suporte)", "Estado": "Ótimo estado", "Cômodo": "Quarto" }
   }
   ]
 };
