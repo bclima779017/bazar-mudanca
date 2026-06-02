@@ -65,27 +65,21 @@ git push
 ```
 
 Depois, em **Settings → Pages**, selecione branch `main` e pasta `/ (root)`.
-Em ~1 minuto: `https://bclima779017.github.io/bazar-mudanca`.
+No ar em **`https://bazarmudanca.com.br`** (o endereço `bclima779017.github.io/bazar-mudanca` redireciona para ele).
 
-Alternativa sem Git: arraste a pasta inteira em [netlify.com/drop](https://app.netlify.com/drop).
+## Domínio próprio — já configurado ✅
 
-## Domínio amigável (custom domain) no GitHub Pages
+O site usa o domínio **`bazarmudanca.com.br`** (registrado no Registro.br). Configuração ativa,
+documentada aqui para referência:
 
-O endereço padrão (`bclima779017.github.io/bazar-mudanca`) funciona, mas dá para usar um domínio próprio:
+- Arquivo **`CNAME`** no repositório contém `bazarmudanca.com.br`.
+- **DNS** (Registro.br → Zona DNS, modo avançado):
+  - **Raiz** (`bazarmudanca.com.br`): 4 registros **A** → `185.199.108.153`, `185.199.109.153`,
+    `185.199.110.153`, `185.199.111.153`; e 4 **AAAA** → `2606:50c0:8000::153` … `8003::153`.
+  - **www**: registro **CNAME** → `bclima779017.github.io.`
+- **HTTPS** (Enforce HTTPS) ligado; certificado cobre a raiz e o `www`. O `www` faz 301 → raiz.
 
-1. **Registre um domínio** (ex.: `bazardamudanca.com.br`) num registrador — Registro.br (.br),
-   Namecheap, GoDaddy, Cloudflare etc. Custo típico: ~R$ 40/ano (.com.br) a ~US$ 10/ano (.com).
-2. No GitHub: **Settings → Pages → Custom domain**, digite o domínio e salve.
-   Isso cria um arquivo `CNAME` no repositório.
-3. No painel do registrador, aponte o DNS:
-   - **Domínio raiz** (`bazardamudanca.com.br`): registros **A** para os IPs do GitHub Pages —
-     `185.199.108.153`, `185.199.109.153`, `185.199.110.153`, `185.199.111.153`.
-   - **ou subdomínio** (`www.bazardamudanca.com.br`): um registro **CNAME** apontando para
-     `bclima779017.github.io`.
-4. Volte em Pages e marque **Enforce HTTPS** (após o DNS propagar, de minutos a ~24 h).
-
-Mais barato/rápido ainda: publicar no **Netlify** e usar um subdomínio grátis bonitinho
-(`bazar-mudanca.netlify.app`) — renomeável nas configurações do site, sem comprar domínio.
+Para divulgar (WhatsApp etc.), use **`bazarmudanca.com.br`**.
 
 ## Boas práticas já aplicadas
 
