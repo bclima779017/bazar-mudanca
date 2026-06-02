@@ -6,60 +6,90 @@ Site estático (single-page) para o catálogo de venda dos móveis e eletrodomé
 
 ```
 Catálogo de produtos/
-├── index.html              ← site (autocontido: HTML + CSS + JS inline)
-├── catalogo-curadoria.xlsx ← curadoria editável (preços, descrições, atributos)
-├── img/                    ← imagens otimizadas (max 1400px, JPEG 82%, EXIF normalizado)
-│   ├── sofa-retratil/
-│   ├── poltronas/
-│   ├── mesa-jantar/
-│   └── ...
+├── index.html              ← o site (HTML + CSS + JS da interface)
+├── produtos.js             ← OS DADOS do catálogo (preços, fotos, descrições, config)
+├── admin.html              ← painel de edição (gera o produtos.js) — uso local
+├── catalogo-curadoria.xlsx ← curadoria interna (NÃO publicada — está no .gitignore)
+├── img/                    ← imagens (uma subpasta por produto)
 └── README.md               ← este arquivo
 ```
 
+A interface (`index.html`) é fixa. **O que muda no dia a dia são só os dados em `produtos.js`** — e você nunca precisa abrir esse arquivo na mão: use o `admin.html`.
+
 ## Como testar localmente
 
-1. Dê duplo-clique no `index.html` — abre direto no navegador.
-2. Ou rode um servidor local: `python -m http.server 8000` na pasta e acesse `http://localhost:8000`.
+Dê **duplo-clique no `index.html`** — abre direto no navegador (os dados em `produtos.js` são
+carregados por `<script src>`, que funciona em arquivo local). O `admin.html` também abre por duplo-clique.
 
-## Antes de publicar — ajustes obrigatórios
+Se algum navegador bloquear, rode um servidor local: `python -m http.server 8000` na pasta e acesse `http://localhost:8000`.
 
-Edite no topo do `<script>` em `index.html`:
+## Como adicionar / excluir / editar produtos (sem mexer em código)
 
-```js
-const CONFIG = {
-  whatsapp: "5511999999999",     // ← seu número com DDI+DDD, só dígitos
-  bairro:   "(seu bairro/cidade)", // ← onde fica o apartamento (para retirada)
-};
-```
+1. Coloque as fotos novas em `img/<produto>/`.
+2. Abra o **`admin.html`** no navegador.
+3. Use os botões: **+ Novo produto**, **✎ Editar**, **🗑 excluir**, **↑ ↓** (reordenar),
+   **★** (destaque da home) e o seletor de **status** (Disponível / Reservado / Vendido / Aguardando fotos).
+4. Clique em **⬇ Baixar produtos.js** e **substitua** o `produtos.js` na pasta do site.
+5. Suba a pasta para o GitHub (ou Netlify) — o site atualiza.
 
-E revise os preços e descrições no array `PRODUCTS` (mesmo arquivo) — ou edite primeiro no `catalogo-curadoria.xlsx` e refaça o array com os valores finais.
+> Marcar como **Vendido** deixa o card apagado e o joga para o fim da lista, automaticamente.
+
+As **Configurações do site** (no topo do admin) controlam o número de WhatsApp, o bairro e o
+e-mail que recebe os leads — também salvos no `produtos.js`.
+
+## Captação de leads por e-mail (além do WhatsApp)
+
+A seção **"Tenho interesse"** envia o formulário para o seu e-mail via **FormSubmit.co** (grátis, sem backend).
+
+- O destino é o campo `leadEmail` no `produtos.js` (edite pelo admin). Padrão: `bclima7790@gmail.com`.
+- **Ativação (uma vez só):** no primeiro envio, o FormSubmit manda um e-mail de confirmação para
+  esse endereço. Clique no link de confirmação — depois disso os leads chegam normalmente.
+- Tem proteção anti-spam (honeypot) e o assunto chega como *"Novo interesse — Bazar de mudança"*.
+
+## Outras melhorias de experiência
+
+- **Link direto por produto:** abrir um item muda a URL para `...#item=SOF-001`. Botão **🔗 Compartilhar**
+  no detalhe copia (ou abre o compartilhamento do celular) esse link — ótimo para mandar no WhatsApp/Instagram.
+- **Contador** de itens disponíveis no título do catálogo.
+- **Vendidos/reservados** ficam visualmente apagados e vão para o fim.
 
 ## Como publicar (GitHub Pages — grátis)
 
-1. Crie repositório no GitHub: `bazar-mudanca` (público).
-2. Suba toda esta pasta (`index.html` + `img/` + `README.md`).
-3. Em **Settings → Pages**, selecione branch `main` e pasta `/ (root)`.
-4. Em ~1 minuto: `https://<seu-usuário>.github.io/bazar-mudanca`.
+Este projeto já está ligado ao repositório `https://github.com/bclima779017/bazar-mudanca`.
+Para publicar uma atualização:
 
-Alternativa: arraste a pasta inteira em [netlify.com/drop](https://app.netlify.com/drop) — gera um link em segundos.
+```
+git add -A
+git commit -m "Atualiza catálogo"
+git push
+```
 
-## Como adicionar/editar produtos
+Depois, em **Settings → Pages**, selecione branch `main` e pasta `/ (root)`.
+Em ~1 minuto: `https://bclima779017.github.io/bazar-mudanca`.
 
-1. Coloque novas fotos em `img/<categoria>/`.
-2. Adicione/edite um objeto em `PRODUCTS` no `index.html`.
-3. Campos: `id, title, category, room, price, status, images, description, specs, disclaimer?, priceNote?, featured?`.
-4. `status` aceita: `Disponível` | `Reservado` | `Vendido` | `Aguardando fotos`.
+Alternativa sem Git: arraste a pasta inteira em [netlify.com/drop](https://app.netlify.com/drop).
 
-Para marcar como vendido, basta alterar `status: "Vendido"` — o card mostra badge.
+## Domínio amigável (custom domain) no GitHub Pages
+
+O endereço padrão (`bclima779017.github.io/bazar-mudanca`) funciona, mas dá para usar um domínio próprio:
+
+1. **Registre um domínio** (ex.: `bazardamudanca.com.br`) num registrador — Registro.br (.br),
+   Namecheap, GoDaddy, Cloudflare etc. Custo típico: ~R$ 40/ano (.com.br) a ~US$ 10/ano (.com).
+2. No GitHub: **Settings → Pages → Custom domain**, digite o domínio e salve.
+   Isso cria um arquivo `CNAME` no repositório.
+3. No painel do registrador, aponte o DNS:
+   - **Domínio raiz** (`bazardamudanca.com.br`): registros **A** para os IPs do GitHub Pages —
+     `185.199.108.153`, `185.199.109.153`, `185.199.110.153`, `185.199.111.153`.
+   - **ou subdomínio** (`www.bazardamudanca.com.br`): um registro **CNAME** apontando para
+     `bclima779017.github.io`.
+4. Volte em Pages e marque **Enforce HTTPS** (após o DNS propagar, de minutos a ~24 h).
+
+Mais barato/rápido ainda: publicar no **Netlify** e usar um subdomínio grátis bonitinho
+(`bazar-mudanca.netlify.app`) — renomeável nas configurações do site, sem comprar domínio.
 
 ## Boas práticas já aplicadas
 
-- Mobile-first (testado em larguras de 320px+).
-- Lazy-load de imagens (`loading="lazy"`).
-- Imagens otimizadas (~150–300 KB cada, EXIF corrigido).
-- Modal acessível (foco, ESC para fechar, navegação por setas).
-- `alt` em todas as imagens.
-- Botão flutuante de WhatsApp persistente.
-- Mensagens pré-preenchidas por produto.
-- Schema.org `Product` (JSON-LD) para SEO.
-- Open Graph para compartilhamento (preview no WhatsApp/Instagram).
+- Mobile-first; lazy-load de imagens; modal acessível (foco, ESC, setas); `alt` em todas as imagens.
+- WhatsApp flutuante e mensagens pré-preenchidas por produto.
+- Schema.org `Product` (JSON-LD) e Open Graph para SEO/compartilhamento.
+- Dados separados da interface (`produtos.js`) e editáveis sem código (`admin.html`).

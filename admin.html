@@ -1,0 +1,344 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Admin · Bazar de mudança</title>
+<meta name="robots" content="noindex,nofollow" />
+<style>
+:root{
+  --bg:#F8F4ED; --surface:#FFFFFF; --surface-2:#F1EADC;
+  --primary:#5C6E4D; --primary-dk:#46553A; --accent:#C97B5A;
+  --text:#2B2B2B; --muted:#6B6155; --border:#E5DCC9;
+  --radius:12px; --radius-sm:9px; --shadow:0 8px 28px rgba(60,50,30,.10);
+  --sans:"Inter",system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;
+  --danger:#b4452f;
+}
+*{box-sizing:border-box}
+body{margin:0;font-family:var(--sans);background:var(--bg);color:var(--text);line-height:1.5}
+.container{max-width:980px;margin:0 auto;padding:0 18px}
+header{background:var(--primary-dk);color:#fff;padding:16px 0}
+header .container{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap}
+header h1{font-size:18px;margin:0;font-weight:600}
+header .hint{font-size:12px;opacity:.85}
+button{font-family:inherit;cursor:pointer;border:0;border-radius:999px;font-weight:600;font-size:14px;padding:10px 16px;transition:transform .12s ease,background .15s ease}
+button:hover{transform:translateY(-1px)}
+.btn-primary{background:var(--primary);color:#fff}
+.btn-accent{background:var(--accent);color:#fff}
+.btn-light{background:#fff;color:var(--primary-dk);border:1.5px solid var(--border)}
+.btn-danger{background:transparent;color:var(--danger);border:1.5px solid var(--danger)}
+.btn-xs{padding:6px 10px;font-size:13px}
+.bar{position:sticky;top:0;z-index:20;background:rgba(248,244,237,.95);backdrop-filter:blur(6px);border-bottom:1px solid var(--border);padding:12px 0;margin-bottom:18px}
+.bar .container{display:flex;gap:10px;flex-wrap:wrap;align-items:center}
+.bar .grow{flex:1}
+.count{font-size:13px;color:var(--muted)}
+section.card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);box-shadow:var(--shadow);padding:18px 18px 20px;margin-bottom:18px}
+section.card h2{font-size:15px;margin:0 0 14px;color:var(--primary-dk);text-transform:uppercase;letter-spacing:.5px}
+.grid2{display:grid;gap:12px;grid-template-columns:1fr 1fr}
+.grid3{display:grid;gap:12px;grid-template-columns:1fr 1fr 1fr}
+.field{display:flex;flex-direction:column;gap:4px}
+.field.full{grid-column:1/-1}
+label{font-size:12px;font-weight:600;color:var(--muted);text-transform:uppercase;letter-spacing:.3px}
+input,select,textarea{font-family:inherit;font-size:14px;color:var(--text);background:#fff;border:1.5px solid var(--border);border-radius:var(--radius-sm);padding:10px 12px;outline:0;width:100%}
+input:focus,select:focus,textarea:focus{border-color:var(--primary)}
+textarea{resize:vertical;min-height:64px}
+.row{display:flex;align-items:center;gap:12px;padding:12px;border:1px solid var(--border);border-radius:var(--radius-sm);background:var(--surface);margin-bottom:10px}
+.row .thumb{width:58px;height:46px;border-radius:7px;object-fit:cover;background:var(--surface-2);flex-shrink:0}
+.row .thumb.ph{display:flex;align-items:center;justify-content:center;font-size:18px;color:var(--muted)}
+.row .info{flex:1;min-width:0}
+.row .info b{display:block;font-size:14px;color:var(--primary-dk);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.row .info small{color:var(--muted);font-size:12px}
+.row .actions{display:flex;gap:6px;align-items:center;flex-wrap:wrap}
+.row select{width:auto;padding:6px 8px;font-size:12px}
+.star{font-size:18px;background:none;padding:4px;color:#c9b87a}
+.star.on{color:#e0a800}
+.editor{border:2px solid var(--primary);border-radius:var(--radius);padding:16px;margin-bottom:10px;background:#fff}
+.editor h3{margin:0 0 12px;font-size:15px;color:var(--primary-dk)}
+.editor .grid2,.editor .grid3{margin-bottom:12px}
+.editor-actions{display:flex;gap:10px;margin-top:6px}
+.help{font-size:12px;color:var(--muted);margin:4px 0 0}
+.toast{position:fixed;left:50%;bottom:24px;transform:translateX(-50%) translateY(20px);background:var(--primary-dk);color:#fff;padding:11px 18px;border-radius:999px;font-size:14px;box-shadow:var(--shadow);opacity:0;pointer-events:none;transition:.2s;z-index:50}
+.toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
+.steps{background:var(--surface-2);border-radius:var(--radius-sm);padding:14px 16px;font-size:13px;color:var(--muted);margin-bottom:18px}
+.steps b{color:var(--primary-dk)}
+.steps ol{margin:8px 0 0;padding-left:20px}
+@media(max-width:620px){.grid2,.grid3{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="container">
+    <h1>⚙ Admin — Bazar de mudança</h1>
+    <span class="hint">Ferramenta de edição do catálogo · gera o produtos.js</span>
+  </div>
+</header>
+
+<div class="bar">
+  <div class="container">
+    <button class="btn-primary" id="btnNew">+ Novo produto</button>
+    <button class="btn-light" id="btnImport">Carregar produtos.js…</button>
+    <input type="file" id="fileInput" accept=".js" hidden>
+    <span class="grow"></span>
+    <span class="count" id="count"></span>
+    <button class="btn-accent" id="btnDownload">⬇ Baixar produtos.js</button>
+  </div>
+</div>
+
+<main class="container">
+
+  <div class="steps">
+    <b>Como usar:</b>
+    <ol>
+      <li>Adicione fotos novas na pasta <b>img/</b> (crie uma subpasta por produto).</li>
+      <li>Edite aqui: adicione, exclua, reordene ou marque como vendido.</li>
+      <li>Clique em <b>⬇ Baixar produtos.js</b> e substitua o arquivo na pasta do site.</li>
+      <li>Suba para o GitHub (ou arraste a pasta no Netlify) — o site atualiza.</li>
+    </ol>
+  </div>
+
+  <section class="card">
+    <h2>Configurações do site</h2>
+    <div class="grid3">
+      <div class="field">
+        <label for="cfgWhats">WhatsApp (só dígitos, com DDI+DDD)</label>
+        <input id="cfgWhats" placeholder="5511987654321">
+      </div>
+      <div class="field">
+        <label for="cfgBairro">Bairro / cidade</label>
+        <input id="cfgBairro" placeholder="Pinheiros — São Paulo/SP">
+      </div>
+      <div class="field">
+        <label for="cfgEmail">E-mail dos leads</label>
+        <input id="cfgEmail" placeholder="voce@email.com">
+      </div>
+    </div>
+  </section>
+
+  <section class="card">
+    <h2>Produtos <span id="prodCount" class="count"></span></h2>
+    <div id="editorMount"></div>
+    <div id="list"></div>
+  </section>
+
+</main>
+
+<div class="toast" id="toast"></div>
+
+<!-- Carrega os dados atuais -->
+<script src="produtos.js"></script>
+<script>
+/* ====== Estado ====== */
+const STATUS = ["Disponível","Reservado","Vendido","Aguardando fotos"];
+let state = clone((window.CATALOGO) || { config:{whatsapp:"",bairro:"",leadEmail:""}, produtos:[] });
+if(!state.config) state.config = {whatsapp:"",bairro:"",leadEmail:""};
+if(!Array.isArray(state.produtos)) state.produtos = [];
+let editingIndex = null; // índice em edição, ou "new"
+
+function clone(o){ return JSON.parse(JSON.stringify(o)); }
+function toast(msg){ const t=document.getElementById("toast"); t.textContent=msg; t.classList.add("show"); clearTimeout(toast._t); toast._t=setTimeout(()=>t.classList.remove("show"),2200); }
+function esc(s){ return String(s==null?"":s).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/"/g,"&quot;"); }
+
+/* ====== Config bindings ====== */
+const cfgWhats=document.getElementById("cfgWhats"), cfgBairro=document.getElementById("cfgBairro"), cfgEmail=document.getElementById("cfgEmail");
+function loadConfig(){ cfgWhats.value=state.config.whatsapp||""; cfgBairro.value=state.config.bairro||""; cfgEmail.value=state.config.leadEmail||""; }
+cfgWhats.addEventListener("input",()=>state.config.whatsapp=cfgWhats.value.trim());
+cfgBairro.addEventListener("input",()=>state.config.bairro=cfgBairro.value.trim());
+cfgEmail.addEventListener("input",()=>state.config.leadEmail=cfgEmail.value.trim());
+
+/* ====== Lista ====== */
+function renderList(){
+  const list=document.getElementById("list");
+  document.getElementById("count").textContent = state.produtos.length + " produto(s)";
+  document.getElementById("prodCount").textContent = "· " + state.produtos.filter(p=>p.status==="Disponível").length + " disponível(eis)";
+  if(state.produtos.length===0){ list.innerHTML='<p class="help">Nenhum produto. Clique em “+ Novo produto”.</p>'; return; }
+  list.innerHTML = state.produtos.map((p,i)=>{
+    const thumb = (p.images&&p.images[0]) ? `<img class="thumb" src="${esc(p.images[0])}" alt="">` : `<div class="thumb ph">📷</div>`;
+    const statusSel = `<select onchange="setStatus(${i},this.value)">${STATUS.map(s=>`<option ${p.status===s?"selected":""}>${s}</option>`).join("")}</select>`;
+    return `<div class="row">
+      ${thumb}
+      <div class="info">
+        <b>${esc(p.title)||"(sem título)"}</b>
+        <small>${esc(p.category)||"—"} · ${esc(p.room)||"—"} · ${p.price!=null?("R$ "+Number(p.price).toLocaleString("pt-BR")):"sem preço"}</small>
+      </div>
+      <div class="actions">
+        <button class="star ${p.featured?"on":""}" title="Destaque na home" onclick="setFeatured(${i})">★</button>
+        ${statusSel}
+        <button class="btn-light btn-xs" onclick="move(${i},-1)" title="Subir">↑</button>
+        <button class="btn-light btn-xs" onclick="move(${i},1)" title="Descer">↓</button>
+        <button class="btn-light btn-xs" onclick="edit(${i})">✎ Editar</button>
+        <button class="btn-danger btn-xs" onclick="del(${i})">🗑</button>
+      </div>
+    </div>`;
+  }).join("");
+}
+
+function setStatus(i,v){ state.produtos[i].status=v; renderList(); }
+function setFeatured(i){
+  const turningOn = !state.produtos[i].featured;
+  state.produtos.forEach((p,j)=>{ p.featured = turningOn && j===i ? true : false; });
+  renderList();
+}
+function move(i,d){
+  const j=i+d; if(j<0||j>=state.produtos.length) return;
+  const a=state.produtos; [a[i],a[j]]=[a[j],a[i]]; renderList();
+}
+function del(i){
+  if(!confirm(`Excluir "${state.produtos[i].title||"este produto"}"?`)) return;
+  state.produtos.splice(i,1);
+  if(editingIndex===i){ editingIndex=null; document.getElementById("editorMount").innerHTML=""; }
+  renderList();
+}
+
+/* ====== Editor ====== */
+function blankProduct(){
+  return { id:suggestId(), title:"", category:"", room:"", price:null, priceNote:"", status:"Disponível", featured:false, images:[], description:"", specs:{}, disclaimer:"" };
+}
+function suggestId(){
+  let n=1, id;
+  do{ id="ITEM-"+String(n).padStart(3,"0"); n++; }while(state.produtos.some(p=>p.id===id));
+  return id;
+}
+function specsToText(specs){ return Object.entries(specs||{}).map(([k,v])=>`${k}: ${v}`).join("\n"); }
+function textToSpecs(t){
+  const o={};
+  (t||"").split("\n").forEach(line=>{
+    const idx=line.indexOf(":"); if(idx<0) return;
+    const k=line.slice(0,idx).trim(), v=line.slice(idx+1).trim();
+    if(k) o[k]=v;
+  });
+  return o;
+}
+
+function newProduct(){ editingIndex="new"; renderEditor(blankProduct()); }
+function edit(i){ editingIndex=i; renderEditor(clone(state.produtos[i])); }
+
+function renderEditor(p){
+  const mount=document.getElementById("editorMount");
+  mount.innerHTML=`<div class="editor">
+    <h3>${editingIndex==="new"?"Novo produto":"Editar produto"}</h3>
+    <div class="grid3">
+      <div class="field"><label>ID (único)</label><input id="e_id" value="${esc(p.id)}"></div>
+      <div class="field"><label>Categoria</label><input id="e_cat" value="${esc(p.category)}" placeholder="Sofá, Mesa, Eletrodoméstico…"></div>
+      <div class="field"><label>Cômodo</label><input id="e_room" value="${esc(p.room)}" placeholder="Sala de estar…"></div>
+    </div>
+    <div class="grid2">
+      <div class="field full"><label>Título</label><input id="e_title" value="${esc(p.title)}" placeholder="Sofá retrátil 3 módulos — 2,95 m"></div>
+    </div>
+    <div class="grid3">
+      <div class="field"><label>Preço (R$, só número)</label><input id="e_price" type="number" value="${p.price!=null?p.price:""}" placeholder="2800"></div>
+      <div class="field"><label>Nota de preço (opcional)</label><input id="e_note" value="${esc(p.priceNote)}" placeholder="par, cada…"></div>
+      <div class="field"><label>Status</label><select id="e_status">${STATUS.map(s=>`<option ${p.status===s?"selected":""}>${s}</option>`).join("")}</select></div>
+    </div>
+    <div class="field" style="margin-bottom:12px">
+      <label>Fotos — um caminho por linha</label>
+      <textarea id="e_images" placeholder="img/sofa/sofa-01.jpg
+img/sofa/sofa-02.jpg">${esc((p.images||[]).join("\n"))}</textarea>
+      <p class="help">Coloque os arquivos na pasta <b>img/</b> e referencie o caminho relativo. Primeira foto = capa.</p>
+    </div>
+    <div class="field" style="margin-bottom:12px">
+      <label>Descrição</label>
+      <textarea id="e_desc" placeholder="Texto que aparece no detalhe do produto.">${esc(p.description)}</textarea>
+    </div>
+    <div class="field" style="margin-bottom:12px">
+      <label>Especificações — uma por linha, no formato "Chave: Valor"</label>
+      <textarea id="e_specs" placeholder="Dimensões: 295 × 155 × 95 cm
+Estado: Ótimo · 2 anos de uso
+Material: Tecido">${esc(specsToText(p.specs))}</textarea>
+    </div>
+    <div class="field" style="margin-bottom:12px">
+      <label>Aviso / observação (opcional)</label>
+      <input id="e_disc" value="${esc(p.disclaimer)}" placeholder="Voltagem a confirmar no contato.">
+    </div>
+    <div class="editor-actions">
+      <button class="btn-primary" onclick="saveEditor()">Salvar produto</button>
+      <button class="btn-light" onclick="cancelEditor()">Cancelar</button>
+    </div>
+  </div>`;
+  mount.scrollIntoView({behavior:"smooth",block:"nearest"});
+}
+
+function cancelEditor(){ editingIndex=null; document.getElementById("editorMount").innerHTML=""; }
+
+function saveEditor(){
+  const g=id=>document.getElementById(id);
+  const id=g("e_id").value.trim();
+  if(!id){ toast("Informe um ID."); return; }
+  // ID único (exceto o próprio em edição)
+  const dupe = state.produtos.some((p,j)=> p.id===id && j!==(editingIndex==="new"?-1:editingIndex));
+  if(dupe){ toast("Já existe um produto com esse ID."); return; }
+  const priceRaw=g("e_price").value.trim();
+  const prod={
+    id,
+    title:g("e_title").value.trim(),
+    category:g("e_cat").value.trim(),
+    room:g("e_room").value.trim(),
+    price: priceRaw===""?null:Number(priceRaw),
+    status:g("e_status").value,
+    images:g("e_images").value.split("\n").map(s=>s.trim()).filter(Boolean),
+    description:g("e_desc").value.trim(),
+    specs:textToSpecs(g("e_specs").value),
+  };
+  const note=g("e_note").value.trim(); if(note) prod.priceNote=note;
+  const disc=g("e_disc").value.trim(); if(disc) prod.disclaimer=disc;
+
+  if(editingIndex==="new"){
+    state.produtos.push(prod);
+  }else{
+    prod.featured = !!state.produtos[editingIndex].featured; // preserva destaque
+    state.produtos[editingIndex]=prod;
+  }
+  editingIndex=null;
+  document.getElementById("editorMount").innerHTML="";
+  renderList();
+  toast("Produto salvo ✓");
+}
+
+/* ====== Download / Import ====== */
+function buildFileText(){
+  const data = { config: state.config, produtos: state.produtos };
+  return `/* ============================================================
+ * DADOS DO CATÁLOGO — Bazar de mudança
+ * Gerado pelo admin.html. Para editar, reabra o admin.html.
+ * ============================================================ */
+window.CATALOGO = ${JSON.stringify(data, null, 2)};
+`;
+}
+function download(){
+  const blob=new Blob([buildFileText()],{type:"text/javascript;charset=utf-8"});
+  const a=document.createElement("a");
+  a.href=URL.createObjectURL(blob); a.download="produtos.js";
+  document.body.appendChild(a); a.click(); a.remove();
+  URL.revokeObjectURL(a.href);
+  toast("produtos.js baixado ✓ — substitua o arquivo na pasta do site");
+}
+function importFile(file){
+  const reader=new FileReader();
+  reader.onload=()=>{
+    try{
+      // executa o conteúdo num escopo isolado para extrair window.CATALOGO
+      const sandbox={};
+      new Function("window", reader.result)(sandbox);
+      const data=sandbox.CATALOGO;
+      if(!data||!Array.isArray(data.produtos)) throw new Error("formato inesperado");
+      state=clone(data);
+      if(!state.config) state.config={whatsapp:"",bairro:"",leadEmail:""};
+      editingIndex=null; document.getElementById("editorMount").innerHTML="";
+      loadConfig(); renderList();
+      toast("Arquivo carregado ✓");
+    }catch(e){ toast("Não consegui ler esse arquivo."); }
+  };
+  reader.readAsText(file);
+}
+
+/* ====== Wire ====== */
+document.getElementById("btnNew").addEventListener("click", newProduct);
+document.getElementById("btnDownload").addEventListener("click", download);
+document.getElementById("btnImport").addEventListener("click", ()=>document.getElementById("fileInput").click());
+document.getElementById("fileInput").addEventListener("change", e=>{ if(e.target.files[0]) importFile(e.target.files[0]); e.target.value=""; });
+
+loadConfig();
+renderList();
+</script>
+</body>
+</html>

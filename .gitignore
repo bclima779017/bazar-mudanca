@@ -1,0 +1,7 @@
+# Curadoria interna (não vai para o site público)
+catalogo-curadoria.xlsx
+
+# Lixo de sistema
+.DS_Store
+Thumbs.db
+desktop.ini
