@@ -85,9 +85,9 @@ window.CATALOGO = {
     id: "CAD-002",
     title: "Cadeira de couro",
     category: "Cadeira", room: "Sala de jantar",
-    price: 420, status: "Aguardando fotos", priceNote: "cada",
-    images: [],
-    description: "Cadeira em couro autêntico, conforto e elegância. Fotos serão acrescentadas em breve.",
+    price: 420, status: "Disponível", priceNote: "cada",
+    images: ["img/cadeira-couro/cadeira-couro-01.jpg","img/cadeira-couro/cadeira-couro-02.jpg","img/cadeira-couro/cadeira-couro-03.jpg","img/cadeira-couro/cadeira-couro-04.jpg","img/cadeira-couro/cadeira-couro-05.jpg"],
+    description: "Cadeira em couro autêntico, conforto e elegância. Combina com a mesa de jantar ou como cadeira de apoio.",
     specs: { "Dimensões": "46 × 49 × 85 cm", "Estado": "Ótimo · 2 anos de uso", "Material": "Couro", "Cômodo": "Sala de jantar" }
   },
   {
