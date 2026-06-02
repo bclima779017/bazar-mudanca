@@ -149,7 +149,7 @@ window.CATALOGO = {
     title: "Colchão Ortobom Bellona Queen — molas ensacadas + pillow top",
     category: "Colchão", room: "Quarto",
     price: 2200, status: "Disponível",
-    images: ["img/colchao-queen/colchao-queen-01.jpg","img/colchao-queen/colchao-queen-02.jpg"],
+    images: ["img/colchao-queen/colchao-queen-01.jpg","img/colchao-queen/colchao-queen-02.jpg","img/colchao-queen/colchao-queen-03.jpg"],
     description: "Colchão Ortobom Bellona Queen (158 × 198 cm, 31 cm de altura): molas ensacadas Superpocket que isolam o movimento — você não sente o outro lado mexer — e pillow top em espuma viscoelástica que molda ao corpo. Firmeza equilibrada, em ótimo estado.",
     specs: { "Marca": "Ortobom", "Modelo": "Bellona", "Tamanho": "Queen (158 × 198 cm)", "Altura": "31 cm", "Molas": "Ensacadas (Superpocket)", "Conforto": "Pillow top viscoelástico", "Estado": "Ótimo estado", "Cômodo": "Quarto" }
   },
@@ -163,13 +163,13 @@ window.CATALOGO = {
     specs: { "Marca": "Electrolux", "Modelo": "BCG96", "Capacidade": "96 L (≈58 long necks)", "Dimensões": "84 × 49 × 48 cm", "Voltagem": "127V", "Estado": "Ótimo estado", "Cômodo": "Cozinha / área gourmet" }
   },
   {
-    id: "COL-002",
-    title: "Colchão Emma Original Queen — viscoelástico, tecnologia alemã",
-    category: "Colchão", room: "Quarto",
+    id: "CAM-001",
+    title: "Base de cama (box) Emma Queen",
+    category: "Cama", room: "Quarto",
     price: 1400, status: "Disponível",
-    images: ["img/colchao-emma/colchao-emma-01.jpg"],
-    description: "Colchão Emma Original Queen (158 × 198 cm, 25 cm): tecnologia alemã com 3 camadas de espuma — Airgocell respirável, viscoelástica (memória) e base de suporte — que alinham a coluna em 7 zonas e bloqueiam o movimento. Eleito \"Melhor do Teste\" pela Proteste. Em ótimo estado.",
-    specs: { "Marca": "Emma", "Modelo": "Original", "Tamanho": "Queen (158 × 198 cm)", "Altura": "25 cm", "Tecnologia": "3 camadas (Airgocell + viscoelástica + suporte)", "Estado": "Ótimo estado", "Cômodo": "Quarto" }
+    images: ["img/cama-emma/cama-emma-01.jpg","img/cama-emma/cama-emma-02.jpg"],
+    description: "Base de cama box Emma Queen (158 × 198 cm), bipartida e revestida em tecido cinza — estrutura firme e nivelada que dá a altura e a sustentação ideais para o colchão. Visual clean que combina com qualquer quarto. Em ótimo estado.",
+    specs: { "Marca": "Emma", "Tipo": "Base box (bipartida)", "Tamanho": "Queen (158 × 198 cm)", "Revestimento": "Tecido cinza", "Estado": "Ótimo estado", "Cômodo": "Quarto" }
   }
   ]
 };
