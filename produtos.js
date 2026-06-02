@@ -75,7 +75,7 @@ window.CATALOGO = {
     title: "Cadeira com encosto em palhinha",
     category: "Cadeira", room: "Sala de jantar",
     price: 350, status: "Disponível", priceNote: "cada", qty: 2,
-    images: ["img/cadeira-palhinha/cadeira-palhinha-01.jpg"],
+    images: ["img/cadeira-palhinha/cadeira-palhinha-01.jpg","img/cadeira-palhinha/cadeira-palhinha-02.jpg","img/cadeira-palhinha/cadeira-palhinha-03.jpg"],
     description: "Clássico atemporal de volta à moda: encosto em palhinha natural e estrutura de madeira, com leveza visual e charme imediato. 2 unidades em ótimo estado.",
     specs: { "Dimensões": "46 × 52 × 81 cm", "Estado": "Ótimo · 2 anos de uso", "Material": "Madeira + palhinha", "Cômodo": "Sala de jantar" }
   },
@@ -99,23 +99,21 @@ window.CATALOGO = {
   },
   {
     id: "GEL-001",
-    title: "Geladeira Electrolux Inverter 431 L · Platinum",
+    title: "Geladeira Electrolux Multidoor 590 L · Inverter Inox",
     category: "Eletrodoméstico", room: "Cozinha",
-    price: 2100, status: "Disponível",
+    price: 4500, status: "Disponível",
     images: ["img/geladeira/geladeira-01.jpg","img/geladeira/geladeira-02.jpg","img/geladeira/geladeira-03.jpg"],
-    description: "Electrolux 431 L Platinum com Inverter e Frost Free: refrigeração silenciosa, econômica e sem degelo. Tem AutoSense, congelamento rápido, gelo ágil e prateleiras retráteis — tudo controlado pelo display externo. Em ótimo estado.",
-    specs: { "Dimensões": "70 × 76 × 176 cm (referência)", "Capacidade": "431 L", "Estado": "Ótimo · 2 anos de uso", "Modelo": "Electrolux IF55S (referência)", "Cômodo": "Cozinha" },
-    disclaimer: "Voltagem a confirmar no contato."
+    description: "Geladeira Electrolux Multidoor de 590 litros (3 portas), acabamento Inox Look. Frost Free e Inverter para refrigeração silenciosa e econômica (classe A), com AutoSense que ajusta a temperatura sozinho e conserva os alimentos frescos por mais tempo. Espaço de sobra para a família — em ótimo estado.",
+    specs: { "Modelo": "Electrolux IM8S", "Capacidade": "590 L", "Portas": "3 (Multidoor)", "Dimensões": "190 × 83,5 × 74 cm", "Eficiência": "Classe A · Inverter", "Voltagem": "220V", "Estado": "Ótimo · 2 anos de uso", "Cômodo": "Cozinha" }
   },
   {
     id: "FRE-001",
-    title: "Freezer horizontal Electrolux 305 L · dupla ação",
+    title: "Freezer horizontal Electrolux 143 L · dupla função",
     category: "Eletrodoméstico", room: "Cozinha / área de serviço",
-    price: 1100, status: "Disponível",
+    price: 750, status: "Disponível",
     images: ["img/freezer/freezer-01.jpg","img/freezer/freezer-02.jpg","img/freezer/freezer-03.jpg","img/freezer/freezer-04.jpg","img/freezer/freezer-05.jpg","img/freezer/freezer-06.jpg","img/freezer/freezer-07.jpg"],
-    description: "Freezer horizontal Electrolux 305 L com função dupla ação: usa como freezer ou como refrigerador, conforme a necessidade. Cesto aramado, dreno frontal e rodízios para mover sem esforço. Robusto e em ótimo estado.",
-    specs: { "Dimensões": "105 × 76 × 92 cm (referência)", "Capacidade": "305 L", "Estado": "Ótimo · 2 anos de uso", "Modelo": "Electrolux H300 (referência)", "Cômodo": "Cozinha / área de serviço" },
-    disclaimer: "Voltagem a confirmar no contato."
+    description: "Freezer horizontal Electrolux de 143 litros com Dual Function: use como freezer ou como conservador/geladeira, conforme a necessidade. Tem Turbo Freezer para congelar mais rápido, iluminação LED interna, fechadura de segurança e dreno de degelo. Compacto e econômico (classe A) — em ótimo estado.",
+    specs: { "Modelo": "Electrolux HE150", "Capacidade": "143 L", "Dimensões": "85 × 63 × 60 cm", "Eficiência": "Classe A", "Degelo": "Cycle Defrost (manual)", "Voltagem": "127V", "Estado": "Ótimo · 2 anos de uso", "Cômodo": "Cozinha / área de serviço" }
   },
   {
     id: "MIC-001",
