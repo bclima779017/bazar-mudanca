@@ -19,7 +19,7 @@ window.CATALOGO = {
     id: "SOF-001", featured: true,
     title: "Sofá retrátil 3 módulos — 2,95 m",
     category: "Sofá", room: "Sala de estar",
-    price: 2800, status: "Disponível",
+    price: 2300, status: "Disponível",
     images: [
       "img/sofa-retratil/sofa-retratil-01.jpg","img/sofa-retratil/sofa-retratil-02.jpg",
       "img/sofa-retratil/sofa-retratil-03.jpg","img/sofa-retratil/sofa-retratil-04.jpg",
@@ -46,7 +46,7 @@ window.CATALOGO = {
     id: "MCE-001",
     title: "Mesas de centro — tampo orgânico e bases esfera",
     category: "Mesa de centro", room: "Sala de estar",
-    price: 900, status: "Disponível",
+    price: 1900, status: "Disponível",
     images: ["img/mesas-centro/mesas-centro-01.jpg","img/mesas-centro/mesas-centro-02.jpg","img/mesas-centro/mesas-centro-03.jpg","img/mesas-centro/mesas-centro-04.jpg","img/mesas-centro/mesas-centro-05.jpg","img/mesas-centro/mesas-centro-06.jpg","img/mesas-centro/mesas-centro-07.jpg","img/mesas-centro/mesas-centro-08.jpg"],
     description: "Design escultural: tampo em formato orgânico em madeira maciça e bases esfera. Peça com presença, traz personalidade ao living.",
     specs: { "Dimensões": "Medir no local", "Estado": "Ótimo · 2 anos de uso", "Material": "Madeira maciça", "Cômodo": "Sala de estar" },
@@ -54,19 +54,18 @@ window.CATALOGO = {
   },
   {
     id: "TV-001",
-    title: "Smart TV — tela grande",
+    title: "Smart TV Samsung 65\" 4K",
     category: "Eletrônico", room: "Sala de estar",
-    price: 1800, status: "Disponível",
+    price: 2200, status: "Disponível",
     images: ["img/televisao/televisao-01.jpg"],
-    description: "Televisão de tela ampla, em ótimo estado. Marca e polegadas exatas a confirmar na conversa.",
-    specs: { "Estado": "Ótimo · 2 anos de uso", "Cômodo": "Sala de estar", "Tipo": "Smart TV (instalada em painel)" },
-    disclaimer: "Marca e polegadas serão confirmadas no momento do contato."
+    description: "Smart TV Samsung de 65 polegadas, 4K, em ótimo estado. Tela ampla, ideal para a sala — estava instalada em painel. Acompanha controle.",
+    specs: { "Marca": "Samsung", "Tela": "65\" · 4K", "Estado": "Ótimo · 2 anos de uso", "Cômodo": "Sala de estar", "Tipo": "Smart TV" }
   },
   {
     id: "MJA-001",
     title: "Mesa de jantar 2,20 m · 8 lugares",
     category: "Mesa", room: "Sala de jantar",
-    price: 2200, status: "Disponível",
+    price: 1800, status: "Disponível",
     images: ["img/mesa-jantar/mesa-jantar-01.jpg","img/mesa-jantar/mesa-jantar-02.jpg","img/mesa-jantar/mesa-jantar-03.jpg","img/mesa-jantar/mesa-jantar-04.jpg","img/mesa-jantar/mesa-jantar-05.jpg","img/mesa-jantar/mesa-jantar-06.jpg","img/mesa-jantar/mesa-jantar-07.jpg","img/mesa-jantar/mesa-jantar-08.jpg","img/mesa-jantar/mesa-jantar-09.jpg"],
     description: "Mesa de jantar ampla, 220 × 110 cm, ideal para 8 pessoas. Centro do ambiente social, pronta para receber. Tampo e estrutura em ótimo estado.",
     specs: { "Dimensões": "220 × 110 × 77 cm", "Lugares": "8", "Estado": "Ótimo · 2 anos de uso", "Cômodo": "Sala de jantar" }
@@ -75,7 +74,7 @@ window.CATALOGO = {
     id: "CAD-001",
     title: "Cadeira com encosto em palhinha",
     category: "Cadeira", room: "Sala de jantar",
-    price: 280, status: "Disponível", priceNote: "cada", qty: 2,
+    price: 350, status: "Disponível", priceNote: "cada", qty: 2,
     images: ["img/cadeira-palhinha/cadeira-palhinha-01.jpg"],
     description: "Clássico atemporal. Estrutura em madeira e encosto em palhinha natural — combina com qualquer mesa de jantar.",
     specs: { "Dimensões": "46 × 52 × 81 cm", "Estado": "Ótimo · 2 anos de uso", "Material": "Madeira + palhinha", "Cômodo": "Sala de jantar" }
@@ -84,18 +83,18 @@ window.CATALOGO = {
     id: "CAD-002",
     title: "Cadeira de couro",
     category: "Cadeira", room: "Sala de jantar",
-    price: 420, status: "Disponível", priceNote: "cada", qty: 6,
+    price: 500, status: "Disponível", priceNote: "cada", qty: 6,
     images: ["img/cadeira-couro/cadeira-couro-01.jpg","img/cadeira-couro/cadeira-couro-02.jpg","img/cadeira-couro/cadeira-couro-03.jpg","img/cadeira-couro/cadeira-couro-04.jpg","img/cadeira-couro/cadeira-couro-05.jpg"],
     description: "Cadeira em couro autêntico, conforto e elegância. Combina com a mesa de jantar ou como cadeira de apoio.",
     specs: { "Dimensões": "46 × 49 × 85 cm", "Estado": "Ótimo · 2 anos de uso", "Material": "Couro", "Cômodo": "Sala de jantar" }
   },
   {
     id: "BAN-001",
-    title: "Banquetas altas de madeira — par",
+    title: "Banqueta alta de madeira",
     category: "Banqueta", room: "Cozinha",
-    price: 450, status: "Disponível", priceNote: "par",
+    price: 200, status: "Disponível", priceNote: "cada", qty: 4,
     images: ["img/banquetas/banquetas-01.jpg","img/banquetas/banquetas-02.jpg"],
-    description: "Par de banquetas em madeira maciça com encosto. Altura de assento adequada para bancadas/ilhas de 90 cm.",
+    description: "Banquetas em madeira maciça com encosto. Altura de assento adequada para bancadas/ilhas de 90 cm. Vendidas por unidade — 4 disponíveis.",
     specs: { "Dimensões (cada)": "43 × 42 × 103 cm", "Estado": "Ótimo · 2 anos de uso", "Material": "Madeira maciça", "Cômodo": "Cozinha / bancada" }
   },
   {
@@ -122,7 +121,7 @@ window.CATALOGO = {
     id: "MIC-001",
     title: "Micro-ondas Electrolux 31 L · espelhado",
     category: "Eletrodoméstico", room: "Cozinha",
-    price: 420, status: "Disponível",
+    price: 450, status: "Disponível",
     images: ["img/microondas/microondas-01.jpg"],
     description: "Micro-ondas Electrolux 31 L com acabamento espelhado e painel digital. Função tira-odor e capacidade familiar. Modelo de referência: MI41S.",
     specs: { "Dimensões": "52 × 43 × 33 cm (referência)", "Capacidade": "31 L", "Estado": "Ótimo · 2 anos de uso", "Modelo": "Electrolux MI41S (referência)", "Cômodo": "Cozinha" },
