@@ -10,7 +10,7 @@
  * ============================================================ */
 window.CATALOGO = {
   config: {
-    whatsapp:  "5511999999999",          // número com DDI+DDD, só dígitos. Ex: 5511987654321
+    whatsapp:  "5511991393072",          // número com DDI+DDD, só dígitos. Ex: 5511987654321
     bairro:    "(seu bairro/cidade)",    // ex.: "Pinheiros — São Paulo/SP"
     leadEmail: "bclima7790@gmail.com"     // e-mail que recebe os leads do formulário "Tenho interesse"
   },
