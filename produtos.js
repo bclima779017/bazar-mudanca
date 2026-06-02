@@ -30,8 +30,8 @@ window.CATALOGO = {
       "img/sofa-retratil/sofa-retratil-13.jpg","img/sofa-retratil/sofa-retratil-14.jpg",
       "img/sofa-retratil/sofa-retratil-15.jpg","img/sofa-retratil/sofa-retratil-16.jpg"
     ],
-    description: "A estrela do bazar — e que estrela. Sofá de alto padrão da Clami, que custou R$ 25.000 novo. São três módulos retráteis e reclináveis somando 2,95 m de frente: lugar de sobra para a família inteira se esparramar, com o assento abrindo até 1,55 m de profundidade. Conforto de showroom, estrutura impecável e acabamento premium, com apenas 2 anos de uso e em ótimo estado. É a peça que ancora a sala inteira — agora por menos da metade do valor original.",
-    specs: { "Marca": "Clami", "Dimensões": "295 × 155 × 95 cm", "Valor de nova": "R$ 25.000", "Estado": "Ótimo · 2 anos de uso", "Material": "Tecido premium", "Cômodo": "Sala de estar" }
+    description: "A estrela do bazar. Sofá de alto padrão da Clami: três módulos retráteis e reclináveis, 2,95 m de frente e assento que abre até 1,55 m. Conforto de showroom, acabamento premium e estrutura impecável — a peça que ancora a sala inteira.",
+    specs: { "Marca": "Clami", "Dimensões": "295 × 155 × 95 cm", "Estado": "Ótimo · 2 anos de uso", "Material": "Tecido premium", "Cômodo": "Sala de estar" }
   },
   {
     id: "POL-001",
@@ -39,7 +39,7 @@ window.CATALOGO = {
     category: "Poltrona", room: "Sala de estar",
     price: 1200, status: "Disponível", priceNote: "par",
     images: ["img/poltronas/poltronas-01.jpg","img/poltronas/poltronas-02.jpg","img/poltronas/poltronas-03.jpg"],
-    description: "Conjunto com duas poltronas idênticas, base baixa e estofamento estruturado. Combinam com o sofá retrátil ou formam um canto de leitura próprio. Vendidas como par.",
+    description: "Par de poltronas de base baixa e estofamento estruturado: firmeza, conforto e uma simetria elegante ao lado do sofá. Duas peças idênticas — combinação rara de achar no usado.",
     specs: { "Dimensões (cada)": "82 × 82 × 65 cm", "Estado": "Ótimo · 2 anos de uso", "Quantidade": "2 unidades (par)", "Cômodo": "Sala de estar" }
   },
   {
@@ -48,7 +48,7 @@ window.CATALOGO = {
     category: "Mesa de centro", room: "Sala de estar",
     price: 1900, status: "Disponível",
     images: ["img/mesas-centro/mesas-centro-01.jpg","img/mesas-centro/mesas-centro-02.jpg","img/mesas-centro/mesas-centro-03.jpg","img/mesas-centro/mesas-centro-04.jpg","img/mesas-centro/mesas-centro-05.jpg","img/mesas-centro/mesas-centro-06.jpg","img/mesas-centro/mesas-centro-07.jpg","img/mesas-centro/mesas-centro-08.jpg"],
-    description: "Design escultural: tampo em formato orgânico em madeira maciça e bases esfera. Peça com presença, traz personalidade ao living.",
+    description: "Peça escultural: tampo de formato orgânico em madeira maciça sobre bases esfera. Cada veio é único — design autoral que vira o ponto de destaque do living.",
     specs: { "Dimensões": "Medir no local", "Estado": "Ótimo · 2 anos de uso", "Material": "Madeira maciça", "Cômodo": "Sala de estar" },
     disclaimer: "Dimensões e conjunto exato a confirmar no contato."
   },
@@ -58,7 +58,7 @@ window.CATALOGO = {
     category: "Eletrônico", room: "Sala de estar",
     price: 2200, status: "Disponível",
     images: ["img/televisao/televisao-01.jpg"],
-    description: "Smart TV Samsung de 65 polegadas, 4K, em ótimo estado. Tela ampla, ideal para a sala — estava instalada em painel. Acompanha controle.",
+    description: "Smart TV Samsung 65\" 4K UHD: tela ampla e imersiva que transforma a sala em cinema, com sistema Tizen e seus apps favoritos (Netflix, YouTube, Prime, Globoplay). Acompanha controle, em ótimo estado.",
     specs: { "Marca": "Samsung", "Tela": "65\" · 4K", "Estado": "Ótimo · 2 anos de uso", "Cômodo": "Sala de estar", "Tipo": "Smart TV" }
   },
   {
@@ -67,7 +67,7 @@ window.CATALOGO = {
     category: "Mesa", room: "Sala de jantar",
     price: 1800, status: "Disponível",
     images: ["img/mesa-jantar/mesa-jantar-01.jpg","img/mesa-jantar/mesa-jantar-02.jpg","img/mesa-jantar/mesa-jantar-03.jpg","img/mesa-jantar/mesa-jantar-04.jpg","img/mesa-jantar/mesa-jantar-05.jpg","img/mesa-jantar/mesa-jantar-06.jpg","img/mesa-jantar/mesa-jantar-07.jpg","img/mesa-jantar/mesa-jantar-08.jpg","img/mesa-jantar/mesa-jantar-09.jpg"],
-    description: "Mesa de jantar ampla, 220 × 110 cm, ideal para 8 pessoas. Centro do ambiente social, pronta para receber. Tampo e estrutura em ótimo estado.",
+    description: "Mesa de jantar robusta de 2,20 m, lugar de sobra para 8 — feita para casa cheia e almoços demorados. Sólida e bem conservada, ancora a sala com presença.",
     specs: { "Dimensões": "220 × 110 × 77 cm", "Lugares": "8", "Estado": "Ótimo · 2 anos de uso", "Cômodo": "Sala de jantar" }
   },
   {
@@ -76,7 +76,7 @@ window.CATALOGO = {
     category: "Cadeira", room: "Sala de jantar",
     price: 350, status: "Disponível", priceNote: "cada", qty: 2,
     images: ["img/cadeira-palhinha/cadeira-palhinha-01.jpg"],
-    description: "Clássico atemporal. Estrutura em madeira e encosto em palhinha natural — combina com qualquer mesa de jantar.",
+    description: "Clássico atemporal de volta à moda: encosto em palhinha natural e estrutura de madeira, com leveza visual e charme imediato. 2 unidades em ótimo estado.",
     specs: { "Dimensões": "46 × 52 × 81 cm", "Estado": "Ótimo · 2 anos de uso", "Material": "Madeira + palhinha", "Cômodo": "Sala de jantar" }
   },
   {
@@ -85,7 +85,7 @@ window.CATALOGO = {
     category: "Cadeira", room: "Sala de jantar",
     price: 500, status: "Disponível", priceNote: "cada", qty: 6,
     images: ["img/cadeira-couro/cadeira-couro-01.jpg","img/cadeira-couro/cadeira-couro-02.jpg","img/cadeira-couro/cadeira-couro-03.jpg","img/cadeira-couro/cadeira-couro-04.jpg","img/cadeira-couro/cadeira-couro-05.jpg"],
-    description: "Cadeira em couro autêntico, conforto e elegância. Combina com a mesa de jantar ou como cadeira de apoio.",
+    description: "Cadeiras em couro autêntico e madeira — sofisticação que dura e fica ainda mais bonita com o tempo. Conjunto de 6, raro de achar combinando, em ótimo estado.",
     specs: { "Dimensões": "46 × 49 × 85 cm", "Estado": "Ótimo · 2 anos de uso", "Material": "Couro", "Cômodo": "Sala de jantar" }
   },
   {
@@ -94,7 +94,7 @@ window.CATALOGO = {
     category: "Banqueta", room: "Cozinha",
     price: 200, status: "Disponível", priceNote: "cada", qty: 4,
     images: ["img/banquetas/banquetas-01.jpg","img/banquetas/banquetas-02.jpg"],
-    description: "Banquetas em madeira maciça com encosto. Altura de assento adequada para bancadas/ilhas de 90 cm. Vendidas por unidade — 4 disponíveis.",
+    description: "Banqueta alta em madeira maciça com encosto, assento a ~75 cm — altura certa para bancada e ilha, com o conforto do apoio nas costas. 4 unidades; leve quantas precisar.",
     specs: { "Dimensões (cada)": "43 × 42 × 103 cm", "Estado": "Ótimo · 2 anos de uso", "Material": "Madeira maciça", "Cômodo": "Cozinha / bancada" }
   },
   {
@@ -103,7 +103,7 @@ window.CATALOGO = {
     category: "Eletrodoméstico", room: "Cozinha",
     price: 2100, status: "Disponível",
     images: ["img/geladeira/geladeira-01.jpg","img/geladeira/geladeira-02.jpg","img/geladeira/geladeira-03.jpg"],
-    description: "Geladeira Electrolux Inverter, 431 L, acabamento platinum. Frost-free, prateleiras retráteis, Ice Max e painel digital. Economia de até 45% no consumo. Modelo de referência: IF55S.",
+    description: "Electrolux 431 L Platinum com Inverter e Frost Free: refrigeração silenciosa, econômica e sem degelo. Tem AutoSense, congelamento rápido, gelo ágil e prateleiras retráteis — tudo controlado pelo display externo. Em ótimo estado.",
     specs: { "Dimensões": "70 × 76 × 176 cm (referência)", "Capacidade": "431 L", "Estado": "Ótimo · 2 anos de uso", "Modelo": "Electrolux IF55S (referência)", "Cômodo": "Cozinha" },
     disclaimer: "Voltagem a confirmar no contato."
   },
@@ -113,7 +113,7 @@ window.CATALOGO = {
     category: "Eletrodoméstico", room: "Cozinha / área de serviço",
     price: 1100, status: "Disponível",
     images: ["img/freezer/freezer-01.jpg","img/freezer/freezer-02.jpg","img/freezer/freezer-03.jpg","img/freezer/freezer-04.jpg","img/freezer/freezer-05.jpg","img/freezer/freezer-06.jpg","img/freezer/freezer-07.jpg"],
-    description: "Freezer horizontal Electrolux, branco, 305 L. Função dupla ação: pode operar como freezer ou refrigerador. Etiqueta A de eficiência. Modelo de referência: H300.",
+    description: "Freezer horizontal Electrolux 305 L com função dupla ação: usa como freezer ou como refrigerador, conforme a necessidade. Cesto aramado, dreno frontal e rodízios para mover sem esforço. Robusto e em ótimo estado.",
     specs: { "Dimensões": "105 × 76 × 92 cm (referência)", "Capacidade": "305 L", "Estado": "Ótimo · 2 anos de uso", "Modelo": "Electrolux H300 (referência)", "Cômodo": "Cozinha / área de serviço" },
     disclaimer: "Voltagem a confirmar no contato."
   },
@@ -123,7 +123,7 @@ window.CATALOGO = {
     category: "Eletrodoméstico", room: "Cozinha",
     price: 450, status: "Disponível",
     images: ["img/microondas/microondas-01.jpg"],
-    description: "Micro-ondas Electrolux 31 L com acabamento espelhado e painel digital. Função tira-odor e capacidade familiar. Modelo de referência: MI41S.",
+    description: "Micro-ondas Electrolux 31 L espelhado, com painel integrado que se esconde quando a porta fecha — visual clean. Função tira-odor, manter aquecido e receitas guiadas por QR Code. Em ótimo estado.",
     specs: { "Dimensões": "52 × 43 × 33 cm (referência)", "Capacidade": "31 L", "Estado": "Ótimo · 2 anos de uso", "Modelo": "Electrolux MI41S (referência)", "Cômodo": "Cozinha" },
     disclaimer: "Voltagem a confirmar no contato."
   }
