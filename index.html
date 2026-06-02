@@ -109,6 +109,19 @@ header.site{
   box-shadow:var(--shadow);aspect-ratio:4/3;background:var(--surface-2)
 }
 .hero-image img{width:100%;height:100%;object-fit:cover}
+.hero-urg{display:flex;align-items:center;gap:7px;margin:18px 0 0;font-size:13.5px;color:var(--accent);font-weight:600}
+/* Mosaico do hero */
+.hero-mosaic{display:grid;grid-template-columns:2fr 1fr;gap:10px}
+.hero-mosaic button{padding:0;border:0;cursor:pointer;border-radius:var(--radius);overflow:hidden;background:var(--surface-2);box-shadow:var(--shadow)}
+.hero-mosaic img{width:100%;height:100%;object-fit:cover;transition:transform .4s ease}
+.hero-mosaic button:hover img{transform:scale(1.05)}
+.hm-main{aspect-ratio:4/3}
+.hm-side{display:grid;grid-template-rows:1fr 1fr;gap:10px}
+@media(max-width:520px){
+  .hero-mosaic{grid-template-columns:1fr 1fr}
+  .hm-main{grid-column:1/-1}
+  .hm-side{grid-column:1/-1;grid-template-rows:none;grid-template-columns:1fr 1fr}
+}
 
 /* ---------- Featured ---------- */
 section.featured{padding:32px 0}
@@ -135,7 +148,17 @@ section.featured{padding:32px 0}
 /* ---------- Filters ---------- */
 section.catalog{padding:48px 0 80px}
 .section-title{font-family:var(--serif);font-weight:600;font-size:32px;color:var(--primary-dk);margin:0 0 6px}
-.section-sub{color:var(--muted);margin:0 0 28px;font-size:15px}
+.section-sub{color:var(--muted);margin:0 0 18px;font-size:15px}
+/* Selos de confiança */
+.trust{display:flex;flex-wrap:wrap;gap:8px 10px;margin:0 0 24px}
+.trust span{background:var(--surface-2);color:var(--primary-dk);font-size:12.5px;font-weight:600;padding:6px 12px;border-radius:999px}
+/* Ordenação */
+.sort{display:flex;align-items:center;gap:8px}
+.sort select{border:1.5px solid var(--border);background:var(--surface);border-radius:999px;padding:8px 12px;font-family:inherit;font-size:13px;color:var(--text);outline:0;cursor:pointer}
+.sort select:focus{border-color:var(--primary)}
+/* Preço à vista no Pix */
+.pix-tag{display:inline-flex;align-items:center;gap:6px;background:rgba(37,211,102,.12);color:#1a7a43;font-weight:600;font-size:14px;padding:8px 12px;border-radius:var(--radius-sm);margin:0 0 4px}
+.pix-card{font-size:12px;color:#1a7a43;font-weight:600;margin-top:6px}
 .filters{
   display:flex;flex-wrap:wrap;gap:8px;margin-bottom:18px;
   padding-bottom:16px;border-bottom:1px solid var(--border)
@@ -363,7 +386,7 @@ section.lead{padding:64px 0;background:linear-gradient(135deg,var(--primary) 0%,
 <section class="hero container">
   <div class="hero-grid">
     <div>
-      <span class="hero-badge">Mudança · Junho de 2026</span>
+      <span class="hero-badge">⏳ Últimas peças · saída em junho/2026</span>
       <h1>Os móveis da casa procurando <em>um novo lar</em>.</h1>
       <p class="lead">Estamos saindo do Unicco para o Grand Mond e precisamos passar adiante os móveis e eletrodomésticos que não vão com a gente. Itens em ótimo estado, 2 anos de uso. Retirada e entrega são negociáveis.</p>
       <div class="hero-buttons">
@@ -371,9 +394,10 @@ section.lead{padding:64px 0;background:linear-gradient(135deg,var(--primary) 0%,
         <a href="#catalogo" class="btn btn-ghost">Catálogo completo</a>
         <a href="#interesse" class="btn btn-accent">✉ Tenho interesse</a>
       </div>
+      <p class="hero-urg">🔥 Os itens saem conforme são vendidos — quem chega antes, escolhe melhor.</p>
     </div>
-    <div class="hero-image">
-      <img src="img/sofa-retratil/sofa-retratil-01.jpg" alt="Sofá retrátil de 3 módulos em destaque" loading="eager" />
+    <div class="hero-mosaic" id="heroMosaic">
+      <button class="hm-main"><img src="img/sofa-retratil/sofa-retratil-01.jpg" alt="Sofá retrátil de 3 módulos em destaque" loading="eager"></button>
     </div>
   </div>
 </section>
@@ -388,6 +412,13 @@ section.lead{padding:64px 0;background:linear-gradient(135deg,var(--primary) 0%,
   <h2 class="section-title">Catálogo <span class="count-pill" id="catCount"></span></h2>
   <p class="section-sub">Filtre por categoria ou cômodo de origem. Toque em um item para ver detalhes e fotos.</p>
 
+  <div class="trust">
+    <span>✓ 2 anos de uso</span>
+    <span>✓ Tudo funcionando</span>
+    <span>✓ Retirada combinada</span>
+    <span>✓ Pix, transferência ou dinheiro</span>
+  </div>
+
   <div class="filters">
     <div class="filter-group" id="catFilters"><span class="filter-label">Categoria</span></div>
   </div>
@@ -396,6 +427,14 @@ section.lead{padding:64px 0;background:linear-gradient(135deg,var(--primary) 0%,
     <div class="search">
       <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
       <input type="search" placeholder="Buscar..." id="searchInput" aria-label="Buscar produtos" />
+    </div>
+    <div class="sort">
+      <label class="filter-label" for="sortSelect">Ordenar</label>
+      <select id="sortSelect" aria-label="Ordenar produtos">
+        <option value="rel">Destaques</option>
+        <option value="price-asc">Menor preço</option>
+        <option value="price-desc">Maior preço</option>
+      </select>
     </div>
   </div>
 
@@ -569,6 +608,28 @@ function interesseProduto(id){
 }
 
 /* ============================================================
+ * RENDER: mosaico do hero
+ * ============================================================ */
+function renderHero(){
+  const mount = document.getElementById("heroMosaic");
+  if(!mount) return;
+  const withImg = PRODUCTS.filter(p => p.images && p.images.length);
+  const feat = PRODUCTS.find(p => p.featured && p.images && p.images.length) || withImg[0];
+  if(!feat) return;
+  const rest = withImg.filter(p => p.id !== feat.id).slice(0, 2);
+  mount.innerHTML = `
+    <button class="hm-main" onclick="openModal('${feat.id}')" aria-label="Ver ${feat.title}">
+      <img src="${feat.images[0]}" alt="${feat.title}" loading="eager">
+    </button>
+    <div class="hm-side">
+      ${rest.map(p => `
+        <button class="hm-cell" onclick="openModal('${p.id}')" aria-label="Ver ${p.title}">
+          <img src="${p.images[0]}" alt="${p.title}" loading="lazy">
+        </button>`).join("")}
+    </div>`;
+}
+
+/* ============================================================
  * RENDER: featured card
  * ============================================================ */
 function renderFeatured(){
@@ -597,7 +658,7 @@ function renderFeatured(){
 /* ============================================================
  * FILTERS
  * ============================================================ */
-const state = { category: "Todos", room: "Todos", q: "" };
+const state = { category: "Todos", room: "Todos", q: "", sort: "rel" };
 
 function buildFilters(){
   const cats = ["Todos", ...new Set(PRODUCTS.map(p => p.category))];
@@ -636,7 +697,13 @@ function filtered(){
       if(q && !(p.title.toLowerCase().includes(q) || p.description.toLowerCase().includes(q))) return false;
       return true;
     })
-    .sort((a, b) => statusRank(a) - statusRank(b)); // disponíveis primeiro, vendidos por último
+    .sort((a, b) => {
+      const r = statusRank(a) - statusRank(b); // disponíveis primeiro, vendidos por último
+      if(r !== 0) return r;
+      if(state.sort === "price-asc")  return (a.price ?? Infinity)  - (b.price ?? Infinity);
+      if(state.sort === "price-desc") return (b.price ?? -Infinity) - (a.price ?? -Infinity);
+      return 0; // "Destaques": mantém a ordem do arquivo
+    });
 }
 
 function updateCount(){
@@ -672,6 +739,7 @@ function renderGrid(){
           <h3>${p.title}</h3>
           ${dims ? `<div class="dims">${dims}</div>` : ""}
           <div class="price">${fmt(p.price)}${p.priceNote ? ` <span style="font-size:13px;color:var(--muted);font-family:var(--sans);font-weight:400">/ ${p.priceNote}</span>` : ""}</div>
+          ${p.pixPrice ? `<div class="pix-card">Pix à vista: ${fmt(p.pixPrice)}</div>` : ""}
           <button class="btn-card" onclick="event.stopPropagation();openModal('${p.id}')">${cta}</button>
         </div>
       </article>`;
@@ -723,6 +791,7 @@ function renderModal(){
     <div class="cat">${p.category} · ${p.room}</div>
     <h2 id="modalTitle">${p.title}</h2>
     <div class="price">${fmt(p.price)}${p.priceNote ? ` <span style="font-size:14px;color:var(--muted);font-family:var(--sans);font-weight:400">/ ${p.priceNote}</span>` : ""}</div>
+    ${p.pixPrice ? `<div class="pix-tag">💸 À vista no Pix: <strong>&nbsp;${fmt(p.pixPrice)}</strong></div>` : ""}
     <p class="desc">${p.description}</p>
     <dl class="specs">
       ${Object.entries(p.specs).map(([k,v]) => `<div class="spec"><dt>${k}</dt><dd>${v}</dd></div>`).join("")}
@@ -833,6 +902,7 @@ function openFromHash(){
  * BOOT
  * ============================================================ */
 document.addEventListener("DOMContentLoaded", () => {
+  renderHero();
   renderFeatured();
   buildFilters();
   renderGrid();
@@ -841,6 +911,10 @@ document.addEventListener("DOMContentLoaded", () => {
 
   document.getElementById("searchInput").addEventListener("input", e => {
     state.q = e.target.value;
+    renderGrid();
+  });
+  document.getElementById("sortSelect").addEventListener("change", e => {
+    state.sort = e.target.value;
     renderGrid();
   });
   document.getElementById("modalClose").addEventListener("click", closeModal);

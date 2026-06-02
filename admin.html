@@ -231,6 +231,10 @@ function renderEditor(p){
       <div class="field"><label>Status</label><select id="e_status">${STATUS.map(s=>`<option ${p.status===s?"selected":""}>${s}</option>`).join("")}</select></div>
     </div>
     <div class="field" style="margin-bottom:12px">
+      <label>Preço à vista no Pix — opcional (vira destaque verde no site)</label>
+      <input id="e_pix" type="number" value="${p.pixPrice!=null?p.pixPrice:''}" placeholder="ex.: 2600">
+    </div>
+    <div class="field" style="margin-bottom:12px">
       <label>Fotos — um caminho por linha</label>
       <textarea id="e_images" placeholder="img/sofa/sofa-01.jpg
 img/sofa/sofa-02.jpg">${esc((p.images||[]).join("\n"))}</textarea>
@@ -280,6 +284,7 @@ function saveEditor(){
     specs:textToSpecs(g("e_specs").value),
   };
   const note=g("e_note").value.trim(); if(note) prod.priceNote=note;
+  const pix=g("e_pix").value.trim(); if(pix!=="") prod.pixPrice=Number(pix);
   const disc=g("e_disc").value.trim(); if(disc) prod.disclaimer=disc;
 
   if(editingIndex==="new"){
