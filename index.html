@@ -7,6 +7,8 @@
 <title>Bazar de mudança</title>
 <meta name="description" content="Móveis e eletrodomésticos em ótimo estado, à venda por motivo de mudança. Sofá retrátil, mesa de jantar, geladeira Electrolux e mais." />
 <meta name="theme-color" content="#5C6E4D" />
+<link rel="icon" type="image/svg+xml" href="favicon.svg" />
+<link rel="apple-touch-icon" href="favicon.svg" />
 
 <!-- Open Graph -->
 <meta property="og:type" content="website" />
@@ -600,7 +602,8 @@ function waLink(text){
   return `https://wa.me/${CONFIG.whatsapp}?text=${t}`;
 }
 function waProductMsg(p){
-  return `Olá! Quero saber mais sobre o "${p.title}" do catálogo da mudança.`;
+  const preco = p.price != null ? ` — ${fmt(p.price)}${p.priceNote ? " / " + p.priceNote : ""}` : "";
+  return `Olá! Quero saber mais sobre o "${p.title}"${preco} do catálogo da mudança.\n${productUrl(p)}`;
 }
 
 // Link direto para um item (compartilhável no WhatsApp/Instagram)
@@ -940,6 +943,39 @@ function openFromHash(){
 }
 
 /* ============================================================
+ * SEO: schema.org gerado a partir dos dados (sempre em dia)
+ * ============================================================ */
+function injectJsonLd(){
+  const items = PRODUCTS.map((p, i) => {
+    const offer = {
+      "@type": "Offer",
+      "priceCurrency": "BRL",
+      "availability": isSold(p) ? "https://schema.org/SoldOut"
+                    : (p.status === "Reservado" ? "https://schema.org/LimitedAvailability"
+                    : "https://schema.org/InStock"),
+      "url": productUrl(p)
+    };
+    if(p.price != null) offer.price = String(p.price);
+    const item = { "@type": "Product", "name": p.title };
+    if(p.images && p.images.length) item.image = new URL(p.images[0], location.href).href;
+    if(p.description) item.description = p.description;
+    if(p.specs && p.specs["Marca"]) item.brand = { "@type": "Brand", "name": p.specs["Marca"] };
+    item.offers = offer;
+    return { "@type": "ListItem", "position": i + 1, "item": item };
+  });
+  const data = {
+    "@context": "https://schema.org",
+    "@type": "ItemList",
+    "name": "Bazar de mudança",
+    "itemListElement": items
+  };
+  const s = document.createElement("script");
+  s.type = "application/ld+json";
+  s.textContent = JSON.stringify(data);
+  document.head.appendChild(s);
+}
+
+/* ============================================================
  * BOOT
  * ============================================================ */
 document.addEventListener("DOMContentLoaded", () => {
@@ -949,6 +985,7 @@ document.addEventListener("DOMContentLoaded", () => {
   renderGrid();
   updateCount();
   populateLeadSelect();
+  injectJsonLd();
 
   document.getElementById("searchInput").addEventListener("input", e => {
     state.q = e.target.value;
@@ -997,21 +1034,7 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 </script>
 
-<!-- schema.org Products (SEO) -->
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "ItemList",
-  "name": "Bazar de mudança",
-  "itemListElement": [
-    {"@type":"Product","name":"Sofá retrátil Clami 3 módulos","offers":{"@type":"Offer","price":"12000","priceCurrency":"BRL"}},
-    {"@type":"Product","name":"Par de poltronas","offers":{"@type":"Offer","price":"1200","priceCurrency":"BRL"}},
-    {"@type":"Product","name":"Mesa de jantar 2,20m","offers":{"@type":"Offer","price":"1800","priceCurrency":"BRL"}},
-    {"@type":"Product","name":"Geladeira Electrolux Multidoor 590L","offers":{"@type":"Offer","price":"4500","priceCurrency":"BRL"}},
-    {"@type":"Product","name":"Freezer horizontal Electrolux 143L","offers":{"@type":"Offer","price":"1200","priceCurrency":"BRL"}}
-  ]
-}
-</script>
+<!-- schema.org: gerado dinamicamente em injectJsonLd() a partir do produtos.js -->
 
 </body>
 </html>

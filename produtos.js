@@ -126,7 +126,7 @@ window.CATALOGO = {
     disclaimer: "Voltagem a confirmar no contato."
   },
   {
-    id: "SOF-002", featured: true,
+    id: "SOF-002",
     title: "Sofá Fernando Jaeger — 2 módulos · 2,20 m",
     category: "Sofá", room: "Sala de estar",
     price: 5500, status: "Disponível",
