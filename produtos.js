@@ -17,9 +17,9 @@ window.CATALOGO = {
   produtos: [
   {
     id: "SOF-001", featured: true,
-    title: "Sofá retrátil 3 módulos — 2,95 m",
+    title: "Sofá retrátil Clami — 3 módulos · 2,95 m",
     category: "Sofá", room: "Sala de estar",
-    price: 2300, status: "Disponível",
+    price: 12000, status: "Disponível",
     images: [
       "img/sofa-retratil/sofa-retratil-01.jpg","img/sofa-retratil/sofa-retratil-02.jpg",
       "img/sofa-retratil/sofa-retratil-03.jpg","img/sofa-retratil/sofa-retratil-04.jpg",
@@ -30,8 +30,8 @@ window.CATALOGO = {
       "img/sofa-retratil/sofa-retratil-13.jpg","img/sofa-retratil/sofa-retratil-14.jpg",
       "img/sofa-retratil/sofa-retratil-15.jpg","img/sofa-retratil/sofa-retratil-16.jpg"
     ],
-    description: "A estrela do bazar. Sofá retrátil de 3 módulos com 295 cm de frente — acomoda a família inteira e ainda sobra espaço. Profundidade variável até 155 cm com módulos abertos. Estrutura sólida, em ótimo estado.",
-    specs: { "Dimensões": "295 × 155 × 95 cm", "Estado": "Ótimo · 2 anos de uso", "Material": "Tecido (a confirmar)", "Cômodo": "Sala de estar" }
+    description: "A estrela do bazar — e que estrela. Sofá de alto padrão da Clami, que custou R$ 25.000 novo. São três módulos retráteis e reclináveis somando 2,95 m de frente: lugar de sobra para a família inteira se esparramar, com o assento abrindo até 1,55 m de profundidade. Conforto de showroom, estrutura impecável e acabamento premium, com apenas 2 anos de uso e em ótimo estado. É a peça que ancora a sala inteira — agora por menos da metade do valor original.",
+    specs: { "Marca": "Clami", "Dimensões": "295 × 155 × 95 cm", "Valor de nova": "R$ 25.000", "Estado": "Ótimo · 2 anos de uso", "Material": "Tecido premium", "Cômodo": "Sala de estar" }
   },
   {
     id: "POL-001",
