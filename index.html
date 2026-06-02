@@ -100,6 +100,8 @@ header.site{
 .btn-primary:hover{background:var(--primary-dk);color:#fff;box-shadow:var(--shadow)}
 .btn-ghost{background:transparent;color:var(--primary-dk);border:1.5px solid var(--primary)}
 .btn-ghost:hover{background:var(--surface-2)}
+.btn-accent{background:var(--accent);color:#fff}
+.btn-accent:hover{background:#b56847;color:#fff;box-shadow:var(--shadow)}
 .btn-whats{background:var(--whatsapp);color:#fff}
 .btn-whats:hover{background:#1ebe5a;color:#fff;box-shadow:var(--shadow)}
 .hero-image{
@@ -184,6 +186,19 @@ section.catalog{padding:48px 0 80px}
 .card h3{font-family:var(--serif);font-size:18px;font-weight:600;margin:0 0 6px;line-height:1.2;color:var(--primary-dk)}
 .card .dims{font-size:12px;color:var(--muted);margin-bottom:10px}
 .card .price{font-family:var(--serif);font-size:22px;font-weight:600;color:var(--primary-dk);margin-top:auto}
+.btn-card{
+  display:block;width:100%;margin-top:12px;text-align:center;
+  background:var(--surface-2);color:var(--primary-dk);border:1.5px solid var(--border);
+  border-radius:999px;padding:10px 0;font-size:13px;font-weight:600;
+  transition:background .15s ease, color .15s ease, border-color .15s ease
+}
+.card:hover .btn-card{background:var(--primary);color:#fff;border-color:var(--primary)}
+.card.dim .btn-card{opacity:.9}
+.photo-count{
+  position:absolute;bottom:10px;right:10px;background:rgba(20,18,12,.6);color:#fff;
+  font-size:11px;font-weight:600;padding:3px 8px;border-radius:999px;
+  display:inline-flex;align-items:center;gap:4px;backdrop-filter:blur(2px)
+}
 .empty{padding:60px 20px;text-align:center;color:var(--muted);font-style:italic;grid-column:1/-1}
 
 /* ---------- Modal ---------- */
@@ -281,13 +296,19 @@ footer.site{padding:32px 0;border-top:1px solid var(--border);text-align:center;
 .btn-sm{padding:11px 16px;font-size:13px}
 
 /* ---------- Seção "Tenho interesse" (lead por e-mail) ---------- */
-section.lead{padding:56px 0}
+section.lead{padding:64px 0;background:linear-gradient(135deg,var(--primary) 0%,var(--primary-dk) 100%)}
 .lead-card{
-  background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);
-  box-shadow:var(--shadow);padding:30px 26px 32px;max-width:680px;margin:0 auto
+  background:var(--surface);border:1px solid var(--border);border-top:5px solid var(--accent);
+  border-radius:var(--radius);box-shadow:0 18px 50px rgba(30,25,15,.28);
+  padding:30px 26px 32px;max-width:680px;margin:0 auto;position:relative
 }
-.lead-card h2{font-family:var(--serif);font-weight:600;font-size:28px;color:var(--primary-dk);margin:0 0 6px}
-.lead-card p.sub{color:var(--muted);font-size:14px;margin:0 0 22px}
+.lead-badge{
+  display:inline-flex;align-items:center;gap:6px;background:var(--surface-2);color:var(--accent);
+  font-size:12px;font-weight:700;letter-spacing:.5px;text-transform:uppercase;
+  padding:6px 12px;border-radius:999px;margin-bottom:14px
+}
+.lead-card h2{font-family:var(--serif);font-weight:600;font-size:30px;color:var(--primary-dk);margin:0 0 6px}
+.lead-card p.sub{color:var(--muted);font-size:15px;margin:0 0 22px}
 .lead-form{display:grid;gap:14px;grid-template-columns:1fr 1fr}
 .lead-form .full{grid-column:1/-1}
 .field{display:flex;flex-direction:column;gap:5px}
@@ -348,6 +369,7 @@ section.lead{padding:56px 0}
       <div class="hero-buttons">
         <a href="#destaque" class="btn btn-primary">Ver o destaque</a>
         <a href="#catalogo" class="btn btn-ghost">Catálogo completo</a>
+        <a href="#interesse" class="btn btn-accent">✉ Tenho interesse</a>
       </div>
     </div>
     <div class="hero-image">
@@ -384,6 +406,7 @@ section.lead{padding:56px 0}
 <section id="interesse" class="lead">
   <div class="container">
     <div class="lead-card">
+      <span class="lead-badge">✷ Resposta rápida</span>
       <h2>Tenho interesse</h2>
       <p class="sub">Prefere por e-mail? Deixe seu contato que eu retorno com fotos extras, medidas exatas e combinamos a retirada. Sem compromisso.</p>
       <form class="lead-form" id="leadForm" novalidate>
@@ -638,15 +661,18 @@ function renderGrid(){
     const imgBlock = p.images.length
       ? `<img src="${p.images[0]}" alt="${p.title}" loading="lazy">`
       : `<div class="placeholder">📷 Fotos em breve</div>`;
+    const photoCount = p.images.length > 1 ? `<span class="photo-count">📷 ${p.images.length}</span>` : "";
     const dim = statusRank(p) > 0 ? " dim" : ""; // vendido/reservado ficam apagados
+    const cta = isSold(p) ? "Ver detalhes" : "Saiba mais";
     return `
       <article class="card${dim}" onclick="openModal('${p.id}')" tabindex="0" role="button" aria-label="Ver detalhes de ${p.title}">
-        <div class="img">${imgBlock}${badge}</div>
+        <div class="img">${imgBlock}${badge}${photoCount}</div>
         <div class="body">
           <div class="cat">${p.category} · ${p.room}</div>
           <h3>${p.title}</h3>
           ${dims ? `<div class="dims">${dims}</div>` : ""}
           <div class="price">${fmt(p.price)}${p.priceNote ? ` <span style="font-size:13px;color:var(--muted);font-family:var(--sans);font-weight:400">/ ${p.priceNote}</span>` : ""}</div>
+          <button class="btn-card" onclick="event.stopPropagation();openModal('${p.id}')">${cta}</button>
         </div>
       </article>`;
   }).join("");
