@@ -3,6 +3,7 @@
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+<meta name="color-scheme" content="light only" />
 <title>Bazar de mudança</title>
 <meta name="description" content="Móveis e eletrodomésticos em ótimo estado, à venda por motivo de mudança. Sofá retrátil, mesa de jantar, geladeira Electrolux e mais." />
 <meta name="theme-color" content="#5C6E4D" />
@@ -20,6 +21,7 @@
 
 <style>
 :root{
+  color-scheme: light;
   --bg:#F8F4ED;
   --surface:#FFFFFF;
   --surface-2:#F1EADC;
@@ -37,7 +39,7 @@
   --sans:"Inter", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
 }
 *{box-sizing:border-box}
-html,body{margin:0;padding:0}
+html,body{margin:0;padding:0;overflow-x:hidden}
 body{
   font-family:var(--sans);
   background:var(--bg);
@@ -186,6 +188,18 @@ section.catalog{padding:48px 0 80px}
   display:grid;gap:22px;
   grid-template-columns:repeat(auto-fill,minmax(260px,1fr))
 }
+/* Mobile: 2 colunas para mostrar mais itens sem rolar tanto */
+@media(max-width:560px){
+  .grid{gap:12px;grid-template-columns:repeat(2,1fr)}
+  .card .body{padding:12px 12px 14px}
+  .card h3{font-size:15px;line-height:1.25}
+  .card .cat{font-size:10px}
+  .card .dims{font-size:11px;margin-bottom:8px}
+  .card .price{font-size:18px}
+  .btn-card{padding:8px 0;font-size:12px;margin-top:10px}
+  .card .badge{font-size:10px;padding:4px 8px;top:8px;left:8px}
+  .photo-count{font-size:10px;padding:2px 7px;bottom:8px;right:8px}
+}
 .card{
   background:var(--surface);border:1px solid var(--border);
   border-radius:var(--radius);overflow:hidden;cursor:pointer;
@@ -208,7 +222,7 @@ section.catalog{padding:48px 0 80px}
 .card .badge.warn{background:var(--accent);color:#fff}
 .card .body{padding:16px 18px 18px;display:flex;flex-direction:column;flex:1}
 .card .cat{font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:.6px;font-weight:600;margin-bottom:4px}
-.card h3{font-family:var(--serif);font-size:18px;font-weight:600;margin:0 0 6px;line-height:1.2;color:var(--primary-dk)}
+.card h3{font-family:var(--serif);font-size:18px;font-weight:600;margin:0 0 6px;line-height:1.2;color:var(--primary-dk);overflow-wrap:break-word}
 .card .dims{font-size:12px;color:var(--muted);margin-bottom:10px}
 .card .price{font-family:var(--serif);font-size:22px;font-weight:600;color:var(--primary-dk);margin-top:auto}
 .btn-card{
@@ -258,9 +272,25 @@ section.catalog{padding:48px 0 80px}
 }
 .gallery-nav.prev{left:12px}
 .gallery-nav.next{right:12px}
-.modal-body{padding:28px 28px 32px}
+.modal-body{padding:28px 28px 32px;overflow-wrap:break-word;word-break:break-word}
 @media(min-width:780px){.modal-body{overflow-y:auto;max-height:calc(100vh - 80px)}}
-@media(max-width:779px){.gallery-main{max-height:46vh}}
+@media(max-width:779px){
+  .gallery-main{max-height:46vh}
+  .modal-body h2{font-size:clamp(22px,6vw,28px)}
+  .modal-body .price{font-size:26px}
+}
+/* Celulares pequenos: modal vira folha em tela cheia (sem cantos cortados) */
+@media(max-width:560px){
+  .modal{padding:0;align-items:stretch}
+  .modal-card{
+    margin:0;border-radius:0;width:100%;max-width:100%;min-height:100%;
+    padding-bottom:env(safe-area-inset-bottom)
+  }
+  .modal-body{padding:22px 18px 28px}
+  .gallery-main{max-height:52vh}
+  .specs{grid-template-columns:1fr 1fr;gap:8px 14px;padding:14px}
+  .modal-cta .btn{flex:1 1 100%}
+}
 .modal-close{
   position:absolute;top:14px;right:14px;background:rgba(255,255,255,.95);
   width:38px;height:38px;border-radius:50%;display:flex;align-items:center;
@@ -915,6 +945,18 @@ document.addEventListener("DOMContentLoaded", () => {
     state.sort = e.target.value;
     renderGrid();
   });
+  // Swipe na galeria (arrastar para trocar de foto no mobile)
+  const gal = document.getElementById("gallery");
+  let touchX = null;
+  gal.addEventListener("touchstart", e => { touchX = e.touches[0].clientX; }, { passive: true });
+  gal.addEventListener("touchend", e => {
+    if(touchX === null) return;
+    const dx = e.changedTouches[0].clientX - touchX;
+    const p = modalState.product;
+    if(p && p.images.length > 1 && Math.abs(dx) > 40) galNav(dx < 0 ? 1 : -1);
+    touchX = null;
+  }, { passive: true });
+
   document.getElementById("modalClose").addEventListener("click", closeModal);
   document.getElementById("modal").addEventListener("click", e => {
     if(e.target.id === "modal") closeModal();
