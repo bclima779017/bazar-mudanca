@@ -258,7 +258,9 @@ section.catalog{padding:48px 0 80px}
 }
 .gallery-nav.prev{left:12px}
 .gallery-nav.next{right:12px}
-.modal-body{padding:28px 28px 32px;overflow-y:auto;max-height:calc(100vh - 80px)}
+.modal-body{padding:28px 28px 32px}
+@media(min-width:780px){.modal-body{overflow-y:auto;max-height:calc(100vh - 80px)}}
+@media(max-width:779px){.gallery-main{max-height:46vh}}
 .modal-close{
   position:absolute;top:14px;right:14px;background:rgba(255,255,255,.95);
   width:38px;height:38px;border-radius:50%;display:flex;align-items:center;
@@ -424,7 +426,6 @@ section.lead{padding:64px 0;background:linear-gradient(135deg,var(--primary) 0%,
     <div class="filter-group" id="catFilters"><span class="filter-label">Categoria</span></div>
   </div>
   <div class="filters">
-    <div class="filter-group" id="roomFilters"><span class="filter-label">Cômodo</span></div>
     <div class="search">
       <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
       <input type="search" placeholder="Buscar..." id="searchInput" aria-label="Buscar produtos" />
@@ -659,11 +660,10 @@ function renderFeatured(){
 /* ============================================================
  * FILTERS
  * ============================================================ */
-const state = { category: "Todos", room: "Todos", q: "", sort: "rel" };
+const state = { category: "Todos", q: "", sort: "rel" };
 
 function buildFilters(){
   const cats = ["Todos", ...new Set(PRODUCTS.map(p => p.category))];
-  const rooms = ["Todos", ...new Set(PRODUCTS.map(p => p.room))];
   const renderChips = (id, items, key) => {
     const c = document.getElementById(id);
     items.forEach(v => {
@@ -675,14 +675,10 @@ function buildFilters(){
     });
   };
   renderChips("catFilters", cats, "category");
-  renderChips("roomFilters", rooms, "room");
 }
 function refreshChips(){
   document.querySelectorAll("#catFilters .chip").forEach(b => {
     b.classList.toggle("active", b.textContent === state.category);
-  });
-  document.querySelectorAll("#roomFilters .chip").forEach(b => {
-    b.classList.toggle("active", b.textContent === state.room);
   });
 }
 
@@ -694,7 +690,6 @@ function filtered(){
   return PRODUCTS
     .filter(p => {
       if(state.category !== "Todos" && p.category !== state.category) return false;
-      if(state.room !== "Todos" && p.room !== state.room) return false;
       if(q && !(p.title.toLowerCase().includes(q) || p.description.toLowerCase().includes(q))) return false;
       return true;
     })
