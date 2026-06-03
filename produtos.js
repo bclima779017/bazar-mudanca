@@ -117,7 +117,7 @@ window.CATALOGO = {
       "category": "Mesa",
       "room": "Sala de jantar",
       "price": 1800,
-      "status": "Disponível",
+      "status": "Vendido",
       "images": [
         "img/mesa-jantar/mesa-jantar-01.jpg",
         "img/mesa-jantar/mesa-jantar-02.jpg",
@@ -135,7 +135,8 @@ window.CATALOGO = {
         "Lugares": "8",
         "Estado": "Ótimo · 2 anos de uso",
         "Cômodo": "Sala de jantar"
-      }
+      },
+      "featured": false
     },
     {
       "id": "CAD-001",
