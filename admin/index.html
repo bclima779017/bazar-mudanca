@@ -1,0 +1,599 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<!-- página servida em /admin/ — resolve produtos.js, img/... a partir da raiz do site -->
+<base href="../" />
+<title>Admin · Bazar de mudança</title>
+<meta name="robots" content="noindex,nofollow" />
+<style>
+:root{
+  --bg:#F8F4ED; --surface:#FFFFFF; --surface-2:#F1EADC;
+  --primary:#5C6E4D; --primary-dk:#46553A; --accent:#C97B5A;
+  --text:#2B2B2B; --muted:#6B6155; --border:#E5DCC9;
+  --radius:12px; --radius-sm:9px; --shadow:0 8px 28px rgba(60,50,30,.10);
+  --sans:"Inter",system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;
+  --danger:#b4452f; --ok:#3f7a3f;
+}
+*{box-sizing:border-box}
+body{margin:0;font-family:var(--sans);background:var(--bg);color:var(--text);line-height:1.5}
+.container{max-width:980px;margin:0 auto;padding:0 18px}
+header{background:var(--primary-dk);color:#fff;padding:16px 0}
+header .container{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap}
+header h1{font-size:18px;margin:0;font-weight:600}
+header .hint{font-size:12px;opacity:.85}
+button{font-family:inherit;cursor:pointer;border:0;border-radius:999px;font-weight:600;font-size:14px;padding:10px 16px;transition:transform .12s ease,background .15s ease}
+button:hover{transform:translateY(-1px)}
+button:disabled{opacity:.5;cursor:not-allowed;transform:none}
+.btn-primary{background:var(--primary);color:#fff}
+.btn-accent{background:var(--accent);color:#fff}
+.btn-light{background:#fff;color:var(--primary-dk);border:1.5px solid var(--border)}
+.btn-danger{background:transparent;color:var(--danger);border:1.5px solid var(--danger)}
+.btn-xs{padding:6px 10px;font-size:13px}
+.bar{position:sticky;top:0;z-index:20;background:rgba(248,244,237,.95);backdrop-filter:blur(6px);border-bottom:1px solid var(--border);padding:12px 0;margin-bottom:18px}
+.bar .container{display:flex;gap:10px;flex-wrap:wrap;align-items:center}
+.bar .grow{flex:1}
+.count{font-size:13px;color:var(--muted)}
+section.card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);box-shadow:var(--shadow);padding:18px 18px 20px;margin-bottom:18px}
+section.card h2{font-size:15px;margin:0 0 14px;color:var(--primary-dk);text-transform:uppercase;letter-spacing:.5px}
+.grid2{display:grid;gap:12px;grid-template-columns:1fr 1fr}
+.grid3{display:grid;gap:12px;grid-template-columns:1fr 1fr 1fr}
+.field{display:flex;flex-direction:column;gap:4px}
+.field.full{grid-column:1/-1}
+label{font-size:12px;font-weight:600;color:var(--muted);text-transform:uppercase;letter-spacing:.3px}
+input,select,textarea{font-family:inherit;font-size:14px;color:var(--text);background:#fff;border:1.5px solid var(--border);border-radius:var(--radius-sm);padding:10px 12px;outline:0;width:100%}
+input:focus,select:focus,textarea:focus{border-color:var(--primary)}
+textarea{resize:vertical;min-height:64px}
+.row{display:flex;align-items:center;gap:12px;padding:12px;border:1px solid var(--border);border-radius:var(--radius-sm);background:var(--surface);margin-bottom:10px}
+.row .thumb{width:58px;height:46px;border-radius:7px;object-fit:cover;background:var(--surface-2);flex-shrink:0}
+.row .thumb.ph{display:flex;align-items:center;justify-content:center;font-size:18px;color:var(--muted)}
+.row .info{flex:1;min-width:0}
+.row .info b{display:block;font-size:14px;color:var(--primary-dk);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.row .info small{color:var(--muted);font-size:12px}
+.row .actions{display:flex;gap:6px;align-items:center;flex-wrap:wrap}
+.row select{width:auto;padding:6px 8px;font-size:12px}
+.star{font-size:18px;background:none;padding:4px;color:#c9b87a}
+.star.on{color:#e0a800}
+.editor{border:2px solid var(--primary);border-radius:var(--radius);padding:16px;margin-bottom:10px;background:#fff}
+.editor h3{margin:0 0 12px;font-size:15px;color:var(--primary-dk)}
+.editor .grid2,.editor .grid3{margin-bottom:12px}
+.editor-actions{display:flex;gap:10px;margin-top:6px}
+.help{font-size:12px;color:var(--muted);margin:4px 0 0}
+.toast{position:fixed;left:50%;bottom:24px;transform:translateX(-50%) translateY(20px);background:var(--primary-dk);color:#fff;padding:11px 18px;border-radius:999px;font-size:14px;box-shadow:var(--shadow);opacity:0;pointer-events:none;transition:.2s;z-index:50;max-width:90vw;text-align:center}
+.toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
+.toast.err{background:var(--danger)}
+.steps{background:var(--surface-2);border-radius:var(--radius-sm);padding:14px 16px;font-size:13px;color:var(--muted);margin-bottom:18px}
+.steps b{color:var(--primary-dk)}
+.steps ol{margin:8px 0 0;padding-left:20px}
+/* Conexão */
+.conn{display:flex;gap:10px;align-items:flex-end;flex-wrap:wrap}
+.conn .field{flex:1;min-width:240px}
+.dot{display:inline-block;width:9px;height:9px;border-radius:50%;background:#c4b9a4;margin-right:6px;vertical-align:middle}
+.dot.on{background:var(--ok)}
+.conn-status{font-size:13px;color:var(--muted)}
+details.adv{margin-top:10px}
+details.adv summary{font-size:12px;color:var(--muted);cursor:pointer;text-transform:uppercase;letter-spacing:.3px;font-weight:600}
+details.adv .grid3{margin-top:10px}
+/* Previews de upload */
+.previews{display:flex;gap:8px;flex-wrap:wrap;margin-top:8px}
+.previews .pv{position:relative;width:70px;height:56px;border-radius:7px;overflow:hidden;border:1px solid var(--border);background:var(--surface-2)}
+.previews .pv img{width:100%;height:100%;object-fit:cover}
+.previews .pv .tag{position:absolute;left:0;bottom:0;right:0;background:rgba(70,85,58,.85);color:#fff;font-size:9px;padding:1px 3px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.previews .pv.up::after{content:"⬆ enviar";position:absolute;top:2px;left:2px;background:var(--accent);color:#fff;font-size:8px;padding:1px 4px;border-radius:4px}
+@media(max-width:620px){.grid2,.grid3{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="container">
+    <h1>⚙ Admin — Bazar de mudança</h1>
+    <span class="hint">Edite o catálogo e publique direto no site</span>
+  </div>
+</header>
+
+<div class="bar">
+  <div class="container">
+    <button class="btn-primary" id="btnNew">+ Novo produto</button>
+    <button class="btn-light" id="btnReload" title="Buscar a versão mais recente do site">⟳ Carregar do site</button>
+    <span class="grow"></span>
+    <span class="count" id="count"></span>
+    <button class="btn-light btn-xs" id="btnDownload" title="Baixar uma cópia local (rede de segurança)">⬇ Baixar cópia</button>
+    <button class="btn-accent" id="btnPublish">⬆ Publicar no site</button>
+  </div>
+</div>
+
+<main class="container">
+
+  <div class="steps">
+    <b>Como usar:</b>
+    <ol>
+      <li>Cole seu <b>token</b> uma vez (cartão abaixo) — fica salvo só neste navegador.</li>
+      <li>Clique <b>⟳ Carregar do site</b> para pegar a versão mais recente.</li>
+      <li>Adicione/edite produtos. Para fotos novas, use <b>Enviar fotos</b> dentro do produto.</li>
+      <li>Clique <b>⬆ Publicar no site</b>. O site atualiza sozinho em ~1 minuto.</li>
+    </ol>
+  </div>
+
+  <section class="card">
+    <h2>Conexão <span class="conn-status" id="connStatus"><span class="dot" id="connDot"></span>sem token</span></h2>
+    <div class="conn">
+      <div class="field">
+        <label for="ghToken">Token de acesso (GitHub)</label>
+        <input id="ghToken" type="password" placeholder="github_pat_… (cole aqui)" autocomplete="off">
+      </div>
+      <button class="btn-primary" id="btnSaveToken">Salvar token</button>
+      <button class="btn-light" id="btnForgetToken">Esquecer</button>
+    </div>
+    <p class="help">O token é a sua credencial para publicar. Ele fica guardado apenas neste navegador (localStorage) e nunca é enviado para outro lugar além do GitHub. Para revogar o acesso, basta apagar o token no GitHub.</p>
+    <details class="adv">
+      <summary>Avançado — repositório de destino</summary>
+      <div class="grid3">
+        <div class="field"><label>Dono (owner)</label><input id="ghOwner"></div>
+        <div class="field"><label>Repositório</label><input id="ghRepo"></div>
+        <div class="field"><label>Branch</label><input id="ghBranch"></div>
+      </div>
+    </details>
+  </section>
+
+  <section class="card">
+    <h2>Configurações do site</h2>
+    <div class="grid3">
+      <div class="field">
+        <label for="cfgWhats">WhatsApp (só dígitos, com DDI+DDD)</label>
+        <input id="cfgWhats" placeholder="5511987654321">
+      </div>
+      <div class="field">
+        <label for="cfgBairro">Bairro / cidade</label>
+        <input id="cfgBairro" placeholder="Pinheiros — São Paulo/SP">
+      </div>
+      <div class="field">
+        <label for="cfgEmail">E-mail dos leads</label>
+        <input id="cfgEmail" placeholder="voce@email.com">
+      </div>
+    </div>
+  </section>
+
+  <section class="card">
+    <h2>Produtos <span id="prodCount" class="count"></span></h2>
+    <div id="editorMount"></div>
+    <div id="list"></div>
+  </section>
+
+</main>
+
+<div class="toast" id="toast"></div>
+
+<!-- Carrega os dados atuais (fallback offline; o botão "Carregar do site" pega a versão fresca via API) -->
+<script src="produtos.js"></script>
+<script>
+/* ============================================================
+ * Estado
+ * ============================================================ */
+const STATUS = ["Disponível","Reservado","Vendido","Aguardando fotos"];
+let state = clone((window.CATALOGO) || { config:{whatsapp:"",bairro:"",leadEmail:""}, produtos:[] });
+if(!state.config) state.config = {whatsapp:"",bairro:"",leadEmail:""};
+if(!Array.isArray(state.produtos)) state.produtos = [];
+let editingIndex = null;        // índice em edição, ou "new"
+let produtosSha = null;         // sha do produtos.js carregado do GitHub (para regravar com segurança)
+let staged = {};                // { "img/<id>/<arquivo>": "<base64 puro>" } — fotos pendentes de envio
+let publishing = false;
+
+function clone(o){ return JSON.parse(JSON.stringify(o)); }
+function toast(msg,isErr){ const t=document.getElementById("toast"); t.textContent=msg; t.classList.toggle("err",!!isErr); t.classList.add("show"); clearTimeout(toast._t); toast._t=setTimeout(()=>t.classList.remove("show"),3200); }
+function esc(s){ return String(s==null?"":s).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/"/g,"&quot;"); }
+
+/* ============================================================
+ * Conexão com o GitHub (token + repositório)
+ * ============================================================ */
+const GH = {
+  get token(){ return localStorage.getItem("gh_token") || ""; },
+  set token(v){ v ? localStorage.setItem("gh_token", v) : localStorage.removeItem("gh_token"); },
+  get owner(){ return localStorage.getItem("gh_owner") || "bclima779017"; },
+  set owner(v){ localStorage.setItem("gh_owner", v); },
+  get repo(){ return localStorage.getItem("gh_repo") || "bazar-mudanca"; },
+  set repo(v){ localStorage.setItem("gh_repo", v); },
+  get branch(){ return localStorage.getItem("gh_branch") || "main"; },
+  set branch(v){ localStorage.setItem("gh_branch", v); }
+};
+
+const ghToken=document.getElementById("ghToken");
+const ghOwner=document.getElementById("ghOwner"), ghRepo=document.getElementById("ghRepo"), ghBranch=document.getElementById("ghBranch");
+
+function loadConnUI(){
+  ghToken.value = GH.token;
+  ghOwner.value = GH.owner; ghRepo.value = GH.repo; ghBranch.value = GH.branch;
+  renderConnStatus();
+}
+function renderConnStatus(){
+  const has = !!GH.token;
+  document.getElementById("connDot").classList.toggle("on", has);
+  document.getElementById("connStatus").lastChild.textContent =
+    has ? `conectado a ${GH.owner}/${GH.repo} (${GH.branch})` : "sem token — cole o token para publicar";
+}
+ghOwner.addEventListener("input",()=>{GH.owner=ghOwner.value.trim();renderConnStatus();});
+ghRepo .addEventListener("input",()=>{GH.repo=ghRepo.value.trim();renderConnStatus();});
+ghBranch.addEventListener("input",()=>{GH.branch=ghBranch.value.trim();renderConnStatus();});
+
+document.getElementById("btnSaveToken").addEventListener("click",()=>{
+  GH.token = ghToken.value.trim();
+  renderConnStatus();
+  toast(GH.token ? "Token salvo ✓" : "Token removido");
+});
+document.getElementById("btnForgetToken").addEventListener("click",()=>{
+  GH.token=""; ghToken.value=""; renderConnStatus(); toast("Token removido deste navegador");
+});
+
+/* ---- helpers base64 com UTF-8 correto (acentos) ---- */
+function b64DecodeUtf8(b64){
+  const bin = atob((b64||"").replace(/\n/g,""));
+  const bytes = Uint8Array.from(bin, c=>c.charCodeAt(0));
+  return new TextDecoder("utf-8").decode(bytes);
+}
+function b64EncodeUtf8(str){
+  const bytes = new TextEncoder().encode(str);
+  let bin=""; bytes.forEach(b=>bin+=String.fromCharCode(b));
+  return btoa(bin);
+}
+
+/* ---- chamadas à Contents API ---- */
+function ghHeaders(){
+  return { "Authorization":"Bearer "+GH.token, "Accept":"application/vnd.github+json", "X-GitHub-Api-Version":"2022-11-28" };
+}
+function ghUrl(path){
+  return `https://api.github.com/repos/${GH.owner}/${GH.repo}/contents/${path.split("/").map(encodeURIComponent).join("/")}`;
+}
+async function ghGet(path){
+  const r = await fetch(ghUrl(path)+`?ref=${encodeURIComponent(GH.branch)}`, { headers: ghHeaders() });
+  if(r.status===404) return null;
+  if(!r.ok) throw new Error(`GET ${path}: ${r.status} ${(await safeMsg(r))}`);
+  return r.json();
+}
+async function ghPut(path, base64Content, message, sha){
+  const body = { message, content: base64Content, branch: GH.branch };
+  if(sha) body.sha = sha;
+  const r = await fetch(ghUrl(path), { method:"PUT", headers: ghHeaders(), body: JSON.stringify(body) });
+  if(!r.ok) throw new Error(`PUT ${path}: ${r.status} ${(await safeMsg(r))}`);
+  return r.json();
+}
+async function safeMsg(r){ try{ return (await r.json()).message || ""; }catch{ return ""; } }
+
+/* ============================================================
+ * Carregar do site (versão fresca + sha)
+ * ============================================================ */
+function applyData(data){
+  if(!data || !Array.isArray(data.produtos)) throw new Error("formato inesperado");
+  state = clone(data);
+  if(!state.config) state.config = {whatsapp:"",bairro:"",leadEmail:""};
+  staged = {};
+  editingIndex = null; document.getElementById("editorMount").innerHTML="";
+  loadConfig(); renderList();
+}
+function extractCatalogo(jsText){
+  const sandbox={};
+  new Function("window", jsText)(sandbox);
+  return sandbox.CATALOGO;
+}
+async function reloadFromSite(){
+  if(!GH.token){ toast("Cole e salve o token primeiro.", true); return; }
+  try{
+    toast("Carregando do site…");
+    const file = await ghGet("produtos.js");
+    if(!file){ toast("produtos.js não encontrado no repositório.", true); return; }
+    produtosSha = file.sha;
+    applyData(extractCatalogo(b64DecodeUtf8(file.content)));
+    toast("Carregado do site ✓ (versão mais recente)");
+  }catch(e){ toast("Não consegui carregar: "+e.message, true); }
+}
+
+/* ============================================================
+ * Publicar no site (fotos pendentes + produtos.js)
+ * ============================================================ */
+function referencedImages(){
+  const set = new Set();
+  state.produtos.forEach(p => (p.images||[]).forEach(src => set.add(src)));
+  return set;
+}
+async function publish(){
+  if(publishing) return;
+  if(!GH.token){ toast("Cole e salve o token primeiro.", true); return; }
+  if(editingIndex!==null){ toast("Salve ou cancele a edição em aberto antes de publicar.", true); return; }
+
+  publishing = true;
+  const btn = document.getElementById("btnPublish");
+  btn.disabled = true; const original = btn.textContent; btn.textContent = "Publicando…";
+  try{
+    // 1) sobe as fotos pendentes que estão de fato referenciadas em algum produto
+    const refs = referencedImages();
+    const toUpload = Object.keys(staged).filter(path => refs.has(path));
+    for(let i=0;i<toUpload.length;i++){
+      const path = toUpload[i];
+      btn.textContent = `Enviando foto ${i+1}/${toUpload.length}…`;
+      const existing = await ghGet(path);                 // se já existir, precisamos do sha
+      const base64 = staged[path].split(",")[1];           // tira o prefixo "data:...;base64,"
+      await ghPut(path, base64, "admin: foto "+path, existing && existing.sha);
+      delete staged[path];
+    }
+
+    // 2) grava o produtos.js — pega o sha atual e avisa se mudou desde o carregamento
+    btn.textContent = "Gravando catálogo…";
+    const current = await ghGet("produtos.js");
+    const currentSha = current && current.sha;
+    if(produtosSha && currentSha && currentSha!==produtosSha){
+      if(!confirm("O catálogo no site mudou desde que você carregou (alguém pode ter editado). Publicar mesmo assim vai sobrescrever. Continuar?")){
+        toast("Publicação cancelada. Use ⟳ Carregar do site para pegar a versão nova.", true);
+        return;
+      }
+    }
+    const res = await ghPut("produtos.js", b64EncodeUtf8(buildFileText()), "admin: atualiza catálogo", currentSha);
+    produtosSha = res.content.sha;
+
+    toast("Publicado ✓ — o site atualiza em ~1 minuto.");
+  }catch(e){
+    toast("Falha ao publicar: "+e.message, true);
+  }finally{
+    publishing = false; btn.disabled = false; btn.textContent = original;
+    renderList();
+  }
+}
+
+/* ============================================================
+ * Config bindings
+ * ============================================================ */
+const cfgWhats=document.getElementById("cfgWhats"), cfgBairro=document.getElementById("cfgBairro"), cfgEmail=document.getElementById("cfgEmail");
+function loadConfig(){ cfgWhats.value=state.config.whatsapp||""; cfgBairro.value=state.config.bairro||""; cfgEmail.value=state.config.leadEmail||""; }
+cfgWhats.addEventListener("input",()=>state.config.whatsapp=cfgWhats.value.trim());
+cfgBairro.addEventListener("input",()=>state.config.bairro=cfgBairro.value.trim());
+cfgEmail.addEventListener("input",()=>state.config.leadEmail=cfgEmail.value.trim());
+
+/* ============================================================
+ * Lista
+ * ============================================================ */
+function srcPreview(src){ return staged[src] ? staged[src] : src; }
+function renderList(){
+  const list=document.getElementById("list");
+  document.getElementById("count").textContent = state.produtos.length + " produto(s)";
+  document.getElementById("prodCount").textContent = "· " + state.produtos.filter(p=>p.status==="Disponível").length + " disponível(eis)";
+  if(state.produtos.length===0){ list.innerHTML='<p class="help">Nenhum produto. Clique em “+ Novo produto”.</p>'; return; }
+  list.innerHTML = state.produtos.map((p,i)=>{
+    const thumb = (p.images&&p.images[0]) ? `<img class="thumb" src="${esc(srcPreview(p.images[0]))}" alt="">` : `<div class="thumb ph">📷</div>`;
+    const statusSel = `<select onchange="setStatus(${i},this.value)">${STATUS.map(s=>`<option ${p.status===s?"selected":""}>${s}</option>`).join("")}</select>`;
+    return `<div class="row">
+      ${thumb}
+      <div class="info">
+        <b>${esc(p.title)||"(sem título)"}</b>
+        <small>${esc(p.category)||"—"} · ${esc(p.room)||"—"} · ${p.price!=null?("R$ "+Number(p.price).toLocaleString("pt-BR")):"sem preço"}</small>
+      </div>
+      <div class="actions">
+        <button class="star ${p.featured?"on":""}" title="Destaque na home" onclick="setFeatured(${i})">★</button>
+        ${statusSel}
+        <button class="btn-light btn-xs" onclick="move(${i},-1)" title="Subir">↑</button>
+        <button class="btn-light btn-xs" onclick="move(${i},1)" title="Descer">↓</button>
+        <button class="btn-light btn-xs" onclick="edit(${i})">✎ Editar</button>
+        <button class="btn-danger btn-xs" onclick="del(${i})">🗑</button>
+      </div>
+    </div>`;
+  }).join("");
+}
+
+function setStatus(i,v){ state.produtos[i].status=v; renderList(); }
+function setFeatured(i){
+  const turningOn = !state.produtos[i].featured;
+  state.produtos.forEach((p,j)=>{ p.featured = turningOn && j===i ? true : false; });
+  renderList();
+}
+function move(i,d){
+  const j=i+d; if(j<0||j>=state.produtos.length) return;
+  const a=state.produtos; [a[i],a[j]]=[a[j],a[i]]; renderList();
+}
+function del(i){
+  if(!confirm(`Excluir "${state.produtos[i].title||"este produto"}"?`)) return;
+  state.produtos.splice(i,1);
+  if(editingIndex===i){ editingIndex=null; document.getElementById("editorMount").innerHTML=""; }
+  renderList();
+}
+
+/* ============================================================
+ * Editor
+ * ============================================================ */
+function blankProduct(){
+  return { id:suggestId(), title:"", category:"", room:"", price:null, priceNote:"", status:"Disponível", featured:false, images:[], description:"", specs:{}, disclaimer:"" };
+}
+function suggestId(){
+  let n=1, id;
+  do{ id="ITEM-"+String(n).padStart(3,"0"); n++; }while(state.produtos.some(p=>p.id===id));
+  return id;
+}
+function specsToText(specs){ return Object.entries(specs||{}).map(([k,v])=>`${k}: ${v}`).join("\n"); }
+function textToSpecs(t){
+  const o={};
+  (t||"").split("\n").forEach(line=>{
+    const idx=line.indexOf(":"); if(idx<0) return;
+    const k=line.slice(0,idx).trim(), v=line.slice(idx+1).trim();
+    if(k) o[k]=v;
+  });
+  return o;
+}
+
+function newProduct(){ editingIndex="new"; renderEditor(blankProduct()); }
+function edit(i){ editingIndex=i; renderEditor(clone(state.produtos[i])); }
+
+function renderEditor(p){
+  const mount=document.getElementById("editorMount");
+  mount.innerHTML=`<div class="editor">
+    <h3>${editingIndex==="new"?"Novo produto":"Editar produto"}</h3>
+    <div class="grid3">
+      <div class="field"><label>ID (único)</label><input id="e_id" value="${esc(p.id)}"></div>
+      <div class="field"><label>Categoria</label><input id="e_cat" value="${esc(p.category)}" placeholder="Sofá, Mesa, Eletrodoméstico…"></div>
+      <div class="field"><label>Cômodo</label><input id="e_room" value="${esc(p.room)}" placeholder="Sala de estar…"></div>
+    </div>
+    <div class="grid2">
+      <div class="field full"><label>Título</label><input id="e_title" value="${esc(p.title)}" placeholder="Sofá retrátil 3 módulos — 2,95 m"></div>
+    </div>
+    <div class="grid3">
+      <div class="field"><label>Preço (R$, só número)</label><input id="e_price" type="number" value="${p.price!=null?p.price:""}" placeholder="2800"></div>
+      <div class="field"><label>Nota de preço (opcional)</label><input id="e_note" value="${esc(p.priceNote)}" placeholder="par, cada…"></div>
+      <div class="field"><label>Status</label><select id="e_status">${STATUS.map(s=>`<option ${p.status===s?"selected":""}>${s}</option>`).join("")}</select></div>
+    </div>
+    <div class="grid2">
+      <div class="field">
+        <label>Preço à vista no Pix — opcional (destaque verde no site)</label>
+        <input id="e_pix" type="number" value="${p.pixPrice!=null?p.pixPrice:''}" placeholder="ex.: 2600">
+      </div>
+      <div class="field">
+        <label>Quantidade disponível — opcional (ex.: cadeiras, banquetas)</label>
+        <input id="e_qty" type="number" min="0" value="${p.qty!=null?p.qty:''}" placeholder="ex.: 6">
+      </div>
+    </div>
+    <div class="field" style="margin-bottom:12px">
+      <label>Fotos do produto</label>
+      <input type="file" id="e_files" accept="image/*" multiple onchange="addFiles(this)">
+      <p class="help">Escolha as fotos do computador — elas sobem para <b>img/&lt;id&gt;/</b> quando você publicar. A primeira da lista é a capa.</p>
+      <div class="previews" id="e_previews"></div>
+      <details class="adv" style="margin-top:8px">
+        <summary>Editar caminhos manualmente</summary>
+        <textarea id="e_images" placeholder="img/sofa/sofa-01.jpg
+img/sofa/sofa-02.jpg" oninput="renderPreviews()" style="margin-top:8px">${esc((p.images||[]).join("\n"))}</textarea>
+      </details>
+    </div>
+    <div class="field" style="margin-bottom:12px">
+      <label>Descrição</label>
+      <textarea id="e_desc" placeholder="Texto que aparece no detalhe do produto.">${esc(p.description)}</textarea>
+    </div>
+    <div class="field" style="margin-bottom:12px">
+      <label>Especificações — uma por linha, no formato "Chave: Valor"</label>
+      <textarea id="e_specs" placeholder="Dimensões: 295 × 155 × 95 cm
+Estado: Ótimo · 2 anos de uso
+Material: Tecido">${esc(specsToText(p.specs))}</textarea>
+    </div>
+    <div class="field" style="margin-bottom:12px">
+      <label>Aviso / observação (opcional)</label>
+      <input id="e_disc" value="${esc(p.disclaimer)}" placeholder="Voltagem a confirmar no contato.">
+    </div>
+    <div class="editor-actions">
+      <button class="btn-primary" onclick="saveEditor()">Salvar produto</button>
+      <button class="btn-light" onclick="cancelEditor()">Cancelar</button>
+    </div>
+  </div>`;
+  renderPreviews();
+  mount.scrollIntoView({behavior:"smooth",block:"nearest"});
+}
+
+/* Linhas (caminhos) atuais da textarea */
+function imageLines(){
+  const ta=document.getElementById("e_images");
+  return (ta? ta.value : "").split("\n").map(s=>s.trim()).filter(Boolean);
+}
+function setImageLines(arr){
+  const ta=document.getElementById("e_images");
+  if(ta) ta.value = arr.join("\n");
+}
+
+/* Recebe arquivos do computador, gera caminho img/<id>/<id>-NN.ext e os deixa pendentes */
+function addFiles(input){
+  const files = Array.from(input.files||[]);
+  if(!files.length) return;
+  const id = (document.getElementById("e_id").value.trim() || "item").toLowerCase().replace(/[^a-z0-9\-]/g,"-");
+  let lines = imageLines();
+  let n = lines.length;
+  let pending = files.length;
+  files.forEach(file=>{
+    const ext = (file.name.split(".").pop()||"jpg").toLowerCase().replace(/[^a-z0-9]/g,"") || "jpg";
+    n++;
+    const path = `img/${id}/${id}-${String(n).padStart(2,"0")}.${ext}`;
+    const reader = new FileReader();
+    reader.onload = ()=>{
+      staged[path] = String(reader.result); // data URL completo (com MIME) — preview usa direto; upload tira o prefixo
+      lines.push(path);
+      setImageLines(lines.slice());
+      renderPreviews();
+      if(--pending===0) toast(files.length+" foto(s) prontas — clique em Salvar e depois Publicar");
+    };
+    reader.readAsDataURL(file);
+  });
+  input.value = "";
+}
+
+function renderPreviews(){
+  const box=document.getElementById("e_previews"); if(!box) return;
+  const lines = imageLines();
+  box.innerHTML = lines.map(src=>{
+    const isPending = !!staged[src];
+    const url = isPending ? staged[src] : src;
+    return `<div class="pv ${isPending?"up":""}"><img src="${esc(url)}" alt=""><span class="tag">${esc(src.split("/").pop())}</span></div>`;
+  }).join("");
+}
+
+function cancelEditor(){ editingIndex=null; document.getElementById("editorMount").innerHTML=""; }
+
+function saveEditor(){
+  const g=id=>document.getElementById(id);
+  const id=g("e_id").value.trim();
+  if(!id){ toast("Informe um ID.", true); return; }
+  const dupe = state.produtos.some((p,j)=> p.id===id && j!==(editingIndex==="new"?-1:editingIndex));
+  if(dupe){ toast("Já existe um produto com esse ID.", true); return; }
+  const priceRaw=g("e_price").value.trim();
+  const prod={
+    id,
+    title:g("e_title").value.trim(),
+    category:g("e_cat").value.trim(),
+    room:g("e_room").value.trim(),
+    price: priceRaw===""?null:Number(priceRaw),
+    status:g("e_status").value,
+    images: imageLines(),
+    description:g("e_desc").value.trim(),
+    specs:textToSpecs(g("e_specs").value),
+  };
+  const note=g("e_note").value.trim(); if(note) prod.priceNote=note;
+  const pix=g("e_pix").value.trim(); if(pix!=="") prod.pixPrice=Number(pix);
+  const qty=g("e_qty").value.trim(); if(qty!=="") prod.qty=Number(qty);
+  const disc=g("e_disc").value.trim(); if(disc) prod.disclaimer=disc;
+
+  if(editingIndex==="new"){
+    state.produtos.push(prod);
+  }else{
+    prod.featured = !!state.produtos[editingIndex].featured; // preserva destaque
+    state.produtos[editingIndex]=prod;
+  }
+  editingIndex=null;
+  document.getElementById("editorMount").innerHTML="";
+  renderList();
+  toast("Produto salvo ✓ (lembre de Publicar)");
+}
+
+/* ============================================================
+ * Download / Import (rede de segurança offline)
+ * ============================================================ */
+function buildFileText(){
+  const data = { config: state.config, produtos: state.produtos };
+  return `/* ============================================================
+ * DADOS DO CATÁLOGO — Bazar de mudança
+ * Gerado pelo admin.html. Para editar, reabra o admin.html.
+ * ============================================================ */
+window.CATALOGO = ${JSON.stringify(data, null, 2)};
+`;
+}
+function download(){
+  const blob=new Blob([buildFileText()],{type:"text/javascript;charset=utf-8"});
+  const a=document.createElement("a");
+  a.href=URL.createObjectURL(blob); a.download="produtos.js";
+  document.body.appendChild(a); a.click(); a.remove();
+  URL.revokeObjectURL(a.href);
+  toast("Cópia baixada ✓ — use só se precisar subir manualmente");
+}
+
+/* ============================================================
+ * Wire
+ * ============================================================ */
+document.getElementById("btnNew").addEventListener("click", newProduct);
+document.getElementById("btnDownload").addEventListener("click", download);
+document.getElementById("btnReload").addEventListener("click", reloadFromSite);
+document.getElementById("btnPublish").addEventListener("click", publish);
+
+loadConnUI();
+loadConfig();
+renderList();
+</script>
+</body>
+</html>
