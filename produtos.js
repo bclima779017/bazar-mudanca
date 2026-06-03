@@ -387,6 +387,25 @@ window.CATALOGO = {
         "Estado": "Ótimo estado",
         "Cômodo": "Quarto"
       }
+    },
+    {
+      "id": "ITEM-001",
+      "title": "Lava e Seca Samsung 18kg Smart WD18T6500GV - Água Quente e Fria Preta",
+      "category": "Eletrodoméstico",
+      "room": "Área de Serviço",
+      "price": null,
+      "status": "Disponível",
+      "images": [
+        "img/item-001/item-001-01.jpeg",
+        "img/item-001/item-001-02.jpeg"
+      ],
+      "description": "Ela tem capacidade de lavagem de 18kg, água quente e fria e capacidade de 10kg de secagem. Conta com lavagem por inteligência artificial, são 4 sensores inteligentes que identificam automaticamente a carga de roupas, calculam a quantidade ideal de água e sabão e ajustam o tempo de lavagem com base no nível de sujeira.\nApenas 2 anos de uso, em perfeito estado de conservação.",
+      "specs": {
+        "Largura": "68,6cm,",
+        "Altura": "98,4cm,",
+        "Profundidade": "79,6cm"
+      },
+      "disclaimer": "220v"
     }
   ]
 };
