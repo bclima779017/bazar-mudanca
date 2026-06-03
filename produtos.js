@@ -350,7 +350,7 @@ window.CATALOGO = {
       "category": "Eletrodoméstico",
       "room": "Cozinha / área gourmet",
       "price": 1200,
-      "status": "Disponível",
+      "status": "Vendido",
       "images": [
         "img/cervejeira/cervejeira-01.jpg",
         "img/cervejeira/cervejeira-02.jpg",
@@ -365,7 +365,8 @@ window.CATALOGO = {
         "Voltagem": "127V",
         "Estado": "Ótimo estado",
         "Cômodo": "Cozinha / área gourmet"
-      }
+      },
+      "featured": false
     },
     {
       "id": "CAM-001",
