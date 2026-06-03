@@ -262,7 +262,7 @@ window.CATALOGO = {
       "category": "Eletrodoméstico",
       "room": "Cozinha",
       "price": 450,
-      "status": "Vendido",
+      "status": "Disponível",
       "images": [
         "img/microondas/microondas-01.jpg"
       ],
@@ -350,7 +350,7 @@ window.CATALOGO = {
       "category": "Eletrodoméstico",
       "room": "Cozinha / área gourmet",
       "price": 1200,
-      "status": "Vendido",
+      "status": "Disponível",
       "images": [
         "img/cervejeira/cervejeira-01.jpg",
         "img/cervejeira/cervejeira-02.jpg",
@@ -407,6 +407,26 @@ window.CATALOGO = {
       },
       "disclaimer": "220v",
       "featured": false
+    },
+    {
+      "id": "ITEM-002",
+      "title": "Lava-Louças Electrolux 14 Serviços Inox com Função Higienizar Compras (LL14X)",
+      "category": "Electrodoméstico",
+      "room": "Cozinha",
+      "price": 2500,
+      "status": "Disponível",
+      "images": [
+        "img/item-002/item-002-01.jpeg",
+        "img/item-002/item-002-02.jpeg"
+      ],
+      "description": "A Lava Louças 14 Serviços  LL14X é o que faltava. O consumo de água é de 9,5L por ciclo, sendo que a mesma quantidade de louças lavada a mão consome cerca de 90L. Economize água e tempo.\nDisplay Digital com Controle do Tempo, que permite que você saiba o tempo da lavagem e quanto falta para finalizar o ciclo.\nCesto de talheres removível.\nProduto em perfeito estado, com apenas 2 anos de uso.",
+      "specs": {
+        "Altura": "84,5 cm",
+        "Largura": "59,8 cm",
+        "Profundidade": "61 cm",
+        "Peso": "46kg"
+      },
+      "disclaimer": "220v"
     }
   ]
 };
