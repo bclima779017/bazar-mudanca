@@ -393,7 +393,7 @@ window.CATALOGO = {
       "title": "Lava e Seca Samsung 18kg Smart WD18T6500GV - Água Quente e Fria Preta",
       "category": "Eletrodoméstico",
       "room": "Área de Serviço",
-      "price": null,
+      "price": 3500,
       "status": "Disponível",
       "images": [
         "img/item-001/item-001-01.jpeg",
@@ -405,7 +405,8 @@ window.CATALOGO = {
         "Altura": "98,4cm,",
         "Profundidade": "79,6cm"
       },
-      "disclaimer": "220v"
+      "disclaimer": "220v",
+      "featured": false
     }
   ]
 };
