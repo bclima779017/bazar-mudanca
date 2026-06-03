@@ -252,10 +252,12 @@ section.catalog{padding:48px 0 80px}
 /* ---------- Modal ---------- */
 .modal{
   position:fixed;inset:0;background:rgba(20,18,12,.6);z-index:100;
-  display:none;align-items:flex-start;justify-content:center;
-  overflow-y:auto;padding:20px;backdrop-filter:blur(4px)
+  display:none;
+  overflow-y:auto;-webkit-overflow-scrolling:touch;overscroll-behavior:contain;
+  padding:20px;backdrop-filter:blur(4px)
 }
-.modal.open{display:flex}
+/* block (não flex): garante rolagem do conteúdo mais alto que a tela no iOS */
+.modal.open{display:block}
 .modal-card{
   background:var(--surface);border-radius:var(--radius);max-width:920px;width:100%;
   margin:20px auto;overflow:hidden;box-shadow:0 20px 60px rgba(0,0,0,.3);
@@ -292,18 +294,23 @@ section.catalog{padding:48px 0 80px}
 }
 /* Celulares pequenos: modal vira folha em tela cheia (sem cantos cortados) */
 @media(max-width:560px){
-  .modal{padding:0;align-items:stretch}
-  .modal-card{
-    margin:0;border-radius:0;width:100%;max-width:100%;min-height:100%;
-    padding-bottom:env(safe-area-inset-bottom)
-  }
-  .modal-body{padding:22px 18px 28px}
+  .modal{padding:0}
+  .modal-card{margin:0;border-radius:0;width:100%;max-width:100%;min-height:100%}
+  .modal-body{padding:22px 18px 0}
   /* galeria ocupa ~1/3 da tela: descricao e preco aparecem ao abrir */
   .gallery-main{aspect-ratio:auto;height:34vh;max-height:34vh}
   .gallery-thumbs{padding:6px;gap:5px}
   .gallery-thumbs img{width:52px;height:52px}
   .specs{grid-template-columns:1fr 1fr;gap:8px 14px;padding:14px}
-  .modal-cta .btn{flex:1 1 100%}
+  /* CTA fixo no rodapé do modal: WhatsApp e contato sempre ao alcance do polegar */
+  .modal-cta{
+    position:sticky;bottom:0;flex-wrap:wrap;gap:8px;margin:18px -18px 0;
+    padding:12px 18px calc(12px + env(safe-area-inset-bottom));
+    background:var(--surface);border-top:1px solid var(--border);
+    box-shadow:0 -8px 20px rgba(30,25,15,.10)
+  }
+  .modal-cta .btn-whats{flex:1 1 100%}
+  .modal-cta .btn-outline{flex:1 1 0;min-width:0}
 }
 .modal-close{
   position:absolute;top:14px;right:14px;background:rgba(255,255,255,.95);
@@ -618,6 +625,29 @@ function statusRank(p){
   return 0;
 }
 
+// Trava o scroll do fundo de forma segura no iOS (position:fixed + restaura posição)
+let _scrollY = 0;
+function lockScroll(){
+  if(document.body.dataset.locked) return;
+  _scrollY = window.scrollY || window.pageYOffset || 0;
+  document.body.dataset.locked = "1";
+  document.body.style.position = "fixed";
+  document.body.style.top = `-${_scrollY}px`;
+  document.body.style.left = "0";
+  document.body.style.right = "0";
+  document.body.style.width = "100%";
+}
+function unlockScroll(){
+  if(!document.body.dataset.locked) return;
+  delete document.body.dataset.locked;
+  document.body.style.position = "";
+  document.body.style.top = "";
+  document.body.style.left = "";
+  document.body.style.right = "";
+  document.body.style.width = "";
+  window.scrollTo(0, _scrollY);
+}
+
 // Aviso flutuante rápido (toast)
 function toast(msg){
   let t = document.getElementById("toast");
@@ -800,7 +830,7 @@ function openModal(id){
   const m = document.getElementById("modal");
   m.classList.add("open");
   m.scrollTop = 0; // abre no topo: titulo, preco e descricao visiveis
-  document.body.style.overflow = "hidden";
+  lockScroll();
   // deep-link: reflete o item na URL (compartilhável), sem empilhar histórico
   if(("#item=" + id) !== location.hash){
     history.replaceState(null, "", "#item=" + encodeURIComponent(id));
@@ -808,7 +838,7 @@ function openModal(id){
 }
 function closeModal(){
   document.getElementById("modal").classList.remove("open");
-  document.body.style.overflow = "";
+  unlockScroll();
   if(location.hash.indexOf("item=") !== -1){
     history.replaceState(null, "", location.pathname + location.search);
   }
