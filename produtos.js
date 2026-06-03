@@ -262,7 +262,7 @@ window.CATALOGO = {
       "category": "Eletrodoméstico",
       "room": "Cozinha",
       "price": 450,
-      "status": "Disponível",
+      "status": "Vendido",
       "images": [
         "img/microondas/microondas-01.jpg"
       ],
@@ -350,7 +350,7 @@ window.CATALOGO = {
       "category": "Eletrodoméstico",
       "room": "Cozinha / área gourmet",
       "price": 1200,
-      "status": "Disponível",
+      "status": "Vendido",
       "images": [
         "img/cervejeira/cervejeira-01.jpg",
         "img/cervejeira/cervejeira-02.jpg",
