@@ -190,9 +190,7 @@ window.CATALOGO = {
       "category": "Banqueta",
       "room": "Cozinha",
       "price": 200,
-      "status": "Disponível",
-      "priceNote": "cada",
-      "qty": 4,
+      "status": "Vendido",
       "images": [
         "img/banquetas/banquetas-01.jpg",
         "img/banquetas/banquetas-02.jpg"
@@ -203,7 +201,10 @@ window.CATALOGO = {
         "Estado": "Ótimo · 2 anos de uso",
         "Material": "Madeira maciça",
         "Cômodo": "Cozinha / bancada"
-      }
+      },
+      "priceNote": "cada",
+      "qty": 4,
+      "featured": false
     },
     {
       "id": "GEL-001",
