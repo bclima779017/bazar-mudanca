@@ -418,7 +418,7 @@ window.CATALOGO = {
     {
       "id": "ITEM-002",
       "title": "Lava-Louças Electrolux 14 Serviços Inox com Função Higienizar Compras (LL14X)",
-      "category": "Electrodoméstico",
+      "category": "Eletrodoméstico",
       "room": "Cozinha",
       "price": 2500,
       "status": "Vendido",
