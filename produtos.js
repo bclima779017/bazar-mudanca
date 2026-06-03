@@ -4,7 +4,7 @@
  * ============================================================ */
 window.CATALOGO = {
   "config": {
-    "whatsapp": "5511991393072",
+    "whatsapp": "5511980372359",
     "bairro": "Vila Romana — São Paulo/SP",
     "leadEmail": "bclima7790@gmail.com"
   },
