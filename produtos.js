@@ -143,9 +143,7 @@ window.CATALOGO = {
       "category": "Cadeira",
       "room": "Sala de jantar",
       "price": 500,
-      "status": "Disponível",
-      "priceNote": "cada",
-      "qty": 2,
+      "status": "Vendido",
       "images": [
         "img/cadeira-palhinha/cadeira-palhinha-01.jpg",
         "img/cadeira-palhinha/cadeira-palhinha-02.jpg",
@@ -157,7 +155,10 @@ window.CATALOGO = {
         "Estado": "Ótimo · 2 anos de uso",
         "Material": "Madeira + palhinha",
         "Cômodo": "Sala de jantar"
-      }
+      },
+      "priceNote": "cada",
+      "qty": 2,
+      "featured": false
     },
     {
       "id": "CAD-002",
@@ -210,7 +211,7 @@ window.CATALOGO = {
       "category": "Eletrodoméstico",
       "room": "Cozinha",
       "price": 4500,
-      "status": "Disponível",
+      "status": "Vendido",
       "images": [
         "img/geladeira/geladeira-01.jpg",
         "img/geladeira/geladeira-02.jpg",
@@ -226,7 +227,8 @@ window.CATALOGO = {
         "Voltagem": "220V",
         "Estado": "Ótimo · 2 anos de uso",
         "Cômodo": "Cozinha"
-      }
+      },
+      "featured": false
     },
     {
       "id": "FRE-001",
@@ -326,7 +328,7 @@ window.CATALOGO = {
       "category": "Colchão",
       "room": "Quarto",
       "price": 2200,
-      "status": "Disponível",
+      "status": "Vendido",
       "images": [
         "img/colchao-queen/colchao-queen-01.jpg",
         "img/colchao-queen/colchao-queen-02.jpg",
@@ -342,7 +344,8 @@ window.CATALOGO = {
         "Conforto": "Pillow top viscoelástico",
         "Estado": "Ótimo estado",
         "Cômodo": "Quarto"
-      }
+      },
+      "featured": false
     },
     {
       "id": "CER-001",
@@ -395,7 +398,7 @@ window.CATALOGO = {
       "category": "Eletrodoméstico",
       "room": "Área de Serviço",
       "price": 3500,
-      "status": "Disponível",
+      "status": "Vendido",
       "images": [
         "img/item-001/item-001-01.jpeg",
         "img/item-001/item-001-02.jpeg"
@@ -415,7 +418,7 @@ window.CATALOGO = {
       "category": "Electrodoméstico",
       "room": "Cozinha",
       "price": 2500,
-      "status": "Disponível",
+      "status": "Vendido",
       "images": [
         "img/item-002/item-002-01.jpeg",
         "img/item-002/item-002-02.jpeg"
@@ -427,7 +430,8 @@ window.CATALOGO = {
         "Profundidade": "61 cm",
         "Peso": "46kg"
       },
-      "disclaimer": "220v"
+      "disclaimer": "220v",
+      "featured": false
     }
   ]
 };
