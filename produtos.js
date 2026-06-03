@@ -264,7 +264,7 @@ window.CATALOGO = {
       "category": "Eletrodoméstico",
       "room": "Cozinha",
       "price": 450,
-      "status": "Disponível",
+      "status": "Vendido",
       "images": [
         "img/microondas/microondas-01.jpg"
       ],
@@ -276,7 +276,8 @@ window.CATALOGO = {
         "Modelo": "Electrolux MI41S (referência)",
         "Cômodo": "Cozinha"
       },
-      "disclaimer": "Voltagem a confirmar no contato."
+      "disclaimer": "Voltagem a confirmar no contato.",
+      "featured": false
     },
     {
       "id": "SOF-002",
