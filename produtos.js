@@ -11,12 +11,11 @@ window.CATALOGO = {
   "produtos": [
     {
       "id": "SOF-001",
-      "featured": true,
       "title": "Sofá retrátil Clami — 3 módulos · 2,95 m",
       "category": "Sofá",
       "room": "Sala de estar",
       "price": 12000,
-      "status": "Disponível",
+      "status": "Vendido",
       "images": [
         "img/sofa-retratil/sofa-retratil-01.jpg",
         "img/sofa-retratil/sofa-retratil-02.jpg",
@@ -42,7 +41,8 @@ window.CATALOGO = {
         "Estado": "Ótimo · 2 anos de uso",
         "Material": "Tecido premium",
         "Cômodo": "Sala de estar"
-      }
+      },
+      "featured": true
     },
     {
       "id": "POL-001",
