@@ -167,9 +167,7 @@ window.CATALOGO = {
       "category": "Cadeira",
       "room": "Sala de jantar",
       "price": 600,
-      "status": "Disponível",
-      "priceNote": "cada",
-      "qty": 6,
+      "status": "Vendido",
       "images": [
         "img/cadeira-couro/cadeira-couro-01.jpg",
         "img/cadeira-couro/cadeira-couro-02.jpg",
@@ -183,7 +181,10 @@ window.CATALOGO = {
         "Estado": "Ótimo · 2 anos de uso",
         "Material": "Couro",
         "Cômodo": "Sala de jantar"
-      }
+      },
+      "priceNote": "cada",
+      "qty": 6,
+      "featured": false
     },
     {
       "id": "BAN-001",
