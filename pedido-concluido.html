@@ -1,0 +1,30 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta name="robots" content="noindex, nofollow" />
+<title>Pedido concluído (teste)</title>
+<script>window.dataLayer = window.dataLayer || [];</script>
+<!-- PIXEL-KIPIAI: a linha <script async src=".../p.js" data-loja="..."></script> entra aqui -->
+<style>
+  body{font-family:system-ui,sans-serif;max-width:640px;margin:32px auto;padding:0 16px;line-height:1.5;color:#222}
+  a{color:#5C6E4D}
+</style>
+</head>
+<body>
+<h1>Pedido concluído (teste)</h1>
+<p>Pedido fictício <strong id="pedido"></strong>. Recarregue esta página: a compra deve contar
+uma vez só no Pixel.</p>
+<p><a href="teste-pixel.html">Voltar ao teste</a></p>
+<script>
+const pedido = new URLSearchParams(location.search).get("pedido") || "TESTE-SEM-NUMERO";
+document.getElementById("pedido").textContent = pedido;
+const item = { item_id: "TESTE-001", item_name: "Produto de teste", price: 100, quantity: 1 };
+window.dataLayer.push({ ecommerce: null });
+window.dataLayer.push({ event: "purchase", ecommerce: { transaction_id: pedido, currency: "BRL", value: 100, items: [item] } });
+// o evento de compra da VTEX, que a tag também lê (o mesmo pedido não pode contar duas vezes)
+window.dataLayer.push({ event: "orderPlaced", transactionId: pedido, transactionTotal: 100 });
+</script>
+</body>
+</html>
