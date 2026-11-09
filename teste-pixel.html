@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta name="robots" content="noindex, nofollow" />
+<title>Teste do Pixel</title>
+<script>window.dataLayer = window.dataLayer || [];</script>
+<script async src="https://brain-pixel-t4a32os5sq-rj.a.run.app/p.js" data-loja="2WGytUpnVKNrSwIwtW36_g"></script>
+<style>
+  body{font-family:system-ui,sans-serif;max-width:640px;margin:32px auto;padding:0 16px;line-height:1.5;color:#222}
+  button,a.btn{display:inline-block;margin:6px 6px 6px 0;padding:10px 14px;border-radius:8px;border:1px solid #5C6E4D;background:#fff;color:#5C6E4D;font-size:15px;cursor:pointer;text-decoration:none}
+  button.primary{background:#5C6E4D;color:#fff}
+  #log{background:#f4f4f0;border-radius:8px;padding:10px 12px;font-family:monospace;font-size:13px;white-space:pre-wrap;min-height:40px}
+  h2{font-size:17px;margin-top:28px}
+</style>
+</head>
+<body>
+<h1>Teste do Pixel (página fora do site)</h1>
+<p>Página só para o teste do Pixel Kipiai. Não tem link no site e não vende nada: o produto e
+o pedido são fictícios.</p>
+
+<h2>1. Funil de compra fictício</h2>
+<button onclick="enviar('view_item')">Ver produto</button>
+<button onclick="enviar('add_to_cart')">Pôr no carrinho</button>
+<button onclick="enviar('begin_checkout')">Ir ao checkout</button>
+<button class="primary" onclick="finalizar()">Finalizar compra →</button>
+
+<h2>2. Origem da visita</h2>
+<a class="btn" href="teste-pixel.html?utm_source=teste&utm_medium=cpc&utm_campaign=pixel">Voltar com UTM de anúncio</a>
+<a class="btn" href="teste-pixel.html?utm_source=instagram&utm_medium=social">Voltar com UTM de rede social</a>
+
+<h2>3. Dado pessoal no endereço (deve ser descartado)</h2>
+<a class="btn" href="teste-pixel.html?email=fulano%40exemplo.com&cpf=00000000000">Abrir com e-mail e CPF no endereço</a>
+
+<h2>4. Outra página</h2>
+<a class="btn" href="./">Ir ao catálogo</a>
+
+<h2>O que foi enviado ao dataLayer</h2>
+<div id="log"></div>
+
+<script>
+const PRODUTO = { item_id: "TESTE-001", item_name: "Produto de teste", price: 100, quantity: 1 };
+function registrar(texto){ document.getElementById("log").textContent += texto + "\n"; }
+function enviar(nome){
+  window.dataLayer.push({ ecommerce: null });
+  window.dataLayer.push({ event: nome, ecommerce: { currency: "BRL", value: PRODUTO.price, items: [PRODUTO] } });
+  registrar(new Date().toLocaleTimeString("pt-BR") + "  " + nome);
+}
+function finalizar(){
+  enviar("begin_checkout");
+  const pedido = "TESTE-" + Date.now();
+  location.href = "pedido-concluido.html?pedido=" + encodeURIComponent(pedido);
+}
+</script>
+</body>
+</html>

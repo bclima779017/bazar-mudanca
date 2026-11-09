@@ -9,6 +9,9 @@
 <meta name="theme-color" content="#5C6E4D" />
 <link rel="icon" type="image/svg+xml" href="favicon.svg" />
 <link rel="apple-touch-icon" href="favicon.svg" />
+<!-- Pixel Kipiai (teste): mede visitas e o caminho até o interesse, sem dado pessoal. -->
+<script>window.dataLayer = window.dataLayer || [];</script>
+<script async src="https://brain-pixel-t4a32os5sq-rj.a.run.app/p.js" data-loja="2WGytUpnVKNrSwIwtW36_g"></script>
 
 <!-- Open Graph -->
 <meta property="og:type" content="website" />
@@ -568,6 +571,7 @@ section.lead{padding:64px 0;background:linear-gradient(135deg,var(--primary) 0%,
 <footer class="site">
   <div class="container">
     Bazar de mudança · Junho/2026 · feito com cuidado para um bom destino
+    <br><small>Este site conta visitas de forma anônima (sem nome, e-mail ou telefone), para um teste de medição da Kipiai.</small>
   </div>
 </footer>
 
@@ -611,6 +615,19 @@ function waLink(text){
 function waProductMsg(p){
   const preco = p.price != null ? ` — ${fmt(p.price)}${p.priceNote ? " / " + p.priceNote : ""}` : "";
   return `Olá! Quero saber mais sobre o "${p.title}"${preco} do catálogo da mudança.\n${productUrl(p)}`;
+}
+
+// Pixel Kipiai (teste): eventos no formato de e-commerce do GA4, sem dado pessoal
+function itemDoPixel(p){
+  return { item_id: p.id, item_name: p.title, price: p.price, quantity: 1 };
+}
+function eventoDoPixel(nome, p){
+  try{
+    window.dataLayer.push({ ecommerce: null });
+    window.dataLayer.push({ event: nome, ecommerce: p
+      ? { currency: "BRL", value: p.price, items: [itemDoPixel(p)] }
+      : { currency: "BRL" } });
+  }catch(e){}
 }
 
 // Link direto para um item (compartilhável no WhatsApp/Instagram)
@@ -677,6 +694,8 @@ async function shareProduct(id){
 
 // Abre o formulário "Tenho interesse" já com o produto selecionado
 function interesseProduto(id){
+  const p = PRODUCTS.find(x => x.id === id);
+  if(p) eventoDoPixel("add_to_cart", p);
   closeModal();
   const sel = document.getElementById("leadProduto");
   if(sel) sel.value = id;
@@ -723,7 +742,7 @@ function renderFeatured(){
       </div>
       <div class="price">${fmt(p.price)}</div>
       <div style="display:flex;gap:10px;flex-wrap:wrap">
-        <a class="btn btn-whats" href="${waLink(waProductMsg(p))}" target="_blank" rel="noopener">
+        <a class="btn btn-whats" data-item="${p.id}" href="${waLink(waProductMsg(p))}" target="_blank" rel="noopener">
           <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M17.5 14.4c-.3-.1-1.6-.8-1.9-.9-.3-.1-.4-.1-.6.1-.2.3-.7.9-.8 1-.2.2-.3.2-.6.1-.3-.1-1.2-.4-2.3-1.4-.9-.8-1.4-1.7-1.6-2-.2-.3 0-.5.1-.6.1-.1.3-.3.4-.5.1-.2.2-.3.3-.5.1-.2 0-.4 0-.5 0-.1-.6-1.4-.8-1.9-.2-.5-.4-.4-.6-.4h-.5c-.2 0-.5.1-.7.3-.2.3-.9.9-.9 2.1s1 2.5 1.1 2.6c.1.2 1.9 2.9 4.6 4.1 1.6.7 2.3.8 3.1.7.5-.1 1.6-.7 1.8-1.3.2-.7.2-1.2.2-1.3-.1-.2-.3-.3-.6-.4M12 2C6.5 2 2 6.5 2 12c0 1.7.4 3.4 1.3 4.9L2 22l5.3-1.4c1.4.8 3 1.2 4.7 1.2 5.5 0 10-4.5 10-10S17.5 2 12 2z"/></svg>
           Saber mais
         </a>
@@ -827,6 +846,7 @@ function openModal(id){
   if(!p) return;
   modalState = { product: p, idx: 0 };
   renderModal();
+  eventoDoPixel("view_item", p);
   const m = document.getElementById("modal");
   m.classList.add("open");
   m.scrollTop = 0; // abre no topo: titulo, preco e descricao visiveis
@@ -872,7 +892,7 @@ function renderModal(){
     </dl>
     ${p.disclaimer ? `<p class="modal-disclaimer">⚠ ${p.disclaimer}</p>` : ""}
     <div class="modal-cta">
-      <a class="btn btn-whats" href="${waLink(waProductMsg(p))}" target="_blank" rel="noopener">
+      <a class="btn btn-whats" data-item="${p.id}" href="${waLink(waProductMsg(p))}" target="_blank" rel="noopener">
         <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M17.5 14.4c-.3-.1-1.6-.8-1.9-.9-.3-.1-.4-.1-.6.1-.2.3-.7.9-.8 1-.2.2-.3.2-.6.1-.3-.1-1.2-.4-2.3-1.4-.9-.8-1.4-1.7-1.6-2-.2-.3 0-.5.1-.6.1-.1.3-.3.4-.5.1-.2.2-.3.3-.5.1-.2 0-.4 0-.5 0-.1-.6-1.4-.8-1.9-.2-.5-.4-.4-.6-.4h-.5c-.2 0-.5.1-.7.3-.2.3-.9.9-.9 2.1s1 2.5 1.1 2.6c.1.2 1.9 2.9 4.6 4.1 1.6.7 2.3.8 3.1.7.5-.1 1.6-.7 1.8-1.3.2-.7.2-1.2.2-1.3-.1-.2-.3-.3-.6-.4M12 2C6.5 2 2 6.5 2 12c0 1.7.4 3.4 1.3 4.9L2 22l5.3-1.4c1.4.8 3 1.2 4.7 1.2 5.5 0 10-4.5 10-10S17.5 2 12 2z"/></svg>
         Saber mais no WhatsApp
       </a>
@@ -946,6 +966,7 @@ function handleLead(e){
       if(res && (res.success === "true" || res.success === true)){
         status.className = "lead-msg ok";
         status.textContent = "Recebido! Eu retorno em breve. ✓";
+        eventoDoPixel("begin_checkout", PRODUCTS.find(x => x.id === sel.value));
         form.reset();
         populateLeadSelect();
       } else {
@@ -1057,6 +1078,14 @@ document.addEventListener("DOMContentLoaded", () => {
   const generalMsg = "Olá! Acabei de ver o catálogo da mudança e quero saber mais.";
   document.getElementById("navWhats").href = waLink(generalMsg);
   document.getElementById("fabWhats").href = waLink(generalMsg);
+
+  // Pixel Kipiai (teste): "Saber mais" no WhatsApp de um item conta como carrinho
+  document.addEventListener("click", e => {
+    const a = e.target.closest && e.target.closest("a[data-item]");
+    if(!a) return;
+    const p = PRODUCTS.find(x => x.id === a.dataset.item);
+    if(p) eventoDoPixel("add_to_cart", p);
+  });
 
   // Link direto para um item (compartilhamento)
   openFromHash();
